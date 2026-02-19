@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Importadora Cali | Buscador de Precios</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rojo-principal: #d90429;
+            --rojo-oscuro: #8d0801;
+            --fondo-oscuro: #1a1a1a;
+            --blanco-fondo: #f8f9fa;
+            --texto-p: #2b2d42;
+            --color-disponible: #2b9348;
+        }
+
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: var(--blanco-fondo); 
+            margin: 0; 
+            color: var(--texto-p); 
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--rojo-oscuro) 0%, var(--rojo-principal) 100%);
+            color: white; 
+            padding: 60px 20px 80px; 
+            text-align: center; 
+            border-bottom: 5px solid rgba(0,0,0,0.1);
+        }
+
+        header h1 { 
+            font-family: 'Bebas Neue', cursive; 
+            font-size: 4rem; 
+            margin: 0; 
+            letter-spacing: 3px; 
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+        }
+
+        /* --- SECCIÓN DE BUSQUEDA Y FILTROS --- */
+        .search-wrapper { 
+            max-width: 650px; 
+            margin: -35px auto 10px; 
+            padding: 0 20px; 
+            position: relative; 
+            z-index: 10; 
+        }
+
+        .search-box { 
+            background: white; 
+            display: flex; 
+            align-items: center; 
+            padding: 8px 25px; 
+            border-radius: 50px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .search-box:focus-within {
+            box-shadow: 0 15px 35px rgba(217, 4, 41, 0.2);
+            border-color: var(--rojo-principal);
+        }
+
+        #searchInput { 
+            flex: 1; 
+            padding: 12px 15px; 
+            border: none; 
+            outline: none; 
+            font-size: 1.1rem; 
+            font-weight: 600;
+        }
+
+        /* --- BOTONES DE MARCAS (FILTROS) --- */
+        .filter-container {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+
+        .filter-btn {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--texto-p);
+            text-transform: uppercase;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--rojo-principal);
+            color: var(--rojo-principal);
+            background: #fffafa;
+        }
+
+        .filter-btn.active {
+            background: var(--rojo-principal);
+            color: white;
+            border-color: var(--rojo-principal);
+            box-shadow: 0 4px 10px rgba(217, 4, 41, 0.3);
+        }
+
+        /* --- GRID Y TARJETAS --- */
+        .grid-productos { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+            gap: 30px; 
+            max-width: 1300px; 
+            margin: 0 auto; 
+            padding: 20px; 
+        }
+
+        .card { 
+            background: white; 
+            border-radius: 15px; 
+            overflow: hidden; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+            display: flex; 
+            flex-direction: column; 
+            transition: all 0.3s ease; 
+            border: 1px solid #eee; 
+        }
+
+        .card:hover { transform: translateY(-8px); }
+
+        .cod-box { 
+            background: var(--fondo-oscuro); 
+            padding: 15px; 
+            text-align: center; 
+            color: white; 
+        }
+        .cod-box span { 
+            font-family: 'Bebas Neue', cursive; 
+            font-size: 2.2rem; 
+            color: var(--rojo-principal); 
+            display: block;
+        }
+
+        .img-container { 
+            height: 200px; 
+            padding: 20px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            background: white; 
+        }
+        .img-container img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+        .card-body { padding: 20px; flex-grow: 1; border-top: 1px solid #f0f0f0; }
+
+        .label { 
+            font-size: 0.65rem; 
+            color: #8d99ae; 
+            text-transform: uppercase; 
+            font-weight: 800; 
+            display: block; 
+        }
+
+        .desc-text { font-size: 1rem; font-weight: 700; margin-bottom: 12px; min-height: 2.4em;}
+
+        .otros-codigos {
+            background: #f8f9fa;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            color: #555;
+            border-left: 3px solid #ddd;
+        }
+
+        .price-footer { 
+            background: #f1f3f5; 
+            padding: 15px 20px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        .p-fact { font-family: 'Bebas Neue', cursive; font-size: 2rem; color: var(--rojo-principal); }
+
+        #imageModal { 
+            display: none; 
+            position: fixed; 
+            top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.9); 
+            z-index: 1000; justify-content: center; align-items: center; 
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>IMPORTADORA CALI</h1>
+    <p><i class="fa-solid fa-truck-fast"></i> BUSCADOR DE PRECIOS & EXISTENCIAS</p>
+</header>
+
+<div class="search-wrapper">
+    <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass" style="color: var(--rojo-principal);"></i>
+        <input type="text" id="searchInput" placeholder="Busca código Cali, marca o descripción..." onkeyup="filtrar()">
+    </div>
+</div>
+
+<div class="filter-container">
+    <button class="filter-btn active" onclick="filtrarPorMarca('TODOS', this)">Todos</button>
+    <button class="filter-btn" onclick="filtrarPorMarca('SCANIA', this)">Scania</button>
+    <button class="filter-btn" onclick="filtrarPorMarca('CHATA', this)">Chatas</button>
+    <button class="filter-btn" onclick="filtrarPorMarca('IVECO', this)">Iveco</button>
+    <button class="filter-btn" onclick="filtrarPorMarca('VOLVO', this)">Volvo</button>
+    <button class="filter-btn" onclick="filtrarPorMarca('BREITER', this)">Breiter</button>
+</div>
+
+<main class="grid-productos" id="listaProductos"></main>
+
+<div id="imageModal" onclick="this.style.display='none'">
+    <img id="modalImg" src="" style="max-width: 90%; max-height: 85%; border: 5px solid white;">
+</div>
+
+<script>
+const productos = [
+    { codCali: "B4913-C", otrosCod: "W01-M58-8098 / 4913N P02 / 1R14-753", desc: "GLOBO TRACTOR SCANIA", marca: "BREITER", pUnitario: 1250.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/374913-10c-komple.jpg" },
+    { codCali: "B881-C", otrosCod: "W01-M58-8602 / 4881NP02 / 1R14-757", desc: "GLOBO CHATA 12 PERNOS OLLA DE METAL", marca: "BREITER", pUnitario: 1200.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/37881-c-komple.jpg" },
+    { codCali: "B881-CPL", otrosCod: "W01-M58-8602 / 4881NP02 / 1R14-757", desc: "GLOBO CHATA 12 PERNOS OLLA DE PLASTICO", marca: "BREITER", pUnitario: 1150.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/37881-c-komple.jpg" },
+    { codCali: "B881-S", otrosCod: "W01-M58-8602 / 4881NP02 / 1R14-757", desc: "GLOBO CHATA 12 PERNOS SUELTO", marca: "BREITER", pUnitario: 820.00, img: "https://www.airspringsbook.com/storage/pistonsuz-korukler/374881-2s-komple.jpg" },
+    { codCali: "B813-C", otrosCod: "W01-M58-6364 / 813MB / 1R14-705", desc: "GLOBO CHATA 4 PERNOS CON BOCA", marca: "BREITER", pUnitario: 1000.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/37813-c-komple.jpg" },
+    { codCali: "B376603-C", otrosCod: "6603-C / 1R11-893 / 4420", desc: "GLOBO FUSHER FH OLLA ANCHA CHABETA TROMPO", marca: "BREITER", pUnitario: 1000.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/376603-c-komple.jpg" },
+    { codCali: "B3727023-1C", otrosCod: "B27023-1C / IVECO / FIAT", desc: "GLOBO DE SUSPENSIÓN FIAT IVECO METALICO", marca: "BREITER", pUnitario: 1050.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/3727023-1c-komple.jpg" },
+    { codCali: "B3727023-CPL", otrosCod: "B27023-CPL / IVECO / FIAT", desc: "GLOBO DE SUSPENSIÓN FIAT IVECO PLASTICO", marca: "BREITER", pUnitario: 1000.00, img: "https://www.airspringsbook.com/storage/plastik-pistonlu-korukler/3727023-cpl-komple.jpg" },
+    { codCali: "B162043", otrosCod: "6605 / 7803 / VOLVO", desc: "GLOBO FH CHINO DELANTERO COMPLETO", marca: "BREITER", pUnitario: 930.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/377804-c-komple.jpg" },
+    { codCali: "B5612-CPL", otrosCod: "20722409 / 4927NP01", desc: "GLOBO TRACTO FL7- NISSAN CONDOR", marca: "BREITER", pUnitario: 1050.00, img: "https://www.airspringsbook.com/storage/plastik-pistonlu-korukler/375612-cpl-komple.jpg" }
+];
+
+function cargarProductos(lista) {
+    const contenedor = document.getElementById('listaProductos');
+    contenedor.innerHTML = "";
+    lista.forEach(p => {
+        const pFact = (p.pUnitario * 1.09).toFixed(2);
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.setAttribute('data-search', `${p.codCali} ${p.desc} ${p.otrosCod} ${p.marca}`.toLowerCase());
+        card.innerHTML = `
+            <div class="cod-box"><span class="label" style="color:#aaa">CÓDIGO CALI</span><span>${p.codCali}</span></div>
+            <div class="img-container" onclick="verImagen('${p.img}')" style="cursor:zoom-in"><img src="${p.img}"></div>
+            <div class="card-body">
+                <span class="label">Descripción</span><div class="desc-text">${p.desc}</div>
+                <span class="label">Marca</span><div style="font-weight:700; color:var(--rojo-oscuro); margin-bottom:12px;">${p.marca}</div>
+                <span class="label">Códigos Equivalentes</span><div class="otros-codigos">${p.otrosCod}</div>
+            </div>
+            <div class="price-footer">
+                <div><span class="label">Unitario</span><div style="font-weight:700">Bs. ${p.pUnitario.toLocaleString()}</div></div>
+                <div style="text-align:right"><span class="label">Facturado</span><div class="p-fact">Bs. ${parseFloat(pFact).toLocaleString()}</div></div>
+            </div>
+        `;
+        contenedor.appendChild(card);
+    });
+}
+
+function filtrar() {
+    const busqueda = document.getElementById('searchInput').value.toLowerCase();
+    const tarjetas = document.querySelectorAll('.card');
+    tarjetas.forEach(t => {
+        t.style.display = t.getAttribute('data-search').includes(busqueda) ? "flex" : "none";
+    });
+}
+
+// FUNCIÓN PARA FILTRAR POR LOS BOTONES DE MARCA
+function filtrarPorMarca(marca, elemento) {
+    // Actualizar estilo de los botones
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    elemento.classList.add('active');
+
+    if(marca === 'TODOS') {
+        document.getElementById('searchInput').value = "";
+    } else {
+        document.getElementById('searchInput').value = marca;
+    }
+    filtrar();
+}
+
+function verImagen(src) {
+    document.getElementById('modalImg').src = src;
+    document.getElementById('imageModal').style.display = 'flex';
+}
+
+document.addEventListener('DOMContentLoaded', () => cargarProductos(productos));
+</script>
+</body>
+</html>
