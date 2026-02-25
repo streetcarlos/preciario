@@ -16,183 +16,80 @@
             --color-disponible: #2b9348;
         }
 
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            background-color: var(--blanco-fondo); 
-            margin: 0; 
-            color: var(--texto-p); 
-        }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--blanco-fondo); margin: 0; color: var(--texto-p); }
 
         header {
             background: linear-gradient(135deg, var(--rojo-oscuro) 0%, var(--rojo-principal) 100%);
-            color: white; 
-            padding: 60px 20px 80px; 
-            text-align: center; 
-            border-bottom: 5px solid rgba(0,0,0,0.1);
+            color: white; padding: 60px 20px 80px; text-align: center; border-bottom: 5px solid rgba(0,0,0,0.1);
         }
 
-        header h1 { 
-            font-family: 'Bebas Neue', cursive; 
-            font-size: 4rem; 
-            margin: 0; 
-            letter-spacing: 3px; 
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-        }
+        header h1 { font-family: 'Bebas Neue', cursive; font-size: 4rem; margin: 0; letter-spacing: 3px; text-shadow: 2px 2px 10px rgba(0,0,0,0.2); }
 
-        /* --- SECCIÓN DE BUSQUEDA Y FILTROS --- */
-        .search-wrapper { 
-            max-width: 650px; 
-            margin: -35px auto 10px; 
-            padding: 0 20px; 
-            position: relative; 
-            z-index: 10; 
-        }
+        .search-wrapper { max-width: 650px; margin: -35px auto 10px; padding: 0 20px; position: relative; z-index: 10; }
 
         .search-box { 
-            background: white; 
-            display: flex; 
-            align-items: center; 
-            padding: 8px 25px; 
-            border-radius: 50px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
+            background: white; display: flex; align-items: center; padding: 8px 25px; border-radius: 50px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); transition: all 0.3s ease; border: 2px solid transparent;
         }
 
-        .search-box:focus-within {
-            box-shadow: 0 15px 35px rgba(217, 4, 41, 0.2);
-            border-color: var(--rojo-principal);
-        }
+        .search-box:focus-within { box-shadow: 0 15px 35px rgba(217, 4, 41, 0.2); border-color: var(--rojo-principal); }
 
-        #searchInput { 
-            flex: 1; 
-            padding: 12px 15px; 
-            border: none; 
-            outline: none; 
-            font-size: 1.1rem; 
-            font-weight: 600;
-        }
+        #searchInput { flex: 1; padding: 12px 15px; border: none; outline: none; font-size: 1.1rem; font-weight: 600; }
 
-        /* --- BOTONES DE MARCAS (FILTROS) --- */
-        .filter-container {
-            max-width: 800px;
-            margin: 0 auto 30px;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            padding: 0 20px;
-        }
+        .filter-container { max-width: 800px; margin: 0 auto 30px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; padding: 0 20px; }
 
         .filter-btn {
-            background: white;
-            border: 1px solid #ddd;
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: var(--texto-p);
-            text-transform: uppercase;
+            background: white; border: 1px solid #ddd; padding: 8px 18px; border-radius: 20px; font-size: 0.8rem;
+            font-weight: 700; cursor: pointer; transition: all 0.3s ease; color: var(--texto-p); text-transform: uppercase;
         }
 
-        .filter-btn:hover {
-            border-color: var(--rojo-principal);
-            color: var(--rojo-principal);
-            background: #fffafa;
-        }
+        .filter-btn.active { background: var(--rojo-principal); color: white; border-color: var(--rojo-principal); box-shadow: 0 4px 10px rgba(217, 4, 41, 0.3); }
 
-        .filter-btn.active {
-            background: var(--rojo-principal);
-            color: white;
-            border-color: var(--rojo-principal);
-            box-shadow: 0 4px 10px rgba(217, 4, 41, 0.3);
-        }
+        .grid-productos { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; max-width: 1300px; margin: 0 auto; padding: 20px; }
 
-        /* --- GRID Y TARJETAS --- */
-        .grid-productos { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
-            gap: 30px; 
-            max-width: 1300px; 
-            margin: 0 auto; 
-            padding: 20px; 
-        }
-
-        .card { 
-            background: white; 
-            border-radius: 15px; 
-            overflow: hidden; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
-            display: flex; 
-            flex-direction: column; 
-            transition: all 0.3s ease; 
-            border: 1px solid #eee; 
-        }
-
+        .card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; transition: all 0.3s ease; border: 1px solid #eee; }
         .card:hover { transform: translateY(-8px); }
 
-        .cod-box { 
-            background: var(--fondo-oscuro); 
-            padding: 15px; 
-            text-align: center; 
-            color: white; 
-        }
-        .cod-box span { 
-            font-family: 'Bebas Neue', cursive; 
-            font-size: 2.2rem; 
-            color: var(--rojo-principal); 
-            display: block;
-        }
+        .cod-box { background: var(--fondo-oscuro); padding: 15px; text-align: center; color: white; }
+        .cod-box span { font-family: 'Bebas Neue', cursive; font-size: 2.2rem; color: var(--rojo-principal); display: block; }
 
-        .img-container { 
-            height: 200px; 
-            padding: 20px; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            background: white; 
+        .img-container { height: 200px; padding: 15px; display: flex; justify-content: center; align-items: center; background: white; position: relative;}
+        .img-container img { max-width: 100%; max-height: 100%; object-fit: contain; cursor: zoom-in; }
+        
+        /* Indicador de que hay más fotos */
+        .badge-fotos {
+            position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.6); color: white;
+            padding: 4px 8px; border-radius: 5px; font-size: 0.7rem; font-weight: bold;
         }
-        .img-container img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
         .card-body { padding: 20px; flex-grow: 1; border-top: 1px solid #f0f0f0; }
-
-        .label { 
-            font-size: 0.65rem; 
-            color: #8d99ae; 
-            text-transform: uppercase; 
-            font-weight: 800; 
-            display: block; 
-        }
-
+        .label { font-size: 0.65rem; color: #8d99ae; text-transform: uppercase; font-weight: 800; display: block; }
         .desc-text { font-size: 1rem; font-weight: 700; margin-bottom: 12px; min-height: 2.4em;}
+        .otros-codigos { background: #f8f9fa; padding: 8px; border-radius: 6px; font-size: 0.75rem; color: #555; border-left: 3px solid #ddd; }
 
-        .otros-codigos {
-            background: #f8f9fa;
-            padding: 8px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            color: #555;
-            border-left: 3px solid #ddd;
-        }
-
-        .price-footer { 
-            background: #f1f3f5; 
-            padding: 15px 20px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-        }
+        .price-footer { background: #f1f3f5; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
         .p-fact { font-family: 'Bebas Neue', cursive; font-size: 2rem; color: var(--rojo-principal); }
 
+        /* --- MODAL CON NAVEGACIÓN --- */
         #imageModal { 
-            display: none; 
-            position: fixed; 
-            top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.9); 
-            z-index: 1000; justify-content: center; align-items: center; 
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.95); z-index: 1000; justify-content: center; align-items: center; 
         }
+
+        .modal-content { position: relative; display: flex; justify-content: center; align-items: center; width: 90%; height: 80%; }
+        
+        #modalImg { max-width: 100%; max-height: 100%; border: 5px solid white; object-fit: contain; }
+
+        .nav-btn {
+            position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.1);
+            color: white; border: none; font-size: 3rem; padding: 20px; cursor: pointer; border-radius: 50%;
+            transition: 0.3s; z-index: 1001;
+        }
+        .nav-btn:hover { background: var(--rojo-principal); }
+        .prev-btn { left: 20px; }
+        .next-btn { right: 20px; }
+
+        .close-modal { position: absolute; top: 20px; right: 30px; color: white; font-size: 2.5rem; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -213,18 +110,25 @@
     <button class="filter-btn active" onclick="filtrarPorMarca('TODOS', this)">Todos</button>
     <button class="filter-btn" onclick="filtrarPorMarca('SCANIA', this)">Scania</button>
     <button class="filter-btn" onclick="filtrarPorMarca('CHATA', this)">Chatas</button>
-    <button class="filter-btn" onclick="filtrarPorMarca('IVECO', this)">Iveco</button>
-    <button class="filter-btn" onclick="filtrarPorMarca('VOLVO', this)">Volvo</button>
     <button class="filter-btn" onclick="filtrarPorMarca('BREITER', this)">Breiter</button>
 </div>
 
 <main class="grid-productos" id="listaProductos"></main>
 
-<div id="imageModal" onclick="this.style.display='none'">
-    <img id="modalImg" src="" style="max-width: 90%; max-height: 85%; border: 5px solid white;">
+<div id="imageModal">
+    <span class="close-modal" onclick="cerrarModal()">&times;</span>
+    <div class="modal-content">
+        <button class="nav-btn prev-btn" id="btnPrev" onclick="cambiarImagen(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+        <img id="modalImg" src="">
+        <button class="nav-btn next-btn" id="btnNext" onclick="cambiarImagen(1)"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
 </div>
 
 <script>
+// arary fotos actual para el preciario
+let fotosActuales = [];
+let fotoIndiceActual = 0;
+
 const productos = [
     { codCali: "B4913-C", otrosCod: "W01-M58-8098 / 4913N P02 / 1R14-753", desc: "GLOBO TRACTOR SCANIA", marca: "BREITER", pUnitario: 1250.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/374913-10c-komple.jpg" },
     { codCali: "B881-C", otrosCod: "W01-M58-8602 / 4881NP02 / 1R14-757", desc: "GLOBO CHATA 12 PERNOS OLLA DE METAL", marca: "BREITER", pUnitario: 1200.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/37881-c-komple.jpg" },
@@ -236,49 +140,49 @@ const productos = [
     { codCali: "B3727023-CPL", otrosCod: "B27023-CPL / IVECO / FIAT", desc: "GLOBO DE SUSPENSIÓN FIAT IVECO PLASTICO", marca: "BREITER", pUnitario: 1000.00, img: "https://www.airspringsbook.com/storage/plastik-pistonlu-korukler/3727023-cpl-komple.jpg" },
     { codCali: "B162043", otrosCod: "6605 / 7803 / VOLVO", desc: "GLOBO FH CHINO DELANTERO COMPLETO", marca: "BREITER", pUnitario: 930.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/377804-c-komple.jpg" },
     { codCali: "B5612-CPL", otrosCod: "20722409 / 4927NP01", desc: "GLOBO TRACTO FL7- NISSAN CONDOR", marca: "BREITER", pUnitario: 1050.00, img: "https://www.airspringsbook.com/storage/plastik-pistonlu-korukler/375612-cpl-komple.jpg" },
-    { codCali: "B385457-C", otrosCod: "7421821029", desc: "AMORT. GLOBO CABINA", marca: "BREITER", pUnitario: 850.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "B4922-C", otrosCod: "4922MB / B4922-C / 1K4922", desc: "GLOBO TRACTO FL7- NISSAN CONDOR - RENAULT FURGON", marca: "BREITER", pUnitario: 1100.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "B4919-C", otrosCod: "4919-C / 20735220 / 5010557622 / 4919NP01 / F4919-C", desc: "GLOBO TREN DELANTERO RENAULT", marca: "BREITER", pUnitario: 1250.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+    { codCali: "B385457-C", otrosCod: "7421821029", desc: "AMORT. GLOBO CABINA", marca: "BREITER", pUnitario: 850.00, img: "https://fabioairsprings.com/uploads/2025/10/untitled5140_op.webp" },
+  { codCali: "B4922-C", otrosCod: "4922MB / B4922-C / 1K4922", desc: "GLOBO TRACTO FL7- NISSAN CONDOR - RENAULT FURGON", marca: "BREITER", pUnitario: 1100.00, img: "https://fabioairsprings.com/uploads/2025/09/untitled2735_op.webp" },
+  { codCali: "B4919-C", otrosCod: "4919-C / 20735220 / 5010557622 / 4919NP01 / F4919-C", desc: "GLOBO TREN DELANTERO RENAULT", marca: "BREITER", pUnitario: 1250.00, img: "https://fabioairsprings.com/uploads/2024/05/344919-c-a_op.webp" },
   { codCali: "B1152-CPL", otrosCod: "3110 / 1152 / SP558829 / 1K8829CY / 9648", desc: "GLOBO AMERICANO FRAYLINE", marca: "BREITER", pUnitario: 1100.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "B3434-C", otrosCod: "21413434-C", desc: "GLOBO TRACTO -CORONA SAMURAY", marca: "BREITER", pUnitario: 1250.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "B9648-CPL", otrosCod: "3110 / 1152 / SP558829 / 1K8829CY / 9648", desc: "GLOBO TRACTO DEL AMERICANO", marca: "BREITER", pUnitario: 1250.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "B3434-C", otrosCod: "21413434-C", desc: "GLOBO TRACTO -CORONA SAMURAY", marca: "BREITER", pUnitario: 1250.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/373434-c-standrat-komple.jpg" },
+  { codCali: "B9648-CPL", otrosCod: "3110 / 1152 / SP558829 / 1K8829CY / 9648", desc: "GLOBO TRACTO DEL AMERICANO", marca: "BREITER", pUnitario: 1250.00, img: "https://fabioairsprings.com/uploads/2025/09/untitled2835_op.webp",img2: "https://fabioairsprings.com/uploads/2025/09/untitled2836_op.webp" },
   { codCali: "B2399-C", otrosCod: "SP552399-K", desc: "GLOBO SAMURAY DE SUSPENSIÓN BASE ANCHA", marca: "BREITER", pUnitario: 1250.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "B6760-C", otrosCod: "6760-C / 20452142 / 20554760 / 6612NP01 / 2136M / 6760-C / 96612MP", desc: "GLOBO FH CHINO TREN DELANTERO", marca: "BREITER", pUnitario: 1050.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "B5612-S", otrosCod: "20722409 / 25379286 / 22025612 / 4927NP01 / B5612-CPL", desc: "GLOBO TRACTO FL7- NISSAN CONDOR - RENAULT FURGON", marca: "FIBRETECH", pUnitario: 850.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "B813-50S", otrosCod: "W01-M58-6364 / W01-M58-6339 / W01-M58-7345 / 813MB / 1T19L-11 / 1R14-705 / 1R14-061 / 813 / F813", desc: "GLOBO CHATA 4 PERNOS SUELTO PATENTADO", marca: "BREITER", pUnitario: 800.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "B813-S", otrosCod: "W01-M58-6364 / W01-M58-6339 / W01-M58-7345 / 813MB / 1T19L-11 / 1R14-705 / 1R14-061 / W01-M58-7345 / 813MB / 1T19L-11 / 1R14-705 / 1R14-061 / B813", desc: "GLOBO CHATA 4 PERNOS SUELTO PATENTADO", marca: "BREITER", pUnitario: 850.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "347315-C", otrosCod: "347315-C", desc: "GLOBO DELGADO CHATA HOLLA FIERRO", marca: "FIBRETECH", pUnitario: 1150.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "34810-C", otrosCod: "1080707 / W01-M58-6345 / 810MB / 1T19L-7 / 1R14-059 / W01-M58-7237 / B810", desc: "GLOBO CHATA 4 PERNOS", marca: "FIBRETECH", pUnitario: 980.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "B810-C", otrosCod: "1080707 / W01-M58-6345 / 810MB / 1T19L-7 / 1R14-059 / W01-M58-7237 / B810", desc: "GLOBO CHATA 4 PERNOS", marca: "BREITER", pUnitario: 980.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "34810-S", otrosCod: "1080707 / W01-M58-6345 / 810MB / 1T19L-7 / 1R14-059 / W01-M58-7237 / B810", desc: "GLOBO CHATA 4 PERNOS", marca: "FIBRETECH", pUnitario: 780.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "B810-S", otrosCod: "1080707 / W01-M58-6345 / 810MB / 1T19L-7 / 1R14-059 / W01-M58-7237 / B810", desc: "GLOBO CHATA 4 PERNOS", marca: "BREITER", pUnitario: 780.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "B6760-C", otrosCod: "6760-C / 20452142 / 20554760 / 6612NP01 / 2136M / 6760-C / 96612MP", desc: "GLOBO FH CHINO TREN DELANTERO", marca: "BREITER", pUnitario: 1050.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/376760-c-komple.jpg",img2: "https://fabioairsprings.com/uploads/2025/09/untitled2853_op.webp" },
+  { codCali: "B5612-S", otrosCod: "20722409 / 25379286 / 22025612 / 4927NP01 / B5612-CPL", desc: "GLOBO TRACTO FL7- NISSAN CONDOR - RENAULT FURGON", marca: "FIBRETECH", pUnitario: 850.00, img: "https://www.airspringsbook.com/storage/pistonsuz-korukler/375612-s-komple.jpg" },
+  { codCali: "B813-50S", otrosCod: "W01-M58-6364 / W01-M58-6339 / W01-M58-7345 / 813MB / 1T19L-11 / 1R14-705 / 1R14-061 / 813 / F813", desc: "GLOBO CHATA 4 PERNOS SUELTO PATENTADO", marca: "BREITER", pUnitario: 800.00, img: "https://www.airspringsbook.com/storage/pistonsuz-korukler/37813-50s-komple.jpg",img2: "https://fabioairsprings.com/uploads/2025/08/untitled2679_op.webp" },
+  { codCali: "B813-S", otrosCod: "W01-M58-6364 / W01-M58-6339 / W01-M58-7345 / 813MB / 1T19L-11 / 1R14-705 / 1R14-061 / W01-M58-7345 / 813MB / 1T19L-11 / 1R14-705 / 1R14-061 / B813", desc: "GLOBO CHATA 4 PERNOS SUELTO PATENTADO", marca: "BREITER", pUnitario: 850.00, img: "https://www.airspringsbook.com/storage/pistonsuz-korukler/374813-7s-komple.jpg" },
+  { codCali: "347315-C", otrosCod: "347315-C", desc: "GLOBO DELGADO CHATA HOLLA FIERRO", marca: "FIBRETECH", pUnitario: 1150.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/377315-c-komple.jpg" },
+  { codCali: "34810-C", otrosCod: "1080707 / W01-M58-6345 / 810MB / 1T19L-7 / 1R14-059 / W01-M58-7237 / B810", desc: "GLOBO CHATA 4 PERNOS", marca: "FIBRETECH", pUnitario: 980.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/374810-5c-komple.jpg",img2: "https://fabioairsprings.com/uploads/2025/07/untitled2026_op.webp" },
+  { codCali: "B810-C", otrosCod: "1080707 / W01-M58-6345 / 810MB / 1T19L-7 / 1R14-059 / W01-M58-7237 / B810", desc: "GLOBO CHATA 4 PERNOS", marca: "BREITER", pUnitario: 980.00, img: "https://www.airspringsbook.com/storage/plastik-pistonlu-korukler/374810-5cpl-komple.jpg",img2: "https://fabioairsprings.com/uploads/2025/07/untitled2027_op.webp" },
+  { codCali: "34810-S", otrosCod: "1080707 / W01-M58-6345 / 810MB / 1T19L-7 / 1R14-059 / W01-M58-7237 / B810", desc: "GLOBO CHATA 4 PERNOS", marca: "FIBRETECH", pUnitario: 780.00, img: "https://www.airspringsbook.com/storage/pistonsuz-korukler/374810-5s-komple.jpg" },
+  { codCali: "B810-S", otrosCod: "1080707 / W01-M58-6345 / 810MB / 1T19L-7 / 1R14-059 / W01-M58-7237 / B810", desc: "GLOBO CHATA 4 PERNOS", marca: "BREITER", pUnitario: 780.00, img: "https://www.airspringsbook.com/storage/pistonsuz-korukler/374810-5s-komple.jpg" },
   { codCali: "02.03.89.227009", otrosCod: "E02.03.89.227009 / 9721 / A-075", desc: "AMORT.RESORTE TRASERO CON PLATO FH FAROL CUADRADO", marca: "ETG", pUnitario: 520.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "4201-C", otrosCod: "B4201-CPL", desc: "GLOBO CHATA SUSPENTECH", marca: "FIBRETECH", pUnitario: 1500.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "4201-S", otrosCod: "B4201-CPL SUELTO", desc: "GLOBO CHATA SUSPENTECH", marca: "BREITER", pUnitario: 1250.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "448093-CPL", otrosCod: "F8093-CPL", desc: "GLOBO CHATA 2 ENTRADAS DE AIRE", marca: "FIBRETECH", pUnitario: 1400.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-    { codCali: "NE6762", otrosCod: "NE6763", desc: "GLOBO TREN DELANTERO FH CHINO DELANTERO", marca: "NEROTECH", pUnitario: 750.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "B346762-C", otrosCod: "20452144 / 20479802 / 20554762 / 6613NP01 / 54762M / B6762-C", desc: "GLOBO TREN DELANTERO FH CHINO DELANTERO", marca: "BREITER", pUnitario: 1100.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "346760-S", otrosCod: "F6760-S", desc: "GLOBO FH CHINO DELANTERO SUELTO", marca: "FIBRETECH", pUnitario: 780.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "34716-S", otrosCod: "716-S", desc: "GLOBO SUELTO PARA BUS O FLOTA", marca: "FIBRETECH", pUnitario: 450.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "B716-S", otrosCod: "F716-S", desc: "GLOBO SUELTO PARA BUS O FLOTA", marca: "BOLTECH", pUnitario: 420.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "B6416-C", otrosCod: "1076416 / 20374510 / 20531985 / 20582215 / 31171693 / 6608NP01 / 1R10-704 / W01-M58-8474 / 6608 / B6416", desc: "GLOBO ALZAPATA TRASERO FH CHINO COMPLETO", marca: "BREITER", pUnitario: 820.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "344154-5C", otrosCod: "F4154-5C/F164154", desc: "GLOBO TRACTO FH CHINO MODERNO", marca: "FIBRETECH", pUnitario: 900.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "344157-C", otrosCod: "F4157-C", desc: "GLOBO CHATA TERCER EJE", marca: "FIBRETECH", pUnitario: 900.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "B344156-5S", otrosCod: "W01-358-0734 / 1T15M-6 / 4156NP05 / B4156-5S", desc: "GLOBO CHATA 2 PERNOS MEDIANO 17CM PERNO AIRE", marca: "BREITER", pUnitario: 720.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "B6416-S", otrosCod: "1076416 / 20374510 / 20531985 / 20582215 / 31171693 / 6608NP01 / 1R10-704 / W01-M58-8474 / 6608 / B6416", desc: "GLOBO ALZAPATA TRASERO FH CHINO SUELTO COMPLETO", marca: "BREITER", pUnitario: 620.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "B811-C", otrosCod: "1076416 / 20374510 / 20531985 / 20582215 / 31171693 / 6608NP01 / 1R10-704 / W01-M58-8474 / 6608 / B6416", desc: "GLOBO PARA EL BURRO 2 PERNOS GRANDE", marca: "BREITER", pUnitario: 1150.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "346418-C", otrosCod: "1076418 / 20374511 / 20531987 / 20582214 / 3171695 / W01-M58-8473 / 6607NP01 / 1R10-707 / 6607", desc: "GLOBO FH CHINO ALZAPATA DELANTERO", marca: "BREITER", pUnitario: 820.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "346418-S", otrosCod: "1076418 / 20374511 / 20531987 / 20582214 / 3171695 / W01-M58-8473 / 6607NP01 / 1R10-707 / 6607", desc: "GLOBO FH CHINO ALZAPATA DELANTERO", marca: "FIBRETECH", pUnitario: 620.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "B6418-S", otrosCod: "1076418 / 20374511 / 20531987 / 20582214 / 3171695 / W01-M58-8473 / 6607NP01 / 1R10-707 / 6607", desc: "GLOBO FH CHINO ALZAPATA DELANTERO", marca: "BREITER", pUnitario: 620.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "4201-C", otrosCod: "B4201-CPL", desc: "GLOBO CHATA SUSPENTECH", marca: "FIBRETECH", pUnitario: 1500.00, img: "https://www.airspringsbook.com/storage/amerikan-tip-korukler/374201-c-komple.jpg",img2:"https://fabioairsprings.com/uploads/2025/07/untitled2027_op.webp" },
+  { codCali: "4201-S", otrosCod: "B4201-CPL SUELTO", desc: "GLOBO CHATA SUSPENTECH", marca: "BREITER", pUnitario: 1250.00, img: "https://www.airspringsbook.com/storage/pistonsuz-korukler/374201-s-komple.jpg" },
+  { codCali: "448093-CPL", otrosCod: "F8093-CPL", desc: "GLOBO CHATA 2 ENTRADAS DE AIRE", marca: "FIBRETECH", pUnitario: 1400.00, img: "https://fabioairsprings.com/uploads/2025/04/ekran-goruntusu-2025-04-22-094329_op.webp",img2: "https://fabioairsprings.com/uploads/2025/04/ekran-goruntusu-2025-04-22-094343_op.webp" },
+    { codCali: "NE6762", otrosCod: "NE6763", desc: "GLOBO TREN DELANTERO FH CHINO DELANTERO", marca: "NEROTECH", pUnitario: 750.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/376762-c-komple.jpg",img2:"https://fabioairsprings.com/uploads/2025/10/untitled5107_op.webp" },
+  { codCali: "B346762-C", otrosCod: "20452144 / 20479802 / 20554762 / 6613NP01 / 54762M / B6762-C", desc: "GLOBO TREN DELANTERO FH CHINO DELANTERO", marca: "BREITER", pUnitario: 1100.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/376762-c-komple.jpg",img2:"https://fabioairsprings.com/uploads/2025/10/untitled5107_op.webp" },
+  { codCali: "346760-S", otrosCod: "F6760-S", desc: "GLOBO FH CHINO DELANTERO SUELTO", marca: "FIBRETECH", pUnitario: 780.00, img: "https://www.airspringsbook.com/storage/pistonsuz-korukler/376760-s-komple.jpg",img2:"https://fabioairsprings.com/uploads/2025/10/untitled5109_op.webp" },
+  { codCali: "34716-S", otrosCod: "716-S", desc: "GLOBO SUELTO PARA BUS O FLOTA", marca: "FIBRETECH", pUnitario: 450.00, img: "https://www.airspringsbook.com/storage/roll-korukler/37716-on.jpg" },
+  { codCali: "B716-S", otrosCod: "F716-S", desc: "GLOBO SUELTO PARA BUS O FLOTA", marca: "BOLTECH", pUnitario: 420.00, img: "https://www.airspringsbook.com/storage/roll-korukler/37716-on.jpg" },
+  { codCali: "B6416-C", otrosCod: "1076416 / 20374510 / 20531985 / 20582215 / 31171693 / 6608NP01 / 1R10-704 / W01-M58-8474 / 6608 / B6416", desc: "GLOBO ALZAPATA TRASERO FH CHINO COMPLETO", marca: "BREITER", pUnitario: 770.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/376416-c-komple.jpg",img2:"https://fabioairsprings.com/uploads/2024/12/346416-c-a_op.webp" },
+  { codCali: "344154-5C", otrosCod: "F4154-5C/F164154", desc: "GLOBO TRACTO FH CHINO MODERNO", marca: "FIBRETECH", pUnitario: 900.00, img: "https://www.airspringsbook.com/storage/plastik-pistonlu-korukler/374154-5cpl-komple.jpg" },
+  { codCali: "344157-C", otrosCod: "F4157-C", desc: "GLOBO CHATA TERCER EJE", marca: "FIBRETECH", pUnitario: 900.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/374157-c-komple.jpg" },
+  { codCali: "B344156-5S", otrosCod: "W01-358-0734 / 1T15M-6 / 4156NP05 / B4156-5S", desc: "GLOBO CHATA 2 PERNOS MEDIANO 17CM PERNO AIRE", marca: "BREITER", pUnitario: 720.00, img: "https://www.airspringsbook.com/storage/pistonsuz-korukler/374156-18s-komple.jpg",img2:"https://fabioairsprings.com/uploads/2025/09/untitled2714-kopya-kopya_op.webp" },
+  { codCali: "B6416-S", otrosCod: "1076416 / 20374510 / 20531985 / 20582215 / 31171693 / 6608NP01 / 1R10-704 / W01-M58-8474 / 6608 / B6416", desc: "GLOBO ALZAPATA TRASERO FH CHINO SUELTO COMPLETO", marca: "BREITER", pUnitario: 550.00, img: "https://www.airspringsbook.com/storage/pistonsuz-korukler/376416-s-komple.jpg" },
+  { codCali: "B811-C", otrosCod: "1076416 / 20374510 / 20531985 / 20582215 / 31171693 / 6608NP01 / 1R10-704 / W01-M58-8474 / 6608 / B6416", desc: "GLOBO PARA EL BURRO 2 PERNOS GRANDE", marca: "BREITER", pUnitario: 1150.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/37811-c-komple.jpg" },
+  { codCali: "B6418-C", otrosCod: "1076418 / 20374511 / 20531987 / 20582214 / 3171695 / W01-M58-8473 / 6607NP01 / 1R10-707 / 6607", desc: "GLOBO FH CHINO ALZAPATA DELANTERO", marca: "BREITER", pUnitario: 770.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/376418-c-komple.jpg",img2:"https://fabioairsprings.com/uploads/2025/07/untitled2082_op.webp" },
+  { codCali: "346418-S", otrosCod: "1076418 / 20374511 / 20531987 / 20582214 / 3171695 / W01-M58-8473 / 6607NP01 / 1R10-707 / 6607", desc: "GLOBO FH CHINO ALZAPATA DELANTERO", marca: "FIBRETECH", pUnitario: 550.00, img: "https://www.airspringsbook.com/storage/pistonsuz-korukler/376418-s-komple.jpg" },
+  { codCali: "B6418-S", otrosCod: "1076418 / 20374511 / 20531987 / 20582214 / 3171695 / W01-M58-8473 / 6607NP01 / 1R10-707 / 6607", desc: "GLOBO FH CHINO ALZAPATA DELANTERO", marca: "BREITER", pUnitario: 550.00, img: "https://www.airspringsbook.com/storage/pistonsuz-korukler/376418-s-komple.jpg" },
   { codCali: "344913-1C", otrosCod: "1379392/1440294 / W01-M58-8098/4913NP02/1T19F-14/W01-095-0366/1R14-753 / B4913-C", desc: "GLOBO DE SCANIA COMPLETO 480-420 PATENTADO", marca: "FIBRETECH", pUnitario: 1300.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "SP554913-C", otrosCod: "1379392/1440294 / W01-M58-8098/4913NP02/1T19F-14/W01-095-0366/1R14-753 / B4913-C", desc: "GLOBO DE SCANIA SUELTO 480-420", marca: "SAMPA", pUnitario: 1250.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "B 344911-4C", otrosCod: "20726769/4911NP05/4911NP06/ 1K4911/ B4911-S / B4911", desc: "GLOBO SAMURAY RENAULT", marca: "BREITER", pUnitario: 1250.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "347804-C", otrosCod: "3171694/20427801/20427804 / 20531986/20582209/21961443/W01-M58-", desc: "GLOBO DEL FH CHINO DELANTERO", marca: "FIBRETECH", pUnitario: 820.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "B7804-C", otrosCod: "3171694/20427801/20427804 / 20531986/20582209/21961443/W01-M58-", desc: "GLOBO DEL FH CHINO DELANTERO", marca: "BREITER", pUnitario: 820.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "B 344911-4C", otrosCod: "20726769/4911NP05/4911NP06/ 1K4911/ B4911-S / B4911", desc: "GLOBO SAMURAY RENAULT", marca: "BREITER", pUnitario: 1250.00,img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/377804-c-komple.jpg",img2:"https://fabioairsprings.com/uploads/2025/07/untitled2089_op.webp" },
+  { codCali: "347804-C", otrosCod: "3171694/20427801/20427804 / 20531986/20582209/21961443/W01-M58-", desc: "GLOBO DEL FH CHINO DELANTERO", marca: "FIBRETECH", pUnitario: 800.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/377804-c-komple.jpg",img2:"https://fabioairsprings.com/uploads/2025/07/untitled2089_op.webp" },
+  { codCali: "B7804-C", otrosCod: "3171694/20427801/20427804 / 20531986/20582209/21961443/W01-M58-", desc: "GLOBO DEL FH CHINO DELANTERO", marca: "BREITER", pUnitario: 800.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/377804-c-komple.jpg",img2:"https://fabioairsprings.com/uploads/2025/07/untitled2089_op.webp" },
     { codCali: "F16715-S", otrosCod: "F4715-S", desc: "GLOBO SUELTO", marca: "FIBRETECH", pUnitario: 500.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "34715", otrosCod: "34715", desc: "RESORTE", marca: "FIBRETECH", pUnitario: 350.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "347804-S", otrosCod: "3171694/20427801/20427804 / 20531986/20582209/21961443/W01-M58-", desc: "GLOBO DEL FH CHINO DELANTERO", marca: "FIBRETECH", pUnitario: 620.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "B7804-S", otrosCod: "3171694/20427801/20427804 / 20531986/20582209/21961443/W01-M58-", desc: "GLOBO DEL FH CHINO DELANTERO", marca: "BREITER", pUnitario: 620.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "347804-S", otrosCod: "3171694/20427801/20427804 / 20531986/20582209/21961443/W01-M58-", desc: "GLOBO DEL FH CHINO DELANTERO", marca: "FIBRETECH", pUnitario: 550.00, img: "https://www.airspringsbook.com/storage/pistonsuz-korukler/377804-s-komple.jpg",img2:"https://fabioairsprings.com/uploads/2025/07/untitled2069_op.webp" },
+  { codCali: "B7804-S", otrosCod: "3171694/20427801/20427804 / 20531986/20582209/21961443/W01-M58-", desc: "GLOBO DEL FH CHINO DELANTERO", marca: "BREITER", pUnitario: 550.00, img: "https://www.airspringsbook.com/storage/pistonsuz-korukler/377804-s-komple.jpg",img2:"https://fabioairsprings.com/uploads/2025/07/untitled2069_op.webp" },
   { codCali: "SP 556251-C", otrosCod: "1865759/1394997/1314903/1T15AA-3/W01-M58-6251/ 6705NP01/ 1R11-826/ 1R11-822/ 1T11-902/ B6251-C", desc: "GLOBO SCANIA", marca: "SAMPA", pUnitario: 1000.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "B6251-C", otrosCod: "1865759/1394997/1314903/1T15AA-3/W01-M58-6251/ 6705NP01/ 1R11-826/ 1R11-822/ 1T11-902/ B6251-C", desc: "GLOBO SCANIA", marca: "BREITER", pUnitario: 1250.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "B344156-18C", otrosCod: "W01-358-0734/1T15M-6/4156NP05", desc: "GLOBO CHATA CON HOLLA (4 PERNOS) 15CM", marca: "BREITER", pUnitario: 900.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
@@ -288,8 +192,8 @@ const productos = [
   { codCali: "344156-16C", otrosCod: "344156-16C", desc: "GLOBO CHATA CON HOLLA (4 PERNOS) 15CM", marca: "FIBRETECH", pUnitario: 900.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "344156-17C", otrosCod: "344156-17C", desc: "GLOBO CHATA CON HOLLA (4 PERNOS) 17CM", marca: "FIBRETECH", pUnitario: 900.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "344156-17S", otrosCod: "344156-17S", desc: "GLOBO CHATA CON HOLLA (4 PERNOS) 17CM", marca: "FIBRETECH", pUnitario: 800.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "B7803-S", otrosCod: "20573108/20573109/70313718/70321690/70321692/70376919/6604NP01/6605", desc: "GLOBO FH CHINO DELANTERO SUELTO", marca: "BREITER", pUnitario: 700.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "B7803-C", otrosCod: "20573108/20573109/70313718/70321690/70321692/70376919/6604NP01/6605/7803 / W01M588472 /", desc: "GLOBO FH CHINO DELANTERO COMPLETO", marca: "BREITER", pUnitario: 830.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "B7803-S", otrosCod: "20573108/20573109/70313718/70321690/70321692/70376919/6604NP01/6605", desc: "GLOBO FH CHINO DELANTERO SUELTO", marca: "BREITER", pUnitario: 550.00, img: "https://www.airspringsbook.com/storage/pistonsuz-korukler/377803-s-komple.jpg" },
+  { codCali: "B7803-C", otrosCod: "20573108/20573109/70313718/70321690/70321692/70376919/6604NP01/6605/7803 / W01M588472 /", desc: "GLOBO FH CHINO DELANTERO COMPLETO", marca: "BREITER", pUnitario: 800.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/377804-c-komple.jpg",img2:"https://fabioairsprings.com/uploads/2025/07/untitled2060_op.webp" },
   { codCali: "B4580-2C", otrosCod: "21451172 / 22047983 / 4580NP01 / 91172 MP1", desc: "GLOBO TRACTO SAMURAY TREN DELANTERO HOLLA MEDIANA", marca: "BREITER", pUnitario: 1200.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "B4580-C", otrosCod: "21451172 / 22047983 / 4580NP01 / 91172 MP1 / 174464", desc: "GLOBO TRACTO SAMURAY TREN DELANTERO HOLLA ALTO", marca: "BREITER", pUnitario: 1200.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "946001-S", otrosCod: "F6001-S", desc: "GLOBO CABINA DEL ASIENTO", marca: "FIBRETECH", pUnitario: 500.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
@@ -330,7 +234,7 @@ const productos = [
   { codCali: "B712072", otrosCod: "4718-6760-3737-4721", desc: "OLLA GORDA 4718-6760-3737-4721", marca: "BREITER", pUnitario: 450.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "B712074", otrosCod: "6418-6416", desc: "OLLA 6418-6416 NUEVA", marca: "BREITER", pUnitario: 300.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "B712074", otrosCod: "6418-6416", desc: "OLLA 6418-6416 usado", marca: "BREITER", pUnitario: 250.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "B7803-S", otrosCod: "20573108/20573109/70313718/70321690/70321692/70376919/6604NP01/6605/7803 / W01M588472 /", desc: "GLOBO FH CHINO DELANTERO COMPLETO", marca: "BREITER", pUnitario: 620.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+
   { codCali: "B712075", otrosCod: "3171694/20427801/20427804 / 20531986/20582209/21961443/W01-M58-", desc: "OLLA 7803-7804 USADO", marca: "BREITER", pUnitario: 250.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "B712075", otrosCod: "3171694/20427801/20427804 / 20531986/20582209/21961443/W01-M58-", desc: "OLLA 7803-7804 NUEVAS", marca: "BREITER", pUnitario: 350.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "NE4561-C", otrosCod: "21224746 / 22058738 / 4561NP02", desc: "GLOBO SAMURAY DELANTERO COMPLETO", marca: "NEROTECH", pUnitario: 1000.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
@@ -972,18 +876,24 @@ const productos = [
 function cargarProductos(lista) {
     const contenedor = document.getElementById('listaProductos');
     contenedor.innerHTML = "";
-    lista.forEach(p => {
+    lista.forEach((p, index) => {
         const pFact = (p.pUnitario * 1.09).toFixed(2);
+        const hasMore = p.img2 ? true : false;
+
         const card = document.createElement('div');
         card.className = 'card';
         card.setAttribute('data-search', `${p.codCali} ${p.desc} ${p.otrosCod} ${p.marca}`.toLowerCase());
+        
         card.innerHTML = `
             <div class="cod-box"><span class="label" style="color:#aaa">CÓDIGO CALI</span><span>${p.codCali}</span></div>
-            <div class="img-container" onclick="verImagen('${p.img}')" style="cursor:zoom-in"><img src="${p.img}"></div>
+            <div class="img-container" onclick="abrirGaleria(${index})">
+                <img src="${p.img}">
+                ${hasMore ? '<div class="badge-fotos"><i class="fa-solid fa-images"></i> +1</div>' : ''}
+            </div>
             <div class="card-body">
                 <span class="label">Descripción</span><div class="desc-text">${p.desc}</div>
                 <span class="label">Marca</span><div style="font-weight:700; color:var(--rojo-oscuro); margin-bottom:12px;">${p.marca}</div>
-                <span class="label">Códigos Equivalentes</span><div class="otros-codigos">${p.otrosCod}</div>
+                <span class="label">Equivalentes</span><div class="otros-codigos">${p.otrosCod}</div>
             </div>
             <div class="price-footer">
                 <div><span class="label">Unitario</span><div style="font-weight:700">Bs. ${p.pUnitario.toLocaleString()}</div></div>
@@ -994,6 +904,37 @@ function cargarProductos(lista) {
     });
 }
 
+// LOGICA DE LA GALERIA
+function abrirGaleria(index) {
+    const p = productos[index];
+    fotosActuales = [p.img];
+    if(p.img2) fotosActuales.push(p.img2);
+    
+    fotoIndiceActual = 0;
+    actualizarVistaModal();
+    document.getElementById('imageModal').style.display = 'flex';
+}
+
+function actualizarVistaModal() {
+    document.getElementById('modalImg').src = fotosActuales[fotoIndiceActual];
+    
+    // Ocultar flechas si solo hay una imagen
+    const displayNav = fotosActuales.length > 1 ? 'block' : 'none';
+    document.getElementById('btnPrev').style.display = displayNav;
+    document.getElementById('btnNext').style.display = displayNav;
+}
+
+function cambiarImagen(dir) {
+    fotoIndiceActual += dir;
+    if (fotoIndiceActual >= fotosActuales.length) fotoIndiceActual = 0;
+    if (fotoIndiceActual < 0) fotoIndiceActual = fotosActuales.length - 1;
+    actualizarVistaModal();
+}
+
+function cerrarModal() {
+    document.getElementById('imageModal').style.display = 'none';
+}
+
 function filtrar() {
     const busqueda = document.getElementById('searchInput').value.toLowerCase();
     const tarjetas = document.querySelectorAll('.card');
@@ -1002,27 +943,14 @@ function filtrar() {
     });
 }
 
-// FUNCIÓN PARA FILTRAR POR LOS BOTONES DE MARCA
 function filtrarPorMarca(marca, elemento) {
-    // Actualizar estilo de los botones
     document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
     elemento.classList.add('active');
-
-    if(marca === 'TODOS') {
-        document.getElementById('searchInput').value = "";
-    } else {
-        document.getElementById('searchInput').value = marca;
-    }
+    document.getElementById('searchInput').value = marca === 'TODOS' ? "" : marca;
     filtrar();
-}
-
-function verImagen(src) {
-    document.getElementById('modalImg').src = src;
-    document.getElementById('imageModal').style.display = 'flex';
 }
 
 document.addEventListener('DOMContentLoaded', () => cargarProductos(productos));
 </script>
 </body>
-
 </html>
