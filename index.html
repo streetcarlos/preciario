@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>   
+<head>    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Importadora Cali | Buscador</title>
@@ -17,44 +17,21 @@
 
         body { font-family: 'Montserrat', sans-serif; background-color: var(--blanco-fondo); margin: 0; color: var(--texto-p); padding-bottom: 50px; }
 
-        /* --- CABECERA --- */
         header {
             background: linear-gradient(135deg, var(--rojo-oscuro) 0%, var(--rojo-principal) 100%);
             color: white; padding: 25px 20px 50px; text-align: center; 
-            border-bottom: 5px solid rgba(0,0,0,0.1);
         }
-
         header h1 { font-family: 'Bebas Neue', cursive; font-size: 2.8rem; margin: 0; letter-spacing: 2px; }
         header p { margin: 5px 0 0; font-size: 0.9rem; opacity: 0.9; font-weight: 600; }
 
         /* --- BUSCADOR --- */
-        .search-wrapper { 
-            max-width: 600px; margin: -28px auto 10px; padding: 0 20px; position: relative; z-index: 10; 
-        }
-
+        .search-wrapper { max-width: 600px; margin: -28px auto 30px; padding: 0 20px; position: relative; z-index: 10; }
         .search-box { 
             background: white; display: flex; align-items: center; padding: 5px 20px; border-radius: 50px; 
             box-shadow: 0 10px 25px rgba(0,0,0,0.15); border: 2px solid transparent; transition: 0.3s;
         }
-        .search-box:focus-within { border-color: var(--rojo-principal); transform: translateY(-2px); }
-
+        .search-box:focus-within { border-color: var(--rojo-principal); }
         #searchInput { flex: 1; padding: 12px; border: none; outline: none; font-size: 1rem; font-weight: 700; color: var(--texto-p); }
-
-        /* --- FILTROS --- */
-        .filter-container { 
-            max-width: 100%; margin: 10px auto 20px; display: flex; 
-            gap: 8px; overflow-x: auto; padding: 10px 15px; scrollbar-width: none;
-        }
-        .filter-container::-webkit-scrollbar { display: none; }
-        @media (min-width: 768px) { .filter-container { justify-content: center; } }
-
-        .filter-btn {
-            background: white; border: 1px solid #ddd; padding: 8px 18px; border-radius: 25px; font-size: 0.75rem;
-            font-weight: 800; cursor: pointer; color: var(--texto-p); text-transform: uppercase; white-space: nowrap;
-            transition: 0.2s;
-        }
-        .filter-btn:hover { border-color: var(--rojo-principal); color: var(--rojo-principal); }
-        .filter-btn.active { background: var(--rojo-principal); color: white; border-color: var(--rojo-principal); box-shadow: 0 4px 12px rgba(217, 4, 41, 0.3); }
 
         /* --- GRID --- */
         .grid-productos { 
@@ -63,7 +40,7 @@
         }
         @media (min-width: 768px) { .grid-productos { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; } }
 
-        /* --- TARJETAS MEJORADAS --- */
+        /* --- TARJETA --- */
         .card { 
             background: white; border-radius: 15px; overflow: hidden; 
             box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; 
@@ -71,38 +48,46 @@
         }
         .card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.1); }
 
-        .cod-box { background: var(--fondo-oscuro); padding: 10px; text-align: center; color: white; }
-        .cod-box span { font-family: 'Bebas Neue', cursive; font-size: 1.8rem; color: var(--rojo-principal); display: block; line-height: 1; letter-spacing: 1px; }
+        .card-header-main { 
+            background: var(--fondo-oscuro); 
+            padding: 12px 15px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        .cod-text { font-family: 'Bebas Neue', cursive; font-size: 2.2rem; color: var(--rojo-principal); line-height: 1; letter-spacing: 1px; }
+        .marca-badge { 
+            background: var(--rojo-principal); 
+            color: white; 
+            font-size: 0.7rem; 
+            font-weight: 800; 
+            padding: 4px 10px; 
+            border-radius: 5px; 
+            text-transform: uppercase;
+        }
+
+        .info-superior { padding: 12px 15px 5px; }
+        .label-pequeña { font-size: 0.6rem; color: #8d99ae; text-transform: uppercase; font-weight: 800; display: block; }
+        .desc-text { font-size: 0.9rem; font-weight: 800; margin: 2px 0 8px; line-height: 1.2; text-transform: uppercase; color: #1a1a1a; }
+        .otros-codigos { background: #f1f3f5; padding: 5px 8px; border-radius: 5px; font-size: 0.65rem; color: #4a4e69; font-family: monospace; }
+
+        .precios-top { display: flex; justify-content: space-between; align-items: flex-end; padding: 10px 15px; background: #fafafa; border-top: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0; }
+        .val-fact { font-size: 0.9rem; font-weight: 700; color: #666; display: block; }
+        .val-sin { font-family: 'Bebas Neue', cursive; font-size: 2.2rem; color: var(--rojo-principal); line-height: 1; display: block; }
 
         .img-container { height: 180px; padding: 15px; display: flex; justify-content: center; align-items: center; background: white; cursor: pointer; }
         .img-container img { max-width: 100%; max-height: 100%; object-fit: contain; transition: 0.3s; }
-        .img-container:hover img { transform: scale(1.08); }
-        
-        .card-body { padding: 15px; flex-grow: 1; border-top: 1px solid #f0f0f0; }
-        .label { font-size: 0.6rem; color: #8d99ae; text-transform: uppercase; font-weight: 800; display: block; margin-top: 8px; }
-        
-        .marca-tag { 
-            display: inline-block; background: #fff0f0; color: var(--rojo-principal); 
-            padding: 3px 10px; border-radius: 5px; font-size: 0.75rem; font-weight: 800; margin-bottom: 8px;
-        }
+        .img-container:hover img { transform: scale(1.05); }
 
-        .desc-text { font-size: 0.9rem; font-weight: 700; margin-bottom: 8px; line-height: 1.3; text-transform: uppercase; color: #1a1a1a; }
-        .otros-codigos { background: #f1f3f5; padding: 8px; border-radius: 6px; font-size: 0.7rem; color: #4a4e69; border-left: 4px solid #ced4da; font-family: monospace; }
-
-        .price-footer { background: #f8f9fa; padding: 12px 15px; border-top: 1px solid #eee; display: flex; flex-direction: column; gap: 2px; }
-        .p-fact { font-family: 'Bebas Neue', cursive; font-size: 1.8rem; color: var(--rojo-principal); line-height: 1; }
-        .p-sin-fact { font-weight: 700; font-size: 0.85rem; color: #6c757d; display: flex; justify-content: space-between; }
-
-        /* MODAL */
         #imageModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
-        #modalImg { max-width: 100%; max-height: 90%; border-radius: 10px; box-shadow: 0 0 30px rgba(217, 4, 41, 0.2); }
+        #modalImg { max-width: 100%; max-height: 90%; border-radius: 10px; }
     </style>
 </head>
 <body>
 
 <header>
     <h1>IMPORTADORA CALI</h1>
-    <p><i class="fa-solid fa-gears"></i>BUSCADOR DE PRECIOS Y EXISTENCIAS</p>
+    <p><i class="fa-solid fa-gears"></i> BUSCADOR DE PRECIOS Y EXISTENCIAS</p>
 </header>
 
 <div class="search-wrapper">
@@ -112,15 +97,6 @@
     </div>
 </div>
 
-<div class="filter-container">
-    <button class="filter-btn active" onclick="filtrarPorCat('', this)">Todos</button>
-    <button class="filter-btn" onclick="filtrarPorCat('GLOBO', this)">Globos</button>
-    <button class="filter-btn" onclick="filtrarPorCat('CABINA', this)">G. Cabina</button>
-    <button class="filter-btn" onclick="filtrarPorCat('PASTILLA', this)">Pastillas</button>
-    <button class="filter-btn" onclick="filtrarPorCat('FILTRO', this)">Filtros</button>
-    <button class="filter-btn" onclick="filtrarPorCat('BREITER', this)">Breiter</button>
-</div>
-
 <main class="grid-productos" id="listaProductos"></main>
 
 <div id="imageModal" onclick="this.style.display='none'">
@@ -128,7 +104,6 @@
 </div>
 
 <script>
-// Datos originales mantenidos
 const productos = [
     { codCali: "B4913-C", otrosCod: "W01-M58-8098 / 4913N P02 / 1R14-753", desc: "GLOBO TRACTOR SCANIA", marca: "BREITER", pUnitario: 1250.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/374913-10c-komple.jpg" },
     { codCali: "B881-C", otrosCod: "W01-M58-8602 / 4881NP02 / 1R14-757", desc: "GLOBO CHATA 12 PERNOS OLLA DE METAL", marca: "BREITER", pUnitario: 1200.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/37881-c-komple.jpg" },
@@ -920,38 +895,43 @@ const productos = [
   { codCali: "QA-1954", otrosCod: "91385-2", desc: "REPARO DE LA SUPER MARCHA", marca: "QUINELATO", pUnitario: 140.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "QA-441GP", otrosCod: "", desc: "REPARO ", marca: "QUINELATO", pUnitario: 350.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" }
 
-    
-];
+    ];
 
 function cargarProductos(lista) {
     const contenedor = document.getElementById('listaProductos');
     contenedor.innerHTML = "";
     lista.forEach(p => {
-        const pFact = (p.pUnitario * 1.09).toFixed(2); // Cálculo de precio con factura
+        const pFact = (p.pUnitario * 1.09).toFixed(1);
         const card = document.createElement('div');
         card.className = 'card';
-        // Buscador inteligente: incluye marca en el criterio de búsqueda
-        card.setAttribute('data-search', `${p.codCali} ${p.desc} ${p.otrosCod} ${p.marca}`.toLowerCase());
+        card.setAttribute('data-search', `${p.codCali} ${p.desc} ${p.marca} ${p.otrosCod}`.toLowerCase());
         
         card.innerHTML = `
-            <div class="cod-box"><span>${p.codCali}</span></div>
-            <div class="img-container" onclick="abrirImagen('${p.img}')">
-                <img src="${p.img}" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Sin+Imagen'">
+            <div class="card-header-main">
+                <span class="cod-text">${p.codCali}</span>
+                <span class="marca-badge">${p.marca}</span>
             </div>
-            <div class="card-body">
-                <span class="marca-tag">${p.marca}</span>
-                <span class="label">Descripción</span>
+            
+            <div class="info-superior">
+                <span class="label-pequeña">Descripción</span>
                 <div class="desc-text">${p.desc}</div>
-                <span class="label">OTROS/CODIGOS</span>
+                <span class="label-pequeña">Otros/Codigos</span>
                 <div class="otros-codigos">${p.otrosCod}</div>
             </div>
-            <div class="price-footer">
-                <span class="label" style="margin:0">Precio Facturado</span>
-                <div class="p-fact">Bs. ${parseFloat(pFact).toLocaleString('es-BO')}</div>
-                <div class="p-sin-fact">
-                    <span>SIN FACTURA:</span>
-                    <span>Bs. ${p.pUnitario.toLocaleString('es-BO')}</span>
+
+            <div class="precios-top">
+                <div class="precio-item-fact">
+                    <span class="label-pequeña" style="margin:0">Facturado</span>
+                    <span class="val-fact">Bs. ${pFact}</span>
                 </div>
+                <div class="precio-item-sin">
+                    <span class="label-pequeña" style="margin:0">Sin Factura</span>
+                    <span class="val-sin">Bs. ${p.pUnitario.toLocaleString('es-BO')}</span>
+                </div>
+            </div>
+
+            <div class="img-container" onclick="abrirImagen('${p.img}')">
+                <img src="${p.img}" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Sin+Imagen'">
             </div>
         `;
         contenedor.appendChild(card);
@@ -960,17 +940,9 @@ function cargarProductos(lista) {
 
 function filtrar() {
     const b = document.getElementById('searchInput').value.toLowerCase();
-    const cards = document.querySelectorAll('.card');
-    cards.forEach(t => {
+    document.querySelectorAll('.card').forEach(t => {
         t.style.display = t.getAttribute('data-search').includes(b) ? "flex" : "none";
     });
-}
-
-function filtrarPorCat(t, e) {
-    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-    e.classList.add('active');
-    document.getElementById('searchInput').value = t;
-    filtrar();
 }
 
 function abrirImagen(s) {
