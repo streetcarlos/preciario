@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Importadora Cali | Lista de Precios y Existencias</title>
+    <title>Importadora Cali | Lista de Precios Pro</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Montserrat:wght@400;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
     <style>
@@ -12,25 +12,17 @@
             --negro-tarjeta: #121212;
             --blanco-fondo: #f4f7f6;
             --dorado-premium: #d4af37;
-            --transicion: all 0.3s ease-in-out;
         }
 
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            background-color: var(--blanco-fondo); 
-            margin: 0; 
-            padding-bottom: 60px;
-        }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--blanco-fondo); margin: 0; padding-bottom: 60px; }
 
         header {
             background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
-            color: white; 
-            padding: 40px 20px 80px; 
-            text-align: center;
+            color: white; padding: 40px 20px 80px; text-align: center;
             border-bottom: 4px solid var(--rojo-neon);
         }
         header h1 { font-family: 'Bebas Neue', cursive; font-size: 4rem; margin: 0; letter-spacing: 4px; }
-        header p { color: var(--rojo-neon); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-top: 10px; }
+        header p { color: var(--rojo-neon); font-weight: 700; text-transform: uppercase; margin-top: 10px; }
 
         .search-wrapper { max-width: 700px; margin: -40px auto 40px; padding: 0 20px; }
         .search-box { 
@@ -44,20 +36,13 @@
             gap: 30px; max-width: 1400px; margin: 0 auto; padding: 20px;
         }
 
-        .card { 
-            background: var(--negro-tarjeta); border-radius: 20px; overflow: hidden; 
-            display: flex; flex-direction: column; transition: var(--transicion);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
+        .card { background: var(--negro-tarjeta); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: 0.3s; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
         .card:hover { transform: translateY(-8px); box-shadow: 0 30px 60px rgba(255, 0, 43, 0.2); }
 
         .card-identity { padding: 25px; background-color: #000; }
         .marca-badge { font-size: 1.2rem; font-weight: 800; color: var(--rojo-neon); text-transform: uppercase; display: block; }
         .desc-text { font-size: 1rem; font-weight: 700; color: white; text-transform: uppercase; margin: 10px 0; }
-        .cod-text { 
-            font-family: 'Bebas Neue', cursive; font-size: 2.5rem; color: #fff; 
-            border-left: 4px solid var(--rojo-neon); padding-left: 10px; display: block;
-        }
+        .cod-text { font-family: 'Bebas Neue', cursive; font-size: 2.5rem; color: #fff; border-left: 4px solid var(--rojo-neon); padding-left: 10px; display: block; }
 
         .precios-container { 
             background: #1a1a1a; padding: 20px 25px; 
@@ -69,21 +54,12 @@
         .val-sin { font-family: 'Oswald', sans-serif; font-size: 2.8rem; color: var(--dorado-premium); line-height: 1; }
 
         .cruces-box { padding: 15px 25px; background: #000; }
-        .otros-codigos { 
-            font-size: 0.75rem; color: #aaa; font-family: monospace; 
-            background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;
-        }
+        .otros-codigos { font-size: 0.75rem; color: #aaa; font-family: monospace; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; }
 
-        .img-container { 
-            height: 250px; padding: 20px; display: flex; justify-content: center; 
-            align-items: center; background: white; cursor: zoom-in;
-        }
+        .img-container { height: 250px; padding: 20px; display: flex; justify-content: center; align-items: center; background: white; cursor: zoom-in; }
         .img-container img { max-width: 90%; max-height: 90%; object-fit: contain; }
 
-        #imageModal { 
-            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); 
-            z-index: 1000; justify-content: center; align-items: center; 
-        }
+        #imageModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; justify-content: center; align-items: center; }
         #modalImg { max-width: 90%; max-height: 90%; border: 3px solid var(--rojo-neon); border-radius: 10px; }
     </style>
 </head>
@@ -97,7 +73,7 @@
 <div class="search-wrapper">
     <div class="search-box">
         <i class="fa-solid fa-magnifying-glass" style="color: var(--rojo-neon); font-size: 1.2rem;"></i>
-        <input type="text" id="searchInput" placeholder="Busca por código, descripción o marca..." onkeyup="filtrar()">
+        <input type="text" id="searchInput" placeholder="Busca por código, marca, descripción o cruces..." onkeyup="filtrar()">
     </div>
 </div>
 
@@ -109,7 +85,7 @@
 
 <script>
 const productos = [
-    { codCali: "B4913-C", otrosCod: "W01-M58-8098 / 4913N P02 / 1R14-753", desc: "GLOBO TRACTOR SCANIA", marca: "BREITER", pUnitario: 1250.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/374913-10c-komple.jpg" },
+        { codCali: "B4913-C", otrosCod: "W01-M58-8098 / 4913N P02 / 1R14-753", desc: "GLOBO TRACTOR SCANIA", marca: "BREITER", pUnitario: 1250.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/374913-10c-komple.jpg" },
  { codCali: "E3110", otrosCod: "3110 / 1152 / SP558829 / 1K8829CY / 9648", desc: "GLOBO TRACTO AMERICANO HOLLA PLASTICO", marca: "BRASIL", pUnitario: 1070.00, img: "https://th.bing.com/th/id/R.f1c2a2b3ad49db9eb2d5ad9f0b2541e8?rik=AOk%2fcl%2f9m5zptQ&riu=http%3a%2f%2fcdn.shopify.com%2fs%2ffiles%2f1%2f0631%2f2725%2f7310%2fproducts%2frolling-lobe-air-spring-8829-bag-suspension-463_grande.webp%3fv%3d1676502455&ehk=Bmfo3TdoVqP0G%2b0Gy7AR84FVaxsz14RdTNkDtxHa%2fsc%3d&risl=&pid=ImgRaw&r=0.jpg" },
     { codCali: "B881-C", otrosCod: "W01-M58-8602 / 4881NP02 / 1R14-757", desc: "GLOBO CHATA 12 PERNOS OLLA DE METAL", marca: "BREITER", pUnitario: 1200.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/37881-c-komple.jpg" },
     { codCali: "B881-CPL", otrosCod: "W01-M58-8602 / 4881NP02 / 1R14-757", desc: "GLOBO CHATA 12 PERNOS OLLA DE PLASTICO", marca: "BREITER", pUnitario: 1150.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/37881-c-komple.jpg" },
@@ -409,7 +385,7 @@ const productos = [
   { codCali: "1K9781", otrosCod: "1K9781", desc: "GLOBO TRACTO AMERICANO INTERNATIONAL", marca: "VKENTECH", pUnitario: 1300.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "1K8637", otrosCod: "1010-16S724 / W01-M58-8637 / 1T17BS-6 / 1K17BS-6 / 1K8637", desc: "GLOBO CHATA AMERICANO 2 ENTRAS DE AIRE 4 PERNOS HOLLA", marca: "VKENTECH", pUnitario: 1250.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "2DC-301-22C", otrosCod: "2DC-301-22C", desc: "GLOBO DOBLE BARRIGA", marca: "FIBRETECH", pUnitario: 770.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "2DC-320-8C", otrosCod: "2DC-320-8C", desc: "GLOBO DOBLE BARRIGA", marca: "FIBRETECH", pUnitario: 770.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "2DC-320-8C", otrosCod: "2FG-320-8C", desc: "GLOBO DOBLE BARRIGA", marca: "FIBRETECH", pUnitario: 770.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "3E11X3", otrosCod: "3E11X3", desc: "GLOBO TRIPLE ROLLO", marca: "EAA", pUnitario: 1250.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "3DC-310-13C", otrosCod: "3FG-310-13C/3DC-310-13C / 3E11X3", desc: "GLOBO TRIPLE ROLLO 2 PERNOS SIN PATENTADO", marca: "FIBRETECH", pUnitario: 1200.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "3DC-356-3C", otrosCod: "3FG-356-3C/3DC-356-3C / 3B7839", desc: "GLOBO TRIPLE ROLLO GRANDE DE 4 PERNOS", marca: "FIBRETECH", pUnitario: 1550.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
@@ -480,7 +456,7 @@ const productos = [
   { codCali: "A-943", otrosCod: "A-943", desc: "FILTRO DE AIRE FL7 CON PERNOS CON TAPA", marca: "WOSMAN", pUnitario: 850.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "P777871", otrosCod: "P777871", desc: "FILTRO DE AIRE MAQUINARIA PESADA", marca: "VOLVO", pUnitario: 850.00, img: "https://i.ebayimg.com/images/g/HEkAAOSwEeRhBRxH/s-l400.jpg" },
   { codCali: "LX1098", otrosCod: "LX1098", desc: "FILTRO DE AIRE F10-N10 S/TAPA", marca: "VOLVO", pUnitario: 850.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "II40100F", otrosCod: "II40100F", desc: "FILTRO SECADOR F12-FH NORMAL KNOR", marca: "KNOR", pUnitario: 1400.00, img: "https://i.ebayimg.com/images/g/ATEAAOSwuDZmKAL1/s-l1600.jpg" },
+  { codCali: "II40100F", otrosCod: "II40100F", desc: "FILTRO SECADOR F12-FH NORMAL KNOR", marca: "KNOR", pUnitario: 2500.00, img: "https://i.ebayimg.com/images/g/ATEAAOSwuDZmKAL1/s-l1600.jpg" },
   { codCali: "KG5455-C", otrosCod: "HATG-5010491301 / KG5455-C", desc: "AMORT. CABINA DELANTERO RENAULT MAGNUM COETE", marca: "AIR STAR", pUnitario: 630.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "D-4329012452", otrosCod: "D-4329012452", desc: "FILTRO SECADOR RENAULT ROSCA INVERSA", marca: "WABCO", pUnitario: 500.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "F-20972915", otrosCod: "F-20972915", desc: "FILTRO SECADOR F12 - F10", marca: "VOLVO", pUnitario: 500.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
@@ -906,7 +882,7 @@ const productos = [
      { codCali: "626639AM", otrosCod: "SERVO,KS+", desc: "SERVO FH", marca: "MADETOP", pUnitario: 1800.00, img: "https://tgfautomotive.com.br/658713-medium_default/servo_embreagem_volvo_b7r-_b10m-_b12-_b58-_vm210_edc_1995_1671953.jpg" },
    { codCali: "1000129485AM", otrosCod: "SERVO,KS+", desc: "SERVO", marca: "MADETOP", pUnitario: 2030.00, img: "https://gztruck.com/wp-content/uploads/2022/04/1000129485AM-6-510x510.jpg" },
     { codCali: "7421204549", otrosCod: "SERVO,KS+", desc: "SERVO", marca: "MADETOP", pUnitario: 2030.00, img: "https://lpmuk.com/wp-content/uploads/2020/08/6_43067_M-465x465.jpg" },
-      { codCali: "F-5001865724", otrosCod: "F-5001865723", desc: "PRE-FILTRO DE AIRE RENAULT", marca: "RENAULT", pUnitario: 250.00, img: "https://s.alicdn.com/@sc04/kf/H70e8831d45964973a6fa9ccafbf3dfde7.png?avif=close&webp=close" },
+      { codCali: "F-5001865724", otrosCod: "F-5001865723", desc: "PRE-FILTRO DE AIRE RENAULT", marca: "RENAULT", pUnitario: 250.00, img: "https://s.alicdn.com/@sc04/kf/H70e8831BVTrB47erypG3tevi1U9Fv6BbNUBEiuiX.png?avif=close&webp=close" },
      { codCali: "21115501", otrosCod: "1665898", desc: "PRE-FILTRO DE AIRE FH12", marca: "RENAULT", pUnitario: 250.00, img: "https://i.ibb.co/DHbGRzvV/Imagen2.png" },
     { codCali: "AS5813", otrosCod: "IV6364SA,SP55813", desc: "GLOBO SUELTO ", marca: "ETP", pUnitario: 650.00, img: "https://www.likaencoder.com/wp-content/uploads/2021/03/ck59-s.jpg" },
      { codCali: "AS8468-CP", otrosCod: "IV8468,SP558468-KP", desc: "GLOBO SUELTO ", marca: "ETP", pUnitario: 890.00, img: "https://firsttruckparts.com/cdn/shop/products/s-l1600-2022-02-16T232721.154_693a6861-4f75-4f5f-9c2b-b923f08521b5.jpg?v=1706956447" },
@@ -915,27 +891,13 @@ const productos = [
 { codCali: "1415", otrosCod: "1415", desc: "GLOBO SUELTO ", marca: "BREITER", pUnitario: 0000, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" }, 
 { codCali: "926202", otrosCod: "926202", desc: "RETEN DE LA RUEDA GRANDE ", marca: "KAKO", pUnitario: 0000, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" }, 
 { codCali: "B940-C", otrosCod: "940", desc: "GLOBO DE CHATA DE 6 PERNOS COMPLETO ", marca: "BREITER", pUnitario: 0000, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-{ codCali: "CU.1316N", otrosCod: "1316", desc: "RETEN ", marca: "CORTECO", pUnitario: 0000, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-{ codCali: "CU.2140N", otrosCod: "2140", desc: "RETEN ", marca: "CORTECO", pUnitario: 0000, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-{ codCali: "4640060000", otrosCod: "60000", desc: "REGULADOR DE GLOBO ", marca: "WABCO", pUnitario: 0000, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-{ codCali: "22743", otrosCod: "22743", desc: "RETEN ", marca: "FEBI", pUnitario: 0000, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-{ codCali: "3422", otrosCod: "3422", desc: "RETEN ", marca: "FEBI", pUnitario: 0000, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-{ codCali: "3421", otrosCod: "3421", desc: "RETEN ", marca: "FEBI", pUnitario: 0000, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-{ codCali: "3420", otrosCod: "3420", desc: "RETEN ", marca: "FEBI", pUnitario: 0000, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-{ codCali: "1248270", otrosCod: "1248270", desc: "RETEN ", marca: "FEBI", pUnitario: 0000, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" }, 
+ 
+{ codCali: "3941", otrosCod: "3941", desc: "RETEN ", marca: "FEBI", pUnitario: 0000, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },   
 
-{ codCali: "18967", otrosCod: "18967", desc: "RETEN ", marca: "FEBI", pUnitario: 0000, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },  
-{ codCali: "6240", otrosCod: "6240", desc: "RETEN ", marca: "FEBI", pUnitario: 0000, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },  
-{ codCali: "6239", otrosCod: "6239", desc: "RETEN ", marca: "FEBI", pUnitario: 0000, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },  
-{ codCali: "3941", otrosCod: "3941", desc: "RETEN ", marca: "FEBI", pUnitario: 0000, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },  
-{ codCali: "6241", otrosCod: "6241", desc: "RETEN ", marca: "FEBI", pUnitario: 0000, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },  
-{ codCali: "926201", otrosCod: "926201", desc: "RETEN RUEDA MEDIANO ", marca: "KAKO", pUnitario: 0000, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },  
 { codCali: "926204", otrosCod: "926204", desc: "RETEN RUEDA PEQUEÑO ", marca: "KAKO", pUnitario: 0000, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },  
-{ codCali: "14441", otrosCod: "14441", desc: "RETEN ", marca: "FEBI", pUnitario: 0000, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },  
+  
 { codCali: "14189", otrosCod: "14189", desc: "SERVO ", marca: "SAF", pUnitario: 0000, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },   
- { codCali: "11827", otrosCod: "11827", desc: "TAPA DE EJE ", marca: "FEBI", pUnitario: 0000, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" }, 
- { codCali: "13671", otrosCod: "13671", desc: "BUJE ", marca: "MANSO", pUnitario: 0000, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
- { codCali: "10229", otrosCod: "10229", desc: "POLEA DEL AMERICANO ", marca: "MANSO", pUnitario: 0000, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+
  { codCali: "310B-10C", otrosCod: "310B-10C", desc: "", marca: "AIRSTAR", pUnitario: 0000, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
  { codCali: "1665563", otrosCod: "1665563", desc: "FILTRO DE AIRE DEL F12 DE 4 PERNOS ", marca: "VOLVO", pUnitario: 0000, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
 { codCali: "4324101020037", otrosCod: "4324101020", desc: "SECADOR PARA FH CHINO ELECTRONICO", marca: "WABCO", pUnitario: 2400, img: "https://scantruckparts.com/cdn/shop/files/WABCO_20Single_20Chamber_20Air_20Dryer_204324100270_1024x1024.png?v=1692249230.jpg" },
@@ -951,21 +913,121 @@ const productos = [
 { codCali: "1161981", otrosCod: "1161981", desc: "GRASA PARA AUTO", marca: "VOLVO", pUnitario: 800, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
 { codCali: "21693755", otrosCod: "21693755", desc: "FILTRO DE AIRE RENAULT", marca: "VOLVO", pUnitario: 900, img: "https://www.partspowergenset.com/Content/uploads/2019100413/201912101758116411074.JPG" },
 { codCali: "47496", otrosCod: "47496", desc: "AMORTIGUADOR DEL CABALLETE TRASERO PERNO A PERNO F12-F10-F7", marca: "COFAP", pUnitario: 750, img: "https://pitstop.vtexassets.com/arquivos/ids/263112-800-auto?v=638166420593170000&width=800&height=auto&aspect=true.JPG" },
-
-
-   ];
+{ codCali: "14189", otrosCod: "14189", desc: "SERVO F12", marca: "ENTRUCK", pUnitario: 630, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "11827", otrosCod: "11827", desc: "TAPA EJE", marca: "ENTRUCK", pUnitario: 100, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "13671", otrosCod: "13671", desc: "BUJE", marca: "ENTRUCK", pUnitario: 200, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "10679 (8321)", otrosCod: "10679 (8321)", desc: "BUJE", marca: "ENTRUCK", pUnitario: 150, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "10229", otrosCod: "10229", desc: "POLEA", marca: "ENTRUCK", pUnitario: 199, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "15041", otrosCod: "15041", desc: "BUJE RESORTE CHATA", marca: "ENTRUCK", pUnitario: 200, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "15065", otrosCod: "15065", desc: "VALVULA DE CABINA NIVEL FH", marca: "ENTRUCK", pUnitario: 300, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "15040", otrosCod: "15040", desc: "KIT RESORTE RODILLO", marca: "ENTRUCK", pUnitario: 320, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "14253", otrosCod: "14253", desc: "VALVULA DE DESCARGA", marca: "ENTRUCK", pUnitario: 95, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "14255", otrosCod: "14255", desc: "VALVULA DE DESCARGA", marca: "ENTRUCK", pUnitario: 125, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "14254", otrosCod: "14254", desc: "VALVULA DE DESCARGA", marca: "ENTRUCK", pUnitario: 95, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "14251", otrosCod: "14251", desc: "VALVULA DE TRACTO NIVEL FH - SCANIA CON BARRILLA", marca: "ENTRUCK", pUnitario: 350, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "14196", otrosCod: "14196", desc: "TAPA EJE PLASTICO", marca: "ENTRUCK", pUnitario: 165, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "1028", otrosCod: "1028", desc: "BUJE TRUKI", marca: "ENTRUCK", pUnitario: 150, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "14680", otrosCod: "14680", desc: "KIT RODILLO EJE", marca: "ENTRUCK", pUnitario: 120, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "14640", otrosCod: "14640", desc: "KIT BUJE", marca: "ENTRUCK", pUnitario: 410, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "13684", otrosCod: "13684", desc: "PIVOTE", marca: "ENTRUCK", pUnitario: 900, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "13368", otrosCod: "13368", desc: "KIT BUJE", marca: "ENTRUCK", pUnitario: 220, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "1051", otrosCod: "1051", desc: "KITT BUJE CANASTILLO", marca: "ENTRUCK", pUnitario: 300, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "15065", otrosCod: "15065", desc: "VALVULA NIVEL FH", marca: "ENTRUCK", pUnitario: 300, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+    { codCali: "15040", otrosCod: "15040", desc: "KIT RESORTE RODILLO", marca: "ENTRUCK", pUnitario: 300, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "11975", otrosCod: "11975", desc: "VALVULA TOJLO CON BLOQUEADOR", marca: "ENTRUCK", pUnitario: 390, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "150058", otrosCod: "150058", desc: "VALVULA TOJLO SIN BLOQUEADOR", marca: "ENTRUCK", pUnitario: 390, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "150059", otrosCod: "150059", desc: "VALVULA TOJLO BAJO", marca: "ENTRUCK", pUnitario: 390, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "13248", otrosCod: "13248", desc: "RODAMIENTO CHATA SUECA", marca: "ENTRUCK", pUnitario: 350, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "8414", otrosCod: "8414", desc: "RODAMIENTO DE BOMBA DE AGUA", marca: "ENTRUCK", pUnitario: 130, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "8231", otrosCod: "8231", desc: "RODAMIENTO DE CABINA FH", marca: "ENTRUCK", pUnitario: 130, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "1882", otrosCod: "1882", desc: "RODAMIENTO CHATA SUECA GRANDE", marca: "ENTRUCK", pUnitario: 220, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "1199", otrosCod: "1199", desc: "RODAMIENTO DE CAJA SUECA", marca: "ENTRUCK", pUnitario: 140, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "1446", otrosCod: "1446", desc: "RODAMIENTO CHICO DE CHATA RAMDON", marca: "ENTRUCK", pUnitario: 270, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "9574", otrosCod: "9574", desc: "RODAMIENTO CHATA ESPAÑOLA", marca: "ENTRUCK", pUnitario: 320, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "15795", otrosCod: "15795", desc: "RODAMIENTO CHATA SUECA", marca: "ENTRUCK", pUnitario: 440, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "2176", otrosCod: "2176", desc: "RODAMIENTO CHATA RAMDON GRANDE", marca: "ENTRUCK", pUnitario: 300, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "13330", otrosCod: "13330", desc: "RODAMIENTO CHATA SUECA", marca: "ENTRUCK", pUnitario: 300, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "13763", otrosCod: "13763", desc: "RODAMIENTO RUEDA CHATA ESPAÑOLA", marca: "ENTRUCK", pUnitario: 350, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "10342", otrosCod: "10342", desc: "RODAMIENTO CHATA AMERICANA", marca: "ENTRUCK", pUnitario: 350, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "13791", otrosCod: "13791", desc: "RODAMIENTO CHATA", marca: "ENTRUCK", pUnitario: 230, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "13796", otrosCod: "13796", desc: "RODAMIENTO RUEDA MB", marca: "ENTRUCK", pUnitario: 220, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "8195", otrosCod: "8195", desc: "RODAMIENTO IZQUIERDO CORONA", marca: "ENTRUCK", pUnitario: 280, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "13900", otrosCod: "13900", desc: "RODAMIENTO CHATA SUECA GRANDE", marca: "ENTRUCK", pUnitario: 370, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "13794", otrosCod: "13794", desc: "RODAMIENTO DE CHATA Y MERCEDES", marca: "ENTRUCK", pUnitario: 450, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+    { codCali: "13792", otrosCod: "13792", desc: "RODAMIENTO DE RUEDA", marca: "ENTRUCK", pUnitario: 230, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "13800", otrosCod: "13800", desc: "RODAMIENTO RUEDA FH", marca: "ENTRUCK", pUnitario: 230, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "12154", otrosCod: "12154", desc: "RODAMIENTO CHATA SUECA", marca: "ENTRUCK", pUnitario: 290, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "9281", otrosCod: "9281", desc: "RODAMIENTO AMERICANO", marca: "ENTRUCK", pUnitario: 260, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "13799", otrosCod: "13799", desc: "RODAMIENTO CHATA", marca: "ENTRUCK", pUnitario: 360, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "14343", otrosCod: "14343", desc: "RODAMIENTO CHATA EUROPEA", marca: "ENTRUCK", pUnitario: 360, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "5574", otrosCod: "5574", desc: "RODAMIENTO VENTILADOR", marca: "ENTRUCK", pUnitario: 290, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "5612", otrosCod: "5612", desc: "RODAMIENTO PASADOR PARA EJE", marca: "ENTRUCK", pUnitario: 170, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "8964 / VAL001", otrosCod: "8964 / VAL001", desc: "PERILLA CAJA 6TA", marca: "ENTRUCK", pUnitario: 370, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "2720", otrosCod: "2720", desc: "RODAMIENTO PLANO CHICO", marca: "ENTRUCK", pUnitario: 190, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "12234", otrosCod: "12234", desc: "CRUCETA AMERICANO", marca: "ENTRUCK", pUnitario: 370, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "12235", otrosCod: "12235", desc: "CRUCETA AMERICANO", marca: "ENTRUCK", pUnitario: 420, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "1960", otrosCod: "1960", desc: "KIT BUJE", marca: "ENTRUCK", pUnitario: 150, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "2311", otrosCod: "2311", desc: "BUJE TUBELES", marca: "ENTRUCK", pUnitario: 25, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "4904", otrosCod: "4904", desc: "BUJE", marca: "ENTRUCK", pUnitario: 30, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "4134", otrosCod: "4134", desc: "PERNO", marca: "ENTRUCK", pUnitario: 35, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "8845", otrosCod: "8845", desc: "MANGUERA FH", marca: "ENTRUCK", pUnitario: 260, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "13602", otrosCod: "13602", desc: "BUJE", marca: "ENTRUCK", pUnitario: 190, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "12442", otrosCod: "12442", desc: "BOMBA HIDRAULICA", marca: "ENTRUCK", pUnitario: 950, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "9373 / 10257", otrosCod: "9373 / 10257", desc: "MANOMETRO RELOJ", marca: "ENTRUCK", pUnitario: 150, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "2124", otrosCod: "2124", desc: "TAPA", marca: "ENTRUCK", pUnitario: 120, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "1911", otrosCod: "1911", desc: "BUJE CONICO", marca: "ENTRUCK", pUnitario: 50, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "10511", otrosCod: "10511", desc: "BUJE CONICO", marca: "ENTRUCK", pUnitario: 40, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "14226", otrosCod: "14226", desc: "VALVULA NICE", marca: "ENTRUCK", pUnitario: 590, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "1561", otrosCod: "1561", desc: "CHICOTILLO NEUTRO", marca: "ENTRUCK", pUnitario: 550, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "13012", otrosCod: "13012", desc: "BUJE CALIPER", marca: "ENTRUCK", pUnitario: 65, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "13013", otrosCod: "13013", desc: "BUJE CALIPER GRANDE", marca: "ENTRUCK", pUnitario: 130, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "11520", otrosCod: "11520", desc: "POLEA", marca: "ENTRUCK", pUnitario: 410, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "13794", otrosCod: "13794", desc: "POLEA", marca: "ENTRUCK", pUnitario: 410, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "13070", otrosCod: "13070", desc: "SILENCIADOR A PRESION", marca: "ENTRUCK", pUnitario: 40, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "14398", otrosCod: "14398", desc: "TENSOR FH", marca: "ENTRUCK", pUnitario: 600, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "1672", otrosCod: "1672", desc: "REPARO CILINDRO FH", marca: "ENTRUCK", pUnitario: 230, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+    { codCali: "20585555", otrosCod: "20585555", desc: "AMORTIGUADOR DE EJE TRASERO FH Y (SAMURAY)", marca: "UNIEURO", pUnitario: 850, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "20585556", otrosCod: "20585556", desc: "AMORTIGUADOR DE EJE TRASERO FH, FH13", marca: "UNIEURO", pUnitario: 800, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+    { codCali: "16009648PTA", otrosCod: "16009648PTA", desc: "BOLACHA S", marca: "NEROTECH", pUnitario: 1240, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "CU1316N", otrosCod: "CU1316N", desc: "RETEN CUBO CARRETA", marca: "CORTECO", pUnitario: 182, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "CU2140N", otrosCod: "CU2140N", desc: "RETEN BAÑO DE ACEITE", marca: "CORTECO", pUnitario: 182, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "CU2168V", otrosCod: "CU2168V", desc: "RETEN CUBO CARRETA", marca: "CORTECO", pUnitario: 520, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "CV03239K", otrosCod: "CV03239K", desc: "RETEN CUBO DOBLE", marca: "CORTECO", pUnitario: 520, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "VCOFB47747", otrosCod: "VCOFB47747", desc: "AMORTIGUADOR CABINA - F12 - F10 - F7", marca: "COFAP", pUnitario: 390, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "1505047-B", otrosCod: "1505047-B", desc: "GOBERNADOR", marca: "BENDIX", pUnitario: 398, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "4640060000", otrosCod: "4640060000", desc: "VALVULA NIVEL", marca: "WABCO", pUnitario: 1950, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+    { codCali: "PSD470/6", otrosCod: "PSD470/6", desc: "TRAMPERA FH- F12 - AMERICANO - RENAULT", marca: "TECFIL", pUnitario: 690, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "SFA1667", otrosCod: "SFA1667", desc: "FILTRO DE AIRE F16 C/T 4 PERNOS", marca: "TECFIL", pUnitario: 150, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "TR18292", otrosCod: "TR18292", desc: "PREFILTRO F12 SIN TAPA", marca: "TECFIL", pUnitario: 320, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+    { codCali: "22743", otrosCod: "22743", desc: "BUJE", marca: "FEBI", pUnitario: 52, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "3422", otrosCod: "3422", desc: "BUJE", marca: "FEBI", pUnitario: 51, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "3421", otrosCod: "3421", desc: "BUJE", marca: "FEBI", pUnitario: 50, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "3420", otrosCod: "3420", desc: "BUJE", marca: "FEBI", pUnitario: 50, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "1248270", otrosCod: "1248270", desc: "BUJE", marca: "FEBI", pUnitario: 40, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "18967", otrosCod: "18967", desc: "BUJE", marca: "FEBI", pUnitario: 79, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "6240", otrosCod: "6240", desc: "MUÑON", marca: "FEBI", pUnitario: 250, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "6239", otrosCod: "6239", desc: "MUÑON", marca: "FEBI", pUnitario: 250, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "3441", otrosCod: "3441", desc: "MUÑON", marca: "FEBI", pUnitario: 250, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "6241", otrosCod: "6241", desc: "MUÑON", marca: "FEBI", pUnitario: 250, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "926201", otrosCod: "926201", desc: "RETEN DE LA RUEDA", marca: "FEBI", pUnitario: 370, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "926204", otrosCod: "926204", desc: "RETEN DE LA RUEDA", marca: "FEBI", pUnitario: 370, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "14441", otrosCod: "14441", desc: "BUJE", marca: "FEBI", pUnitario: 120, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 }
+];
 
 function cargarProductos(lista) {
     const contenedor = document.getElementById('listaProductos');
     contenedor.innerHTML = "";
     lista.forEach(p => {
-        const pFact = (p.pUnitario * 1.09).toFixed(1);
+        // LÓGICA DE RESPETO: Si p.iva existe, úsalo. Si no, usa 1.09 (el 9% de siempre).
+        const factor = p.iva ? p.iva : 1.09;
+        const pFact = (p.pUnitario * factor).toFixed(1);
+        
         const card = document.createElement('div');
         card.className = 'card';
         
-        // CORRECCIÓN AQUÍ: Se añade p.otrosCod al atributo de búsqueda
-        const textoBusqueda = `${p.codCali} ${p.desc} ${p.marca} ${p.otrosCod}`.toLowerCase();
-        card.setAttribute('data-search', textoBusqueda);
+        // Búsqueda completa
+        const motorBusqueda = `${p.codCali} ${p.desc} ${p.marca} ${p.otrosCod}`.toLowerCase();
+        card.setAttribute('data-search', motorBusqueda);
         
         card.innerHTML = `
             <div class="card-identity">
@@ -981,7 +1043,7 @@ function cargarProductos(lista) {
 
             <div class="precios-container">
                 <div>
-                    <span class="label-p">Facturado</span>
+                    <span class="label-p">Facturado (${p.iva ? '13%' : '9%'})</span>
                     <span class="val-fact">Bs. ${pFact}</span>
                 </div>
                 <div style="text-align: right;">
