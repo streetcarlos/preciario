@@ -512,7 +512,7 @@ const productos = [
   { codCali: "A-1191-K", otrosCod: "A-1191-K", desc: "AMORTIGUADOR A GLOBO SCANIA TRASERO (FLACO) 380-420", marca: "AIR STAR", pUnitario: 880.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "20125", otrosCod: "5171", desc: "GLOBO CABINA AMERICANO NORMAL", marca: "AUGER", pUnitario: 450.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "2092", otrosCod: "5171 / A-01092 /2092", desc: "GLOBO CABINA AMERICANO NORMAL", marca: "VOLVO", pUnitario: 620.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "21165207", otrosCod: "5171 / A-01092 /2092", desc: "GLOBO CABINA AMERICANO NORMAL", marca: "HATG", pUnitario: 600.00, img: "https://http2.mlstatic.com/D_NQ_NP_688739-MLM54222726962_032023-O.webp" },
+  { codCali: "21165207", otrosCod: "5171 / A-01092 /2092", desc: "GLOBO CABINA AMERICANO NORMAL", marca: "HATG", pUnitario: 500.00, img: "https://http2.mlstatic.com/D_NQ_NP_688739-MLM54222726962_032023-O.webp" },
   { codCali: "SP5171", otrosCod: "5171 / A-01092 /2092", desc: "GLOBO CABINA AMERICANO NORMAL", marca: "SAMPA", pUnitario: 450.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "A-01092", otrosCod: "5171 / A-01092 /2092", desc: "GLOBO AMERICANO CABINA TRASERO NORMAL", marca: "AIR STAR", pUnitario: 450.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "945054-S", otrosCod: "F5054-S/8024-S", desc: "GLOBO", marca: "FIBRETECH", pUnitario: 450.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
@@ -962,7 +962,10 @@ function cargarProductos(lista) {
         const pFact = (p.pUnitario * 1.09).toFixed(1);
         const card = document.createElement('div');
         card.className = 'card';
-        card.setAttribute('data-search', `${p.codCali} ${p.desc} ${p.marca}`.toLowerCase());
+        
+        // CORRECCIÓN AQUÍ: Se añade p.otrosCod al atributo de búsqueda
+        const textoBusqueda = `${p.codCali} ${p.desc} ${p.marca} ${p.otrosCod}`.toLowerCase();
+        card.setAttribute('data-search', textoBusqueda);
         
         card.innerHTML = `
             <div class="card-identity">
