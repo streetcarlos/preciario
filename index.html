@@ -1,175 +1,190 @@
 <!DOCTYPE html>
-
 <html lang="es">
-
 <head>    
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Importadora Cali | Lista de Precios Pro</title>
-
+    <title>Importadora Cali | Catálogo Premium Red Edition</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Montserrat:wght@400;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Montserrat:wght@400;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet">
     <style>
-
         :root {
-
-            --rojo-neon: #ff002b;
-
-            --negro-tarjeta: #121212;
-
-            --blanco-fondo: #f4f7f6;
-
+            --rojo-neon: #ff0033; /* Un rojo más vibrante y agresivo */
+            --rojo-oscuro: #80001a; /* Para degradados */
+            --negro-tarjeta: #000000;
+            --negro-suave: #121212;
+            --blanco-fondo: #f0f3f2;
             --dorado-premium: #d4af37;
-
+            --gris-texto: #aaaaaa;
         }
-
-
 
         body { font-family: 'Montserrat', sans-serif; background-color: var(--blanco-fondo); margin: 0; padding-bottom: 60px; }
 
-
-
         header {
-
             background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
-
-            color: white; padding: 40px 20px 80px; text-align: center;
-
-            border-bottom: 4px solid var(--rojo-neon);
-
+            color: white; padding: 50px 20px 90px; text-align: center;
+            border-bottom: 5px solid var(--rojo-neon);
+            box-shadow: 0 10px 30px rgba(255, 0, 51, 0.3);
         }
+        header h1 { font-family: 'Bebas Neue', cursive; font-size: 5rem; margin: 0; letter-spacing: 6px; text-shadow: 0 0 15px var(--rojo-neon); }
+        header p { color: var(--rojo-neon); font-weight: 800; text-transform: uppercase; margin-top: 10px; letter-spacing: 2px;}
 
-        header h1 { font-family: 'Bebas Neue', cursive; font-size: 4rem; margin: 0; letter-spacing: 4px; }
-
-        header p { color: var(--rojo-neon); font-weight: 700; text-transform: uppercase; margin-top: 10px; }
-
-
-
-        .search-wrapper { max-width: 700px; margin: -40px auto 40px; padding: 0 20px; }
-
+        .search-wrapper { max-width: 800px; margin: -45px auto 50px; padding: 0 20px; }
         .search-box { 
-
-            background: white; display: flex; align-items: center; padding: 10px 30px; 
-
-            border-radius: 100px; box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-
+            background: white; display: flex; align-items: center; padding: 12px 35px; 
+            border-radius: 100px; box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+            border: 2px solid transparent; transition: 0.3s;
         }
-
-        #searchInput { flex: 1; padding: 15px; border: none; outline: none; font-size: 1.1rem; font-weight: 600; }
-
-
+        .search-box:focus-within { border-color: var(--rojo-neon); box-shadow: 0 10px 30px rgba(255, 0, 51, 0.15); }
+        #searchInput { flex: 1; padding: 15px; border: none; outline: none; font-size: 1.2rem; font-weight: 600; color: #333; }
+        #searchInput::placeholder { color: #999; font-weight: 400; }
 
         .grid-productos { 
-
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); 
-
-            gap: 30px; max-width: 1400px; margin: 0 auto; padding: 20px;
-
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); 
+            gap: 35px; max-width: 1600px; margin: 0 auto; padding: 20px;
         }
 
+        .card { 
+            background: white; border-radius: 25px; overflow: hidden; 
+            display: flex; flex-direction: column; 
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* Animación más suave */
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
+            border: 1px solid #eee;
+        }
+        .card:hover { 
+            transform: translateY(-12px) scale(1.02); 
+            box-shadow: 0 40px 80px rgba(255, 0, 51, 0.25); 
+            border-color: rgba(255, 0, 51, 0.2);
+        }
 
+        /* --- INFO SUPERIOR DINÁMICA CON DEGRADADO ROJO --- */
+        .info-superior {
+            display: flex;
+            background: linear-gradient(135deg, var(--negro-tarjeta) 60%, var(--rojo-oscuro) 100%);
+            min-height: 200px;
+            border-bottom: 3px solid #333;
+        }
 
-        .card { background: var(--negro-tarjeta); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: 0.3s; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        /* Bloque Izquierdo: Identidad (Más Agresivo) */
+        .card-identity { 
+            flex: 1.3; 
+            padding: 25px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-        .card:hover { transform: translateY(-8px); box-shadow: 0 30px 60px rgba(255, 0, 43, 0.2); }
-
-
-
-        .card-identity { padding: 25px; background-color: #000; }
-
-        .marca-badge { font-size: 1.2rem; font-weight: 800; color: var(--rojo-neon); text-transform: uppercase; display: block; }
-
-        .desc-text { font-size: 1rem; font-weight: 700; color: white; text-transform: uppercase; margin: 10px 0; }
-
-        .cod-text { font-family: 'Bebas Neue', cursive; font-size: 2.5rem; color: #fff; border-left: 4px solid var(--rojo-neon); padding-left: 10px; display: block; }
-
-
-
+        /* Bloque Derecho: Precios (Más Limpio) */
         .precios-container { 
-
-            background: #1a1a1a; padding: 20px 25px; 
-
-            border-top: 1px solid #333; border-bottom: 1px solid #333;
-
-            display: flex; justify-content: space-between; align-items: center;
-
+            flex: 1;
+            padding: 25px; 
+            background: rgba(0,0,0,0.3); /* Fondo sutil para separar */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end; 
         }
 
-        .label-p { font-size: 0.65rem; color: #aaa; text-transform: uppercase; font-weight: 700; display: block; }
+        /* --- MARCA AGRANDADA Y ROJA --- */
+        .marca-badge { 
+            font-size: 2.2rem; /* Mucho más grande */
+            font-weight: 900; 
+            color: var(--rojo-neon); 
+            text-transform: uppercase; 
+            letter-spacing: -1px; 
+            line-height: 1;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(255, 0, 51, 0.5);
+        }
+        
+        .desc-text { font-size: 0.9rem; font-weight: 700; color: #ccc; text-transform: uppercase; margin: 5px 0 15px 0; }
+        
+        /* --- CÓDIGO CON SUBRAYADO NEÓN --- */
+        .cod-text { 
+            font-family: 'Bebas Neue', cursive; 
+            font-size: 3.2rem; 
+            color: #fff; 
+            line-height: 1; 
+            display: inline-block;
+            position: relative;
+        }
+        .cod-text::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: var(--rojo-neon);
+            box-shadow: 0 0 10px var(--rojo-neon);
+            border-radius: 2px;
+        }
 
-        .val-fact { font-size: 1.1rem; font-weight: 700; color: #888; }
+        .label-p { font-size: 0.7rem; color: #888; text-transform: uppercase; font-weight: 800; margin-bottom: 3px; }
+        
+        /* --- PRECIO EFECTIVO DESTACADO EN SU PROPIO BLOQUE --- */
+        .precio-efectivo-block {
+            background: rgba(0,0,0,0.5);
+            padding: 10px 15px;
+            border-radius: 12px;
+            border: 1px solid #333;
+            margin-bottom: 15px;
+            text-align: right;
+        }
+        .val-sin { font-family: 'Oswald', sans-serif; font-size: 3.2rem; color: var(--dorado-premium); line-height: 1; font-weight: 700; }
+        .val-sin small { font-size: 1.5rem; color: var(--dorado-premium); margin-right: 3px; font-weight: 600; }
+        
+        .val-fact { font-size: 1.4rem; font-weight: 700; color: #aaa; text-align: right; }
 
-        .val-sin { font-family: 'Oswald', sans-serif; font-size: 2.8rem; color: var(--dorado-premium); line-height: 1; }
+        /* Cruces y Otros Códigos (Más sutil) */
+        .cruces-box { padding: 15px 25px; background: #0a0a0a; border-top: 1px solid #222; }
+        .otros-codigos { font-size: 0.75rem; color: #555; font-family: monospace; }
 
-
-
-        .cruces-box { padding: 15px 25px; background: #000; }
-
-        .otros-codigos { font-size: 0.75rem; color: #aaa; font-family: monospace; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; }
-
-
-
-        .img-container { height: 250px; padding: 20px; display: flex; justify-content: center; align-items: center; background: white; cursor: zoom-in; }
-
-        .img-container img { max-width: 90%; max-height: 90%; object-fit: contain; }
-
-
+        /* --- IMAGEN CON MARCO ROJO SUTIL --- */
+        .img-container { 
+            height: 300px; 
+            padding: 20px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            background: white; 
+            cursor: zoom-in; 
+            position: relative;
+        }
+        .img-container::after { /* Marco rojo interno */
+            content: '';
+            position: absolute;
+            inset: 15px;
+            border: 2px solid rgba(255, 0, 51, 0.1);
+            border-radius: 15px;
+            pointer-events: none;
+        }
+        .img-container img { max-width: 90%; max-height: 90%; object-fit: contain; position: relative; z-index: 1; }
 
         #imageModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; justify-content: center; align-items: center; }
-
-        #modalImg { max-width: 90%; max-height: 90%; border: 3px solid var(--rojo-neon); border-radius: 10px; }
-
+        #modalImg { max-width: 90%; max-height: 90%; border: 4px solid var(--rojo-neon); border-radius: 15px; box-shadow: 0 0 30px rgba(255, 0, 51, 0.5); }
     </style>
-
 </head>
-
 <body>
 
-
-
 <header>
-
     <h1>IMPORTADORA CALI</h1>
-
-    <p>LISTA DE PRECIOS Y EXISTENCIAS</p>
-
+    <p>CATÁLOGO PREMIUM | EDICIÓN ROJA</p>
 </header>
 
-
-
 <div class="search-wrapper">
-
     <div class="search-box">
-
-        <i class="fa-solid fa-magnifying-glass" style="color: var(--rojo-neon); font-size: 1.2rem;"></i>
-
+        <i class="fa-solid fa-magnifying-glass" style="color: var(--rojo-neon); font-size: 1.4rem;"></i>
         <input type="text" id="searchInput" placeholder="Busca por código, marca, descripción o cruces..." onkeyup="filtrar()">
-
     </div>
-
 </div>
-
-
 
 <main class="grid-productos" id="listaProductos"></main>
 
-
-
 <div id="imageModal" onclick="this.style.display='none'">
-
     <img id="modalImg" src="">
-
 </div>
 
-
-
 <script>
-
 const productos = [
 
         { codCali: "B4913-C", otrosCod: "W01-M58-8098 / 4913N P02 / 1R14-753", desc: "GLOBO TRACTOR SCANIA", marca: "BREITER", pUnitario: 1250.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/374913-10c-komple.jpg" },
@@ -2031,137 +2046,117 @@ const productos = [
 { codCali: "926204", otrosCod: "926204", desc: "RETEN DE LA RUEDA", marca: "FEBI", pUnitario: 370, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
 
 { codCali: "14441", otrosCod: "14441", desc: "BUJE", marca: "FEBI", pUnitario: 120, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
-{ codCali: "070.510", otrosCod: "0980108870", desc: "Kit reparación, Leva del freno del eje", marca: "FEBI", pUnitario: 450, img: "https://image.b2bolt.shop/SMP/070.510/Web/070.510.jpg", iva: 1.13 }
- 
-
-];
-
-
+{ codCali: "070.510", otrosCod: "0980108870", desc: "Kit reparación, Leva del freno del eje", marca: "FEBI", pUnitario: 450, img: "https://image.b2bolt.shop/SMP/070.510/Web/070.510.jpg", iva: 1.13 },
+{ codCali: "767804-S", otrosCod: "767804-S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "767804-C", otrosCod: "767804-C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "767803-S", otrosCod: "767803-S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "767803-C", otrosCod: "767803-C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "766416-C", otrosCod: "766416-C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "766418-C", otrosCod: "766418-C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "764912-8S", otrosCod: "764912-8S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "764561-S", otrosCod: "764561-S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "764560-S", otrosCod: "764560-S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "764156-18S", otrosCod: "764156-18S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "346760-C", otrosCod: "346760-C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "764713-2C", otrosCod: "764713-2C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "764571-C", otrosCod: "764571-C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "764561-C", otrosCod: "764561-C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "764570-2C", otrosCod: "764570-2C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "762399-C", otrosCod: "762399-C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "764157-4S", otrosCod: "764157-4S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "764725-S", otrosCod: "764725-S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "764004-2S", otrosCod: "764004-2S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "341421", otrosCod: "341421", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "945058-S/21171976**CA", otrosCod: "945058-S/21171976**CA", desc: "GOMA DE CABINA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "945051-S/128021**CA", otrosCod: "945051-S/128021**CA", desc: "GOMA DE CABINA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "30.01059(21111932)", otrosCod: "30.01059(21111932)", desc: "GOMA DE CABINA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "80,01414", otrosCod: "80,01414", desc: "GOMA DE CABINA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "341858-2C", otrosCod: "341858-2C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "449648-CPL", otrosCod: "449648-CPL", desc: "GOMA CON PISTON PLASTICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "766418-S", otrosCod: "766418-S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "764580-S", otrosCod: "764580-S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "764713-2S", otrosCod: "764713-2S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "344562-C/4562 N P03", otrosCod: "344562-C/4562 N P03", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "449780-CPL", otrosCod: "449780-CPL", desc: "GOMA CON PISTON PLASTICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "764157-CP50", otrosCod: "764157-CP50", desc: "GOMA CON PISTON PLASTICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "448829-CPL", otrosCod: "448829-CPL", desc: "GOMA CON PISTON PLASTICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "76944-R", otrosCod: "76944-R", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "34716/716 N", otrosCod: "34716/716 N", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "34715/715 N", otrosCod: "34715/715 N", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "34927/927 N", otrosCod: "34927/927 N", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "945058-S/21171976**CA", otrosCod: "945058-S/21171976**CA", desc: "GOMA DE CABINA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "945454-S/228893**CA", otrosCod: "945454-S/228893**CA", desc: "GOMA DE CABINA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "945559-S/128004**CA", otrosCod: "945559-S/128004**CA", desc: "GOMA DE CABINA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "945453-S/228879**CA", otrosCod: "945453-S/228879**CA", desc: "GOMA DE CABINA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "975051-S/128020**CA", otrosCod: "975051-S/128020**CA", desc: "GOMA DE CABINA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "20.6055K", otrosCod: "20.6055K", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "446262-CPL", otrosCod: "446262-CPL", desc: "GOMA CON PISTON PLASTICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "448646-CPL", otrosCod: "448646-CPL", desc: "GOMA CON PISTON PLASTICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" }
+    ];
 
 function cargarProductos(lista) {
-
     const contenedor = document.getElementById('listaProductos');
-
     contenedor.innerHTML = "";
-
+    
     lista.forEach(p => {
-
-        // LÓGICA DE RESPETO: Si p.iva existe, úsalo. Si no, usa 1.09 (el 9% de siempre).
-
         const factor = p.iva ? p.iva : 1.09;
-
-        const pFact = (p.pUnitario * factor).toFixed(1);
-
+        const pFact = (p.pUnitario * factor).toFixed(2);
         
-
         const card = document.createElement('div');
-
         card.className = 'card';
-
+        card.setAttribute('data-search', `${p.codCali} ${p.desc} ${p.marca} ${p.otrosCod}`.toLowerCase());
         
-
-        // Búsqueda completa
-
-        const motorBusqueda = `${p.codCali} ${p.desc} ${p.marca} ${p.otrosCod}`.toLowerCase();
-
-        card.setAttribute('data-search', motorBusqueda);
-
-        
-
         card.innerHTML = `
+            <div class="info-superior">
+                <div class="card-identity">
+                    <span class="marca-badge">${p.marca}</span>
+                    <span class="desc-text">${p.desc}</span>
+                    <div style="margin-top: auto;">
+                        <span class="cod-text">${p.codCali}</span>
+                    </div>
+                </div>
 
-            <div class="card-identity">
-
-                <span class="marca-badge">${p.marca}</span>
-
-                <span class="desc-text">${p.desc}</span>
-
-                <span class="cod-text">${p.codCali}</span>
-
+                <div class="precios-container">
+                    <div class="precio-efectivo-block">
+                        <span class="label-p" style="color:var(--gris-texto);">EFECTIVO</span>
+                        <span class="val-sin"><small>Bs.</small>${p.pUnitario.toLocaleString('es-BO')}</span>
+                    </div>
+                    
+                    <div style="text-align: right;">
+                        <span class="label-p">FACTURADO (${p.iva ? '13%' : '9%'})</span>
+                        <span class="val-fact">Bs. ${pFact}</span>
+                    </div>
+                </div>
             </div>
-
-
 
             <div class="cruces-box">
-
-                <span class="label-p">otros codigos</span>
-
+                <span class="label-p">OTROS CÓDIGOS / CRUCES</span>
                 <div class="otros-codigos">${p.otrosCod}</div>
-
             </div>
-
-
-
-            <div class="precios-container">
-
-                <div>
-
-                    <span class="label-p">Facturado (${p.iva ? '13%' : '9%'})</span>
-
-                    <span class="val-fact">Bs. ${pFact}</span>
-
-                </div>
-
-                <div style="text-align: right;">
-
-                    <span class="label-p">Efectivo</span>
-
-                    <span class="val-sin"><small style="font-size:1.2rem">Bs.</small>${p.pUnitario.toLocaleString('es-BO')}</span>
-
-                </div>
-
-            </div>
-
-
 
             <div class="img-container" onclick="abrirImagen('${p.img}')">
-
                 <img src="${p.img}" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Logo+Cali'">
-
             </div>
-
         `;
-
         contenedor.appendChild(card);
-
     });
-
 }
-
-
 
 function filtrar() {
-
     const b = document.getElementById('searchInput').value.toLowerCase();
-
     document.querySelectorAll('.card').forEach(t => {
-
         t.style.display = t.getAttribute('data-search').includes(b) ? "flex" : "none";
-
     });
-
 }
-
-
 
 function abrirImagen(s) {
-
     const modal = document.getElementById('imageModal');
-
     document.getElementById('modalImg').src = s;
-
     modal.style.display = 'flex';
-
 }
 
-
-
 document.addEventListener('DOMContentLoaded', () => cargarProductos(productos));
-
 </script>
 
 </body>
-
 </html>
-
-
