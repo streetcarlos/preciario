@@ -2025,16 +2025,23 @@ const productos = [
 function render(data) {
     const container = document.getElementById('listaProductos');
     container.innerHTML = data.map(p => {
-        const pFact = (p.pUnitario * 1.09).toFixed(2);
+        // Usa p.iva si existe (ej. 1.13), de lo contrario usa 1.09 por defecto
+        const factorIVA = p.iva || 1.09;
+        const porcentajeTexto = factorIVA === 1.13 ? "13%" : "9%";
+        const pFact = (p.pUnitario * factorIVA).toFixed(2);
         
+        // Formato para cuando el precio es 0
+        const displayPrecio = p.pUnitario > 0 ? `Bs ${p.pUnitario.toLocaleString('es-BO')}` : "CONSULTAR";
+        const displayFact = p.pUnitario > 0 ? `Bs ${pFact}` : "---";
+
         return `
         <div class="card" data-search="${p.codCali} ${p.desc} ${p.marca} ${p.otrosCod}".toLowerCase()>
             <div class="card-header-top">
                 <div class="product-code">${p.codCali || 'S/C'}</div>
                 <div class="price-container">
-                    <span class="price-cash">Bs ${p.pUnitario ? p.pUnitario.toLocaleString('es-BO') : '0'}</span>
-                    <span class="price-bill" style="font-size: 1.2rem; font-weight: 800; color: #fff;">
-                        FACT.: Bs ${pFact}
+                    <span class="price-cash">${displayPrecio}</span>
+                    <span class="price-bill" style="font-size: 1.25rem; font-weight: 800; color: #ffffff; display: block; margin-top: 5px;">
+                        FACT. (${porcentajeTexto}): ${displayFact}
                     </span>
                 </div>
             </div>
