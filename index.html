@@ -13,39 +13,83 @@
             --dark-bg: #000000;
             --card-bg: #0a0a0a;
             --gold: #ffcc00;
-            --text-main: #ffffff;
         }
 
-        body { font-family: 'Montserrat', sans-serif; background-color: var(--dark-bg); margin: 0; padding-bottom: 40px; }
-        header { padding: 40px 20px; text-align: center; background: linear-gradient(180deg, #330000 0%, #000 100%); border-bottom: 5px solid var(--red-bright); }
-        header h1 { font-family: 'Bebas Neue'; font-size: clamp(3rem, 12vw, 6rem); margin: 0; letter-spacing: 5px; color: white; }
-        .search-wrapper { max-width: 900px; margin: -25px auto 30px; padding: 0 20px; }
-        .search-box { background: #111; border: 2px solid var(--red-bright); display: flex; align-items: center; padding: 8px 25px; border-radius: 8px; }
-        #searchInput { flex: 1; padding: 12px; border: none; background: transparent; outline: none; font-size: 1.2rem; color: #fff; font-family: 'Roboto Mono'; }
-        .grid-productos { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 30px; max-width: 1700px; margin: 0 auto; padding: 20px; }
-        .card { background: var(--card-bg); border: 1px solid #333; display: flex; flex-direction: column; transition: 0.3s; }
-        .card-header-top { background: linear-gradient(90deg, #000 0%, var(--red-deep) 100%); padding: 20px 25px; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid var(--red-bright); }
-        .product-code { font-family: 'Bebas Neue'; font-size: 3.5rem; color: #fff; line-height: 1; }
-        .price-cash { display: block; font-family: 'Roboto Mono'; font-size: 2.2rem; color: var(--gold); line-height: 1; text-align: right;}
-        .price-bill { display: block; font-weight: 800; color: #ffffff; margin-top: 5px; font-size: 1.2rem; text-align: right;}
-        .card-main-content { display: grid; grid-template-columns: 60px 1fr; background: #fff; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--dark-bg); margin: 0; padding-bottom: 40px; color: white; }
+        
+        header { 
+            padding: 30px 20px; text-align: center; 
+            background: linear-gradient(180deg, #330000 0%, #000 100%); 
+            border-bottom: 5px solid var(--red-bright);
+            position: sticky; top: 0; z-index: 100;
+        }
+        header h1 { font-family: 'Bebas Neue'; font-size: clamp(2.5rem, 8vw, 5rem); margin: 0; letter-spacing: 5px; color: white; }
+
+        .search-wrapper { max-width: 900px; margin: 20px auto; padding: 0 20px; }
+        .search-box { background: #111; border: 2px solid var(--red-bright); display: flex; align-items: center; padding: 5px 20px; border-radius: 50px; }
+        #searchInput { flex: 1; padding: 12px; border: none; background: transparent; outline: none; font-size: 1.1rem; color: #fff; font-family: 'Roboto Mono'; }
+
+        .grid-productos { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); 
+            gap: 25px; max-width: 1600px; margin: 0 auto; padding: 20px; 
+        }
+
+        .card { background: var(--card-bg); border: 1px solid #222; display: flex; flex-direction: column; transition: 0.3s; overflow: hidden; height: 100%; }
+        .card:hover { border-color: var(--red-bright); }
+
+        .card-header-top { 
+            background: linear-gradient(90deg, #000 0%, var(--red-deep) 100%); 
+            padding: 15px 20px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-start; 
+            border-bottom: 3px solid var(--red-bright);
+            min-height: 90px; 
+        }
+
+        .product-code { 
+            font-family: 'Bebas Neue'; 
+            color: #fff; 
+            line-height: 0.9; 
+            max-width: 60%; 
+            word-wrap: break-word; 
+            overflow-wrap: break-word;
+            text-transform: uppercase;
+        }
+
+        .price-container { 
+            text-align: right; 
+            min-width: 38%; 
+            z-index: 2;
+        }
+
+        .price-cash { display: block; font-family: 'Roboto Mono'; font-size: 1.6rem; color: var(--gold); line-height: 1; }
+        .price-bill { display: block; font-weight: 800; color: #ffffff; margin-top: 5px; font-size: 0.85rem; letter-spacing: -0.5px; }
+
+        .card-main-content { display: grid; grid-template-columns: 50px 1fr; background: #fff; }
         .brand-vertical-bar { background: #000; display: flex; align-items: center; justify-content: center; border-right: 2px solid var(--red-bright); }
-        .brand-text { font-family: 'Bebas Neue'; font-size: 1.8rem; color: var(--red-bright); writing-mode: vertical-rl; transform: rotate(180deg); letter-spacing: 3px; }
-        .img-area { height: 320px; display: flex; justify-content: center; align-items: center; padding: 20px; cursor: pointer; }
+        .brand-text { font-family: 'Bebas Neue'; font-size: 1.4rem; color: var(--red-bright); writing-mode: vertical-rl; transform: rotate(180deg); letter-spacing: 2px; }
+        
+        .img-area { height: 280px; display: flex; justify-content: center; align-items: center; padding: 15px; cursor: pointer; background: white; }
         .img-area img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
         .stock-grid { display: grid; grid-template-columns: repeat(5, 1fr); background: #000; border-top: 2px solid var(--red-bright); border-bottom: 1px solid #222; }
-        .stock-item { padding: 12px 2px; text-align: center; border-right: 1px solid #222; }
+        .stock-item { padding: 10px 2px; text-align: center; border-right: 1px solid #111; }
         .stock-item:last-child { border-right: none; }
-        .stock-label { display: block; color: var(--red-bright); font-size: 0.65rem; font-weight: 900; margin-bottom: 4px; font-family: 'Montserrat'; }
-        .stock-qty { display: block; color: #fff; font-family: 'Roboto Mono'; font-size: 1.1rem; }
+        .stock-label { display: block; color: var(--red-bright); font-size: 0.6rem; font-weight: 900; margin-bottom: 2px; }
+        .stock-qty { display: block; color: #fff; font-family: 'Roboto Mono'; font-size: 1rem; }
         .no-stock { color: #333; }
+        .has-stock { color: #00ff00; }
+
         .info-footer { background: #000; flex-grow: 1; }
-        .desc-highlight { background: #1a1a1a; padding: 15px 25px; border-bottom: 1px solid #222; color: #fff; font-size: 1.1rem; font-weight: 800; text-transform: uppercase; display: block; }
-        .cross-section { padding: 15px 25px; }
-        .label-mini { color: var(--red-bright); font-size: 0.7rem; font-weight: 900; display: block; margin-bottom: 5px; }
-        .cross-list { color: #888; font-family: 'Roboto Mono'; font-size: 0.8rem; line-height: 1.4; }
-        #imageModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; }
-        #modalImg { max-width: 90%; max-height: 90%; border: 3px solid var(--red-bright); background: white; }
+        .desc-highlight { background: #151515; padding: 12px 20px; color: #fff; font-size: 1rem; font-weight: 800; text-transform: uppercase; border-bottom: 1px solid #222; display: block; }
+        .cross-section { padding: 12px 20px; }
+        .label-mini { color: #666; font-size: 0.65rem; font-weight: 900; display: block; margin-bottom: 3px; }
+        .cross-list { color: #888; font-family: 'Roboto Mono'; font-size: 0.75rem; line-height: 1.3; }
+
+        #imageModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; justify-content: center; align-items: center; }
+        #modalImg { max-width: 95%; max-height: 90vh; border: 2px solid var(--red-bright); background: white; }
     </style>
 </head>
 <body>
@@ -57,7 +101,7 @@
 <div class="search-wrapper">
     <div class="search-box">
         <i class="fa-solid fa-magnifying-glass" style="color: var(--red-bright);"></i>
-        <input type="text" id="searchInput" placeholder="BUSCAR POR CÓDIGO O REFERENCIA..." onkeyup="filtrar()">
+        <input type="text" id="searchInput" placeholder="BUSCAR CÓDIGO, MARCA O REFERENCIA..." oninput="filtrar()">
     </div>
 </div>
 
@@ -1086,7 +1130,7 @@ const productos = [
 
   { codCali: "4904 / 32.001", otrosCod: "", desc: "BUJE DE METAL PARA LA S AMERICANO", marca: "MASTER", pUnitario: 50.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
 
-  { codCali: "1031", otrosCod: "", desc: "BOLANDA DE TRUKI", marca: "SIN MARCA", pUnitario: 180.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "1031", otrosCod: "", desc: "BOLANDA DE TRUKI", marca: "SIN MARCA", pUnitario: 150.00, img: "https://cadecomx.vtexassets.com/arquivos/ids/200188-1200-auto?v=637399529813270000&width=1200&height=auto&aspect=true" },
 
   { codCali: "1661", otrosCod: "", desc: "BUJE ALZAPATA DELANTERO", marca: "MASTER", pUnitario: 20.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
 
@@ -1762,7 +1806,7 @@ const productos = [
 
 { codCali: "14196", otrosCod: "14196", desc: "TAPA EJE PLASTICO", marca: "ENTRUCK", pUnitario: 165, img: "https://isteam.wsimg.com/ip/28f352d8-b0da-40ef-862a-fd8367b2682c/ols/37584_original/:/rs=w:600,h:600", iva: 1.13 },
 
-{ codCali: "1028", otrosCod: "1028", desc: "BUJE TRUKI", marca: "ENTRUCK", pUnitario: 150, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
+{ codCali: "1028", otrosCod: "1028", desc: "BUJE TRUKI", marca: "ENTRUCK", pUnitario: 180, img: "https://s.alicdn.com/@sc04/kf/H34cd9e57225049cdb3f2f485448f63313.png_720x720q50.jpg", iva: 1.13 },
 
 { codCali: "14680", otrosCod: "14680", desc: "KIT RODILLO EJE", marca: "ENTRUCK", pUnitario: 120, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
 
@@ -1982,61 +2026,60 @@ const productos = [
     ];
 function render(data) {
     const container = document.getElementById('listaProductos');
-    container.innerHTML = data.map(p => {
-        const factorIVA = p.iva || 1.09;
-        const porcentajeTexto = factorIVA === 1.13 ? "13%" : "9%";
-        const pFact = (p.pUnitario * factorIVA).toFixed(2);
-        const displayPrecio = p.pUnitario > 0 ? `Bs ${p.pUnitario.toLocaleString('es-BO')}` : "CONSULTAR";
-        const displayFact = p.pUnitario > 0 ? `Bs ${pFact}` : "---";
-
-        // PROTECCIÓN: Si el producto no tiene stock definido, creamos uno vacío para que no falle
+    const html = data.map(p => {
+        const code = p.codCali || "S/C";
+        const unitPrice = p.pUnitario || 0;
+        
+        // CÁLCULO DE FACTURADO (9%)
+        const factorIVA = 1.09;
+        const pFact = (unitPrice * factorIVA).toFixed(2);
+        
         const s = p.stock || { alm: 0, lt1: 0, et2: 0, at3: 0, jtc: 0 };
-        const check = (val) => val > 0 ? val : `<span class="no-stock">0</span>`;
+        const fmtS = (val) => val > 0 ? `<span class="has-stock">${val}</span>` : `<span class="no-stock">0</span>`;
+
+        // Tamaño dinámico del código
+        const fontSize = code.length > 15 ? "1.5rem" : "2.2rem";
 
         return `
-        <div class="card" data-search="${p.codCali} ${p.desc} ${p.marca} ${p.otrosCod}".toLowerCase()>
+        <div class="card" data-search="${code} ${p.desc} ${p.marca} ${p.otrosCod}".toLowerCase()>
             <div class="card-header-top">
-                <div class="product-code">${p.codCali || 'S/C'}</div>
+                <div class="product-code" style="font-size: ${fontSize}">${code}</div>
                 <div class="price-container">
-                    <span class="price-cash">${displayPrecio}</span>
-                    <span class="price-bill">FACT. (${porcentajeTexto}): ${displayFact}</span>
+                    <span class="price-cash">${unitPrice > 0 ? 'Bs ' + unitPrice.toLocaleString('es-BO') : 'CONSULTAR'}</span>
+                    <span class="price-bill">${unitPrice > 0 ? 'FACT. (9%): Bs ' + pFact : '---'}</span>
                 </div>
             </div>
-            
             <div class="card-main-content">
-                <div class="brand-vertical-bar">
-                    <span class="brand-text">${p.marca || 'GENERICO'}</span>
-                </div>
+                <div class="brand-vertical-bar"><span class="brand-text">${p.marca}</span></div>
                 <div class="img-area" onclick="abrirImagen('${p.img}')">
-                    <img src="${p.img}" onerror="this.src='https://via.placeholder.com/400x300?text=Logo+Cali'">
+                    <img src="${p.img}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300?text=Logo+Cali'">
                 </div>
             </div>
-
             <div class="stock-grid">
-                <div class="stock-item"><span class="stock-label">ALM</span><span class="stock-qty">${check(s.alm)}</span></div>
-                <div class="stock-item"><span class="stock-label">LT1</span><span class="stock-qty">${check(s.lt1)}</span></div>
-                <div class="stock-item"><span class="stock-label">ET2</span><span class="stock-qty">${check(s.et2)}</span></div>
-                <div class="stock-item"><span class="stock-label">AT3</span><span class="stock-qty">${check(s.at3)}</span></div>
-                <div class="stock-item"><span class="stock-label">JTC</span><span class="stock-qty">${check(s.jtc)}</span></div>
+                <div class="stock-item"><span class="stock-label">ALM</span><span class="stock-qty">${fmtS(s.alm || 0)}</span></div>
+                <div class="stock-item"><span class="stock-label">LT1</span><span class="stock-qty">${fmtS(s.lt1 || 0)}</span></div>
+                <div class="stock-item"><span class="stock-label">ET2</span><span class="stock-qty">${fmtS(s.et2 || 0)}</span></div>
+                <div class="stock-item"><span class="stock-label">AT3</span><span class="stock-qty">${fmtS(s.at3 || 0)}</span></div>
+                <div class="stock-item"><span class="stock-label">JTC</span><span class="stock-qty">${fmtS(s.jtc || 0)}</span></div>
             </div>
-
             <div class="info-footer">
-                <span class="desc-highlight">${p.desc || 'SIN DESCRIPCIÓN'}</span>
+                <span class="desc-highlight">${p.desc}</span>
                 <div class="cross-section">
-                    <span class="label-mini">CÓDIGOS DE CRUCE / EQUIVALENCIAS</span>
+                    <span class="label-mini">EQUIVALENCIAS</span>
                     <div class="cross-list">${p.otrosCod || '---'}</div>
                 </div>
             </div>
         </div>`;
     }).join('');
+    container.innerHTML = html;
 }
 
 function filtrar() {
-    const s = document.getElementById('searchInput').value.toLowerCase();
+    const q = document.getElementById('searchInput').value.toLowerCase();
     const cards = document.querySelectorAll('.card');
     cards.forEach(c => {
         const text = c.getAttribute('data-search').toLowerCase();
-        c.style.display = text.includes(s) ? "flex" : "none";
+        c.style.display = text.includes(q) ? "" : "none";
     });
 }
 
@@ -2046,7 +2089,7 @@ function abrirImagen(url) {
     m.style.display = 'flex';
 }
 
-render(productos);
+window.onload = () => render(productos);
 </script>
 </body>
 </html>
