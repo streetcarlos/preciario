@@ -16,80 +16,34 @@
             --text-main: #ffffff;
         }
 
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            background-color: var(--dark-bg); 
-            margin: 0; padding-bottom: 40px;
-        }
-
-        header {
-            padding: 40px 20px; text-align: center;
-            background: linear-gradient(180deg, #330000 0%, #000 100%);
-            border-bottom: 5px solid var(--red-bright);
-        }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--dark-bg); margin: 0; padding-bottom: 40px; }
+        header { padding: 40px 20px; text-align: center; background: linear-gradient(180deg, #330000 0%, #000 100%); border-bottom: 5px solid var(--red-bright); }
         header h1 { font-family: 'Bebas Neue'; font-size: clamp(3rem, 12vw, 6rem); margin: 0; letter-spacing: 5px; color: white; }
-
         .search-wrapper { max-width: 900px; margin: -25px auto 30px; padding: 0 20px; }
-        .search-box { 
-            background: #111; border: 2px solid var(--red-bright);
-            display: flex; align-items: center; padding: 8px 25px; border-radius: 8px;
-        }
-        #searchInput { 
-            flex: 1; padding: 12px; border: none; background: transparent; 
-            outline: none; font-size: 1.2rem; color: #fff; font-family: 'Roboto Mono';
-        }
-
-        .grid-productos { 
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); 
-            gap: 30px; max-width: 1700px; margin: 0 auto; padding: 20px;
-        }
-
-        .card { 
-            background: var(--card-bg); border: 1px solid #333;
-            display: flex; flex-direction: column; transition: 0.3s;
-        }
-
-        /* Cabecera de la tarjeta con Código y Precio */
-        .card-header-top {
-            background: linear-gradient(90deg, #000 0%, var(--red-deep) 100%);
-            padding: 20px 25px; display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 3px solid var(--red-bright);
-        }
+        .search-box { background: #111; border: 2px solid var(--red-bright); display: flex; align-items: center; padding: 8px 25px; border-radius: 8px; }
+        #searchInput { flex: 1; padding: 12px; border: none; background: transparent; outline: none; font-size: 1.2rem; color: #fff; font-family: 'Roboto Mono'; }
+        .grid-productos { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 30px; max-width: 1700px; margin: 0 auto; padding: 20px; }
+        .card { background: var(--card-bg); border: 1px solid #333; display: flex; flex-direction: column; transition: 0.3s; }
+        .card-header-top { background: linear-gradient(90deg, #000 0%, var(--red-deep) 100%); padding: 20px 25px; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid var(--red-bright); }
         .product-code { font-family: 'Bebas Neue'; font-size: 3.5rem; color: #fff; line-height: 1; }
-        .price-container { text-align: right; }
-        .price-cash { display: block; font-family: 'Roboto Mono'; font-size: 2.2rem; color: var(--gold); line-height: 1; }
-        .price-bill { 
-    display: block; 
-    font-size: 1.3rem; /* Lo subimos de 0.85rem a 1.1rem para que sea más legible */
-    color: #ccc; 
-    font-weight: 700; 
-    margin-top: 5px;
-    letter-spacing: 0.5px; /* Un poco de espacio para que no se vea amontonado */
-}
-
-        /* Contenido Central: Marca y Foto */
+        .price-cash { display: block; font-family: 'Roboto Mono'; font-size: 2.2rem; color: var(--gold); line-height: 1; text-align: right;}
+        .price-bill { display: block; font-weight: 800; color: #ffffff; margin-top: 5px; font-size: 1.2rem; text-align: right;}
         .card-main-content { display: grid; grid-template-columns: 60px 1fr; background: #fff; }
-        .brand-vertical-bar { 
-            background: #000; display: flex; align-items: center; justify-content: center; 
-            border-right: 2px solid var(--red-bright); 
-        }
-        .brand-text { 
-            font-family: 'Bebas Neue'; font-size: 1.8rem; color: var(--red-bright); 
-            writing-mode: vertical-rl; transform: rotate(180deg); letter-spacing: 3px;
-        }
-        .img-area { height: 320px; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .brand-vertical-bar { background: #000; display: flex; align-items: center; justify-content: center; border-right: 2px solid var(--red-bright); }
+        .brand-text { font-family: 'Bebas Neue'; font-size: 1.8rem; color: var(--red-bright); writing-mode: vertical-rl; transform: rotate(180deg); letter-spacing: 3px; }
+        .img-area { height: 320px; display: flex; justify-content: center; align-items: center; padding: 20px; cursor: pointer; }
         .img-area img { max-width: 100%; max-height: 100%; object-fit: contain; }
-
-        /* Pie de tarjeta: Descripción y Cruces */
-        .info-footer { background: #000; }
-        .desc-highlight { 
-            background: #1a1a1a; padding: 15px 25px; border-bottom: 1px solid #222;
-            color: #fff; font-size: 1.1rem; font-weight: 800; text-transform: uppercase; display: block;
-        }
+        .stock-grid { display: grid; grid-template-columns: repeat(5, 1fr); background: #000; border-top: 2px solid var(--red-bright); border-bottom: 1px solid #222; }
+        .stock-item { padding: 12px 2px; text-align: center; border-right: 1px solid #222; }
+        .stock-item:last-child { border-right: none; }
+        .stock-label { display: block; color: var(--red-bright); font-size: 0.65rem; font-weight: 900; margin-bottom: 4px; font-family: 'Montserrat'; }
+        .stock-qty { display: block; color: #fff; font-family: 'Roboto Mono'; font-size: 1.1rem; }
+        .no-stock { color: #333; }
+        .info-footer { background: #000; flex-grow: 1; }
+        .desc-highlight { background: #1a1a1a; padding: 15px 25px; border-bottom: 1px solid #222; color: #fff; font-size: 1.1rem; font-weight: 800; text-transform: uppercase; display: block; }
         .cross-section { padding: 15px 25px; }
         .label-mini { color: var(--red-bright); font-size: 0.7rem; font-weight: 900; display: block; margin-bottom: 5px; }
         .cross-list { color: #888; font-family: 'Roboto Mono'; font-size: 0.8rem; line-height: 1.4; }
-
         #imageModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; }
         #modalImg { max-width: 90%; max-height: 90%; border: 3px solid var(--red-bright); background: white; }
     </style>
@@ -116,7 +70,7 @@
 <script>
 const productos = [
 
-        { codCali: "B4913-C", otrosCod: "W01-M58-8098 / 4913N P02 / 1R14-753", desc: "GLOBO TRACTOR SCANIA", marca: "BREITER", pUnitario: 1250.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/374913-10c-komple.jpg" },
+    { codCali: "B4913-C", otrosCod: "W01-M58-8098 / 4913N P02 / 1R14-753", desc: "GLOBO TRACTOR SCANIA", marca: "BREITER", pUnitario: 1250.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/374913-10c-komple.jpg" },
 
  { codCali: "E3110", otrosCod: "3110 / 1152 / SP558829 / 1K8829CY / 9648", desc: "GLOBO TRACTO AMERICANO HOLLA PLASTICO", marca: "BRASIL", pUnitario: 1070.00, img: "https://th.bing.com/th/id/R.f1c2a2b3ad49db9eb2d5ad9f0b2541e8?rik=AOk%2fcl%2f9m5zptQ&riu=http%3a%2f%2fcdn.shopify.com%2fs%2ffiles%2f1%2f0631%2f2725%2f7310%2fproducts%2frolling-lobe-air-spring-8829-bag-suspension-463_grande.webp%3fv%3d1676502455&ehk=Bmfo3TdoVqP0G%2b0Gy7AR84FVaxsz14RdTNkDtxHa%2fsc%3d&risl=&pid=ImgRaw&r=0.jpg" },
 
@@ -247,7 +201,7 @@ const productos = [
 
   { codCali: "B7803-S", otrosCod: "20573108/20573109/70313718/70321690/70321692/70376919/6604NP01/6605", desc: "GLOBO FH CHINO DELANTERO SUELTO", marca: "BREITER", pUnitario: 550.00, img: "https://www.airspringsbook.com/storage/pistonsuz-korukler/377803-s-komple.jpg" },
 
-  { codCali: "B7803-C", otrosCod: "20573108/20573109/70313718/70321690/70321692/70376919/6604NP01/6605/7803 / W01M588472 /", desc: "GLOBO FH CHINO DELANTERO COMPLETO", marca: "BREITER", pUnitario: 800.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/377804-c-komple.jpg",img2:"https://fabioairsprings.com/uploads/2025/07/untitled2060_op.webp" },
+  { codCali: "B7803-C", otrosCod: "20573108/20573109/70313718/70321690/70321692/70376919/6604NP01/6605/7803 / W01M588472 /", desc: "GLOBO FH CHINO DELANTERO COMPLETO", marca: "BREITER", pUnitario: 780.00, img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/377804-c-komple.jpg",img2:"https://fabioairsprings.com/uploads/2025/07/untitled2060_op.webp" },
 
   { codCali: "B4580-2C", otrosCod: "21451172 / 22047983 / 4580NP01 / 91172 MP1", desc: "GLOBO TRACTO SAMURAY TREN DELANTERO HOLLA MEDIANA", marca: "BREITER", pUnitario: 1200.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
 
@@ -287,7 +241,7 @@ const productos = [
 
   { codCali: "344570-S", otrosCod: "21224749 / 22058741 / 4570NP02", desc: "GLOBO TRACTO SAMURAY TRASERO", marca: "BREITER", pUnitario: 800.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
 
-  { codCali: "B4560-S", otrosCod: "21224745 / 4560NP02", desc: "GLOBO SAMURAY DELANTERO ALZAPATA SUELTO", marca: "BREITER", pUnitario: 780.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "B4560-S", otrosCod: "21224745 / 4560NP02", desc: "GLOBO SAMURAY DELANTERO ALZAPATA SUELTO", marca: "BREITER", pUnitario: 600.00, img: "https://vigorairride.com/cdn/shop/products/3_010a54b0-fc63-4b98-a3e3-f0159e5db864_1200x1200.jpg?v=1657516742" },
 
   { codCali: "B4560-C", otrosCod: "21224745 / 4560NP02", desc: "GLOBO SAMURAY DELANTERO ALZAPATA", marca: "BREITER", pUnitario: 1050.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
 
@@ -295,11 +249,11 @@ const productos = [
 
   { codCali: "B4562-S", otrosCod: "084.427-73A / SP554562-K03", desc: "GLOBO SAMURAY VOLVO", marca: "BREITER", pUnitario: 900.00, img: "https://picture.new.by/images/4595/2dccec60ebfbe81f54712f8c012f2e08.jpg" },
 
-  { codCali: "B4561-C", otrosCod: "21224746 / 22058738 / 4561NP02", desc: "GLOBO SAMURAY DELANTERO", marca: "BREITER", pUnitario: 1050.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "B4561-C", otrosCod: "21224746 / 22058738 / 4561NP02", desc: "GLOBO SAMURAY DELANTERO", marca: "BREITER", pUnitario: 990.00, img: "https://cdn.autodoc.de/thumb?id=13660803&m=0&n=0&lng=es&rev=94077920" },
 
   { codCali: "B4571-C", otrosCod: "21224750 / 22056630 / 4571NP02", desc: "GLOBO SAMURAY TRASERO", marca: "BREITER", pUnitario: 990.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
 
-  { codCali: "B4561-S", otrosCod: "21224746 / 22058738 / 4561NP02", desc: "GLOBO SAMURAY DELANTERO SUELTO", marca: "BREITER", pUnitario: 800.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "B4561-S", otrosCod: "21224746 / 22058738 / 4561NP02", desc: "GLOBO SAMURAY DELANTERO SUELTO", marca: "BREITER", pUnitario: 600.00, img: "https://fabioairsprings.com/uploads/2025/02/344561-c-b_op.webp" },
 
   { codCali: "B4571-S", otrosCod: "21224750 / 22056630 / 4571NP02", desc: "GLOBO SAMURAY TRASERO SUELTO", marca: "BREITER", pUnitario: 800.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
 
@@ -315,7 +269,8 @@ const productos = [
 
   { codCali: "B720-S", otrosCod: "1590136/1629193/6797169/ W01-095-0195/ 1R2A460295/ 9008/ 720N/9720R", desc: "GLOBO SUELTO BOCA 13 FH- F14", marca: "BREITER", pUnitario: 430.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
 
-  { codCali: "34737-S", otrosCod: "W01-095-0211/1R2A480330/9075/341421/737", desc: "GLOBO SUELTO FH -F12", marca: "FIBRETECH", pUnitario: 500.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "34737-S", otrosCod: "W01-095-0211/1R2A480330/9075/341421/737", desc: "GLOBO SUELTO FH -F12", marca: "FIBRETECH", pUnitario: 490.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "B737", otrosCod: "W01-095-0211/1R2A480330/9075/341421/737", desc: "GLOBO SUELTO FH -F12", marca: "BREITER", pUnitario: 490.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
 
   { codCali: "SP55944-S", otrosCod: "W01-095-0121/556-03-9009/556-3-8016/1R1B390270/9009/ 944N", desc: "GLOBO SUELTO", marca: "FRENOTRUCK", pUnitario: 500.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
 
@@ -345,7 +300,7 @@ const productos = [
 
     { codCali: "B712077", otrosCod: "B712078", desc: "OLLA PISTON METAL 4571 usado", marca: "BREITER", pUnitario: 300.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
 
-  { codCali: "B4580-S", otrosCod: "21451172 / 22047983 / 4580NP01 / 91172 MP1", desc: "GLOBO TRACTO SAMURAY TREN DELANTERO HOLLA ALTO-SUELTO", marca: "BREITER", pUnitario: 900.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "B4580-S", otrosCod: "21451172 / 22047983 / 4580NP01 / 91172 MP1", desc: "GLOBO TRACTO SAMURAY TREN DELANTERO HOLLA ALTO-SUELTO", marca: "BREITER", pUnitario: 700.00, img: "https://photo.strans.ua/media/photo/tecdoc/tecdoc_photo/photostrans/origin/902927%20_.jpg?" },
 
   { codCali: "B712080", otrosCod: "21451172 / 22047983 / 4580-C / 91172 MP1", desc: "OLLA PISTON METAL 4580", marca: "BREITER", pUnitario: 450.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
 
@@ -401,7 +356,7 @@ const productos = [
 
   { codCali: "B2725-C", otrosCod: "W01-M58-8602/W01-M58-8666/4881NP02/1T66D-7.0/1R14-757", desc: "GLOBO CHATA 12 PERNOS OLLA METAL", marca: "BREITER", pUnitario: 1200.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
 
-  { codCali: "34725-S", otrosCod: "W01-M58-8969/725NP02/1T66E-10.8/1R14-747", desc: "GLOBO CHATA UN SOLO PERNO", marca: "FIBRETECH", pUnitario: 850.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "34725-S", otrosCod: "W01-M58-8969/725NP02/1T66E-10.8/1R14-747", desc: "GLOBO CHATA UN SOLO PERNO", marca: "FIBRETECH", pUnitario: 800.00, img: "https://img.linemedia.com/img/s/spare-part-air-spring-VARIAS-MARCAS-OUTROS---1746650204998923347_common--25050723364463697800.jpg" },
 
   { codCali: "34725-C", otrosCod: "W01-M58-8969/725NP02/1T66E-10.8/1R14-747", desc: "GLOBO CHATA UN SOLO PERNO", marca: "FIBRETECH", pUnitario: 1250.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
 
@@ -1979,38 +1934,38 @@ const productos = [
 
 { codCali: "14441", otrosCod: "14441", desc: "BUJE", marca: "FEBI", pUnitario: 120, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg", iva: 1.13 },
 { codCali: "070.510", otrosCod: "0980108870", desc: "Kit reparación, Leva del freno del eje", marca: "FEBI", pUnitario: 450, img: "https://image.b2bolt.shop/SMP/070.510/Web/070.510.jpg", iva: 1.13 },
-{ codCali: "767804-S", otrosCod: "767804-S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "767804-C", otrosCod: "767804-C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://www.lionpowerair.com.tr/wp-content/uploads/2024/09/LP-767804.C.png" },
-  { codCali: "767803-S", otrosCod: "767803-S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://www.lionpowerair.com.tr/wp-content/uploads/2024/12/LP-767803.S.jpg" },
-  { codCali: "767803-C", otrosCod: "767803-C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://www.lionpowerair.com.tr/wp-content/uploads/2024/09/LP-767803.C.png" },
-  { codCali: "766416-C", otrosCod: "766416-C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://www.lionpowerair.com.tr/wp-content/uploads/2024/09/LP-766416.C.png" },
-  { codCali: "766418-C", otrosCod: "766418-C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://www.lionpowerair.com.tr/wp-content/uploads/2024/09/LP-766418.C.png" },
-  { codCali: "764912-8S", otrosCod: "764912-8S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "764561-S", otrosCod: "764561-S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "764560-S", otrosCod: "764560-S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "764156-18S", otrosCod: "764156-18S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://www.lionpowerair.com.tr/wp-content/uploads/2024/12/LP-764156.S06.jpg" },
+{ codCali: "767804-S", otrosCod: "767804-S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 600.00,stock:{ alm: 138, lt1: 0, et2: 0, at3: 0, jtc: 0 },  img: "https://pubimg.nodacdn.net/images/full/11cd5c0a4a9a400882c216beebd79e61f1a49b0002.jpeg" },
+  { codCali: "767804-C", otrosCod: "767804-C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 800.00,stock:{ alm: 70, lt1: 0, et2: 0, at3: 0, jtc: 0 },  img: "https://www.lionpowerair.com.tr/wp-content/uploads/2024/09/LP-767804.C.png" },
+  { codCali: "767803-S", otrosCod: "767803-S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 600.00,stock:{ alm: 102, lt1: 0, et2: 0, at3: 0, jtc: 0 },  img: "https://www.lionpowerair.com.tr/wp-content/uploads/2024/12/LP-767803.S.jpg" },
+  { codCali: "767803-C", otrosCod: "767803-C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 850.00,stock:{ alm: 70, lt1: 0, et2: 0, at3: 0, jtc: 0 },  img: "https://www.lionpowerair.com.tr/wp-content/uploads/2024/09/LP-767803.C.png" },
+  { codCali: "766416-C", otrosCod: "766416-C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 780.00,stock:{ alm: 73, lt1: 0, et2: 0, at3: 0, jtc: 0 }, img: "https://www.lionpowerair.com.tr/wp-content/uploads/2024/09/LP-766416.C.png" },
+  { codCali: "766418-C", otrosCod: "766418-C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 780.00,stock:{ alm: 68, lt1: 0, et2: 0, at3: 0, jtc: 0 }, img: "https://www.lionpowerair.com.tr/wp-content/uploads/2024/09/LP-766418.C.png" },
+  { codCali: "764912-8S", otrosCod: "764912-8S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 850.00,stock:{ alm: 70, lt1: 0, et2: 0, at3: 0, jtc: 0 }, img: "https://image.made-in-china.com/2f0j00qCjWkUwfAHcP/Air-Spring-0542943410-Air-Bag-4881np02-1r14-757.webp" },
+  { codCali: "764561-S", otrosCod: "764561-S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 600.00,stock:{ alm: 169, lt1: 0, et2: 0, at3: 0, jtc: 0 }, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "764560-S", otrosCod: "764560-S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 600.00,stock:{ alm: 65, lt1: 0, et2: 0, at3: 0, jtc: 0 },img: "https://image.made-in-china.com/202f0j00fQyvgboqhtkS/Shock-Absorbers-Auto-Suspension-Systems-4560-Double-Convoluted-Air-Springs-for-Trailer-Bus.webp" },
+  { codCali: "764156-18S", otrosCod: "764156-18S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 720.00, stock:{ alm: 67, lt1: 0, et2: 2, at3: 0, jtc: 0 }, img: "https://www.lionpowerair.com.tr/wp-content/uploads/2024/12/LP-764156.S06.jpg" },
   { codCali: "346760-C", otrosCod: "346760-C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "764713-2C", otrosCod: "764713-2C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://www.lionpowerair.com.tr/wp-content/uploads/2024/09/LP-764713.C02.png" },
-  { codCali: "764571-C", otrosCod: "764571-C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://www.lionpowerair.com.tr/wp-content/uploads/2024/09/LP-764571.C02.png" },
-  { codCali: "764561-C", otrosCod: "764561-C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://www.lionpowerair.com.tr/wp-content/uploads/2024/09/LP-764561.C02.png" },
-  { codCali: "764570-2C", otrosCod: "764570-2C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://www.lionpowerair.com.tr/wp-content/uploads/2024/09/LP-764570.C02.png" },
-  { codCali: "762399-C", otrosCod: "762399-C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "764157-4S", otrosCod: "764157-4S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://www.lionpowerair.com.tr/wp-content/uploads/2024/12/LP-764157.S01.jpg" },
-  { codCali: "764725-S", otrosCod: "764725-S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://www.lionpowerair.com.tr/wp-content/uploads/2024/12/LP-764725.S.jpg" },
-  { codCali: "764004-2S", otrosCod: "764004-2S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://www.lionpowerair.com.tr/wp-content/uploads/2024/11/LP-764004.S02.png" },
-  { codCali: "341421", otrosCod: "341421", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "764713-2C", otrosCod: "764713-2C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 900.00,stock: { alm: 64, lt1: 0, et2:6, at3: 0, jtc: 0}, img: "https://www.lionpowerair.com.tr/wp-content/uploads/2024/09/LP-764713.C02.png" },
+  { codCali: "764571-C", otrosCod: "764571-C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 990.00,stock:{ alm: 52, lt1: 0, et2: 5, at3: 0, jtc: 0 },img: "https://www.lionpowerair.com.tr/wp-content/uploads/2024/09/LP-764571.C02.png" },
+  { codCali: "764561-C", otrosCod: "764561-C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 990.00,stock:{ alm: 100, lt1: 0, et2: 0, at3: 0, jtc: 0 }, img: "https://www.lionpowerair.com.tr/wp-content/uploads/2024/09/LP-764561.C02.png" },
+  { codCali: "764570-2C", otrosCod: "764570-2C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 990.00,stock:{ alm: 119, lt1: 0, et2: 0, at3: 0, jtc: 0 }, img: "https://www.lionpowerair.com.tr/wp-content/uploads/2024/09/LP-764570.C02.png" },
+  { codCali: "762399-C", otrosCod: "762399-C", desc: "GOMA CON PISTON METALICO (7803-C)", marca: "LIONPOWER", pUnitario: 800,stock: { alm: 69, lt1: 0, et2: 0, at3: 0, jtc: 0 }, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "764157-4S", otrosCod: "764157-4S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 700.00,stock: { alm: 54, lt1: 0, et2: 0, at3: 0, jtc: 6 },img: "https://www.lionpowerair.com.tr/wp-content/uploads/2024/12/LP-764157.S01.jpg" },
+  { codCali: "764725-S", otrosCod: "764725-S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 800.00,stock: { alm: 30, lt1: 0, et2: 0, at3: 0, jtc: 0 }, img: "https://www.lionpowerair.com.tr/wp-content/uploads/2024/12/LP-764725.S.jpg" },
+  { codCali: "764004-2S", otrosCod: "764004-2S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 780.00,stock: { alm: 24, lt1: 0, et2: 0, at3: 0, jtc: 6 }, img: "https://www.lionpowerair.com.tr/wp-content/uploads/2024/11/LP-764004.S02.png" },
+  { codCali: "341421", otrosCod: "341421", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 500.00,stock: { alm: 22, lt1: 0, et2: 0, at3: 0, jtc: 0 }, img: "https://image.b2bolt.shop/AUG/A%20341421/Web/A%20341421.jpg" },
   { codCali: "945058-S/21171976**CA", otrosCod: "945058-S/21171976**CA", desc: "GOMA DE CABINA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "945051-S/128021**CA", otrosCod: "945051-S/128021**CA", desc: "GOMA DE CABINA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "30.01059(21111932)", otrosCod: "30.01059(21111932)", desc: "GOMA DE CABINA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "80,01414", otrosCod: "80,01414", desc: "GOMA DE CABINA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "341858-2C", otrosCod: "341858-2C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "341858-2C", otrosCod: "341858-2C", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 950.00,stock:{ alm: 40, lt1: 0, et2: 0, at3: 0, jtc: 0 }, img: "https://www.fabioairsprings.com/uploads/2025/09/untitled2862_op.webp" },
   { codCali: "449648-CPL", otrosCod: "449648-CPL", desc: "GOMA CON PISTON PLASTICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "766418-S", otrosCod: "766418-S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "764580-S", otrosCod: "764580-S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "764713-2S", otrosCod: "764713-2S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "344562-C/4562 N P03", otrosCod: "344562-C/4562 N P03", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "449780-CPL", otrosCod: "449780-CPL", desc: "GOMA CON PISTON PLASTICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
-  { codCali: "764157-CP50", otrosCod: "764157-CP50", desc: "GOMA CON PISTON PLASTICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
+  { codCali: "766418-S", otrosCod: "766418-S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 600.00,stock:{ alm: 30, lt1: 0, et2: 0, at3: 0, jtc: 0 },  img: "https://image.made-in-china.com/202f0j00ZMeTvCjKyBro/Eaa-Air-Spring-6608np01.webp" },
+  { codCali: "764580-S", otrosCod: "764580-S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 700.00,stock: { alm: 20, lt1: 0, et2: 0, at3: 0, jtc: 0}, img: "https://photo.strans.ua/media/photo/tecdoc/tecdoc_photo/photostrans/origin/586955%20_.jpg?" },
+  { codCali: "764713-2S", otrosCod: "764713-2S", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 700.00,stock: { alm: 40, lt1: 0, et2: 0, at3: 0, jtc: 0}, img: "https://cdn.autodoc.de/thumb?id=13660815&m=0&n=0&lng=es&rev=94077964" },
+  { codCali: "344562-C/4562 N P03", otrosCod: "344562-C/4562 N P03", desc: "GOMA CON PISTON METALICO", marca: "LIONPOWER", pUnitario: 1100.00,stock: { alm: 21, lt1: 0, et2: 0, at3: 0, jtc: 0}, img: "https://www.bussipro.fi/assets/ProductCatalog/9/SilverShop_Page_Product-8551/22058739__PadWzY2OCw2NjgsIkZGRkZGRiIsMF0_WebP~jpg.webp" },
+  { codCali: "449780-CPL", otrosCod: "449780-CPL", desc: "GOMA CON PISTON PLASTICO", marca: "LIONPOWER", pUnitario: 900.00,stock: { alm: 65, lt1: 0, et2: 5, at3: 0, jtc: 8},  img: "https://fabioairsprings.com/uploads/2024/11/449780-cpl-b_op.webp" },
+  { codCali: "764157-CP50", otrosCod: "764157-CP50", desc: "GOMA CON PISTON PLASTICO", marca: "LIONPOWER", pUnitario: 920.00,stock: { alm: 50, lt1: 0, et2: 0, at3: 0, jtc: 0}, img: "https://fabioairsprings.com/uploads/2025/02/3494110cpl-a_w500_q100_op.webp" },
   { codCali: "448829-CPL", otrosCod: "448829-CPL", desc: "GOMA CON PISTON PLASTICO", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "76944-R", otrosCod: "76944-R", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
   { codCali: "34716/716 N", otrosCod: "34716/716 N", desc: "GOMA SUELTA", marca: "LIONPOWER", pUnitario: 0.00, img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg" },
@@ -2028,14 +1983,15 @@ const productos = [
 function render(data) {
     const container = document.getElementById('listaProductos');
     container.innerHTML = data.map(p => {
-        // Usa p.iva si existe (ej. 1.13), de lo contrario usa 1.09 por defecto
         const factorIVA = p.iva || 1.09;
         const porcentajeTexto = factorIVA === 1.13 ? "13%" : "9%";
         const pFact = (p.pUnitario * factorIVA).toFixed(2);
-        
-        // Formato para cuando el precio es 0
         const displayPrecio = p.pUnitario > 0 ? `Bs ${p.pUnitario.toLocaleString('es-BO')}` : "CONSULTAR";
         const displayFact = p.pUnitario > 0 ? `Bs ${pFact}` : "---";
+
+        // PROTECCIÓN: Si el producto no tiene stock definido, creamos uno vacío para que no falle
+        const s = p.stock || { alm: 0, lt1: 0, et2: 0, at3: 0, jtc: 0 };
+        const check = (val) => val > 0 ? val : `<span class="no-stock">0</span>`;
 
         return `
         <div class="card" data-search="${p.codCali} ${p.desc} ${p.marca} ${p.otrosCod}".toLowerCase()>
@@ -2043,9 +1999,7 @@ function render(data) {
                 <div class="product-code">${p.codCali || 'S/C'}</div>
                 <div class="price-container">
                     <span class="price-cash">${displayPrecio}</span>
-                    <span class="price-bill" style="font-size: 1.25rem; font-weight: 800; color: #ffffff; display: block; margin-top: 5px;">
-                        FACT. (${porcentajeTexto}): ${displayFact}
-                    </span>
+                    <span class="price-bill">FACT. (${porcentajeTexto}): ${displayFact}</span>
                 </div>
             </div>
             
@@ -2054,8 +2008,16 @@ function render(data) {
                     <span class="brand-text">${p.marca || 'GENERICO'}</span>
                 </div>
                 <div class="img-area" onclick="abrirImagen('${p.img}')">
-                    <img src="${p.img}" loading="lazy" decode="async" onerror="this.src='https://via.placeholder.com/400x300?text=Logo+Cali'">
+                    <img src="${p.img}" onerror="this.src='https://via.placeholder.com/400x300?text=Logo+Cali'">
                 </div>
+            </div>
+
+            <div class="stock-grid">
+                <div class="stock-item"><span class="stock-label">ALM</span><span class="stock-qty">${check(s.alm)}</span></div>
+                <div class="stock-item"><span class="stock-label">LT1</span><span class="stock-qty">${check(s.lt1)}</span></div>
+                <div class="stock-item"><span class="stock-label">ET2</span><span class="stock-qty">${check(s.et2)}</span></div>
+                <div class="stock-item"><span class="stock-label">AT3</span><span class="stock-qty">${check(s.at3)}</span></div>
+                <div class="stock-item"><span class="stock-label">JTC</span><span class="stock-qty">${check(s.jtc)}</span></div>
             </div>
 
             <div class="info-footer">
@@ -2065,9 +2027,10 @@ function render(data) {
                     <div class="cross-list">${p.otrosCod || '---'}</div>
                 </div>
             </div>
-        </div>
-    `}).join('');
+        </div>`;
+    }).join('');
 }
+
 function filtrar() {
     const s = document.getElementById('searchInput').value.toLowerCase();
     const cards = document.querySelectorAll('.card');
