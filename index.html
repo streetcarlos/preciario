@@ -13,6 +13,8 @@
                 --white-pure: #ffffff;
                 --gold-bright: #ffcc00;
                 --gray-dark: #1a1a1a;
+                --lion-orange: #ff6a00;
+                --zhejiang-blue: #005eff; /* Color distintivo para Zhejiang */
             }
 
             body {
@@ -39,10 +41,14 @@
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
             }
-            .search-wrapper {
+
+            .controls-wrapper {
                 max-width: 900px;
                 margin: 30px auto;
                 padding: 0 20px;
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
             }
             .search-box {
                 background: var(--gray-dark);
@@ -50,7 +56,7 @@
                 display: flex;
                 align-items: center;
                 padding: 10px 20px;
-                box-shadow: 8px 8px 0px var(--red-electric); /* Efecto pop-art industrial */
+                box-shadow: 8px 8px 0px var(--red-electric);
             }
             #searchInput {
                 flex: 1;
@@ -63,7 +69,42 @@
                 text-transform: uppercase;
             }
 
-            /* --- Grid de Cuadros (Mosaico) --- */
+            .filter-tags {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+            .btn-filter {
+                background: #222;
+                border: 2px solid #444;
+                color: white;
+                padding: 8px 15px;
+                font-family: "Bebas Neue";
+                font-size: 1.2rem;
+                cursor: pointer;
+                transition: 0.3s;
+                letter-spacing: 1px;
+            }
+            .btn-filter:hover {
+                background: #333;
+                border-color: var(--white-pure);
+            }
+            .btn-lion {
+                background: var(--lion-orange);
+                border-color: #fff;
+                color: #000;
+            }
+            .btn-zhejiang {
+                background: var(--zhejiang-blue);
+                border-color: #fff;
+                color: #fff;
+                box-shadow: 0 0 15px rgba(0, 94, 255, 0.4);
+            }
+            .btn-zhejiang:hover {
+                background: #0046c7;
+                transform: scale(1.05);
+            }
+
             .grid-productos {
                 display: grid;
                 grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -72,8 +113,6 @@
                 margin: 0 auto;
                 padding: 20px;
             }
-
-            /* --- La Card como un Cuadro Sólido --- */
             .card {
                 background: var(--black-deep);
                 border: 4px solid var(--gray-dark);
@@ -82,7 +121,6 @@
                 transition: 0.3s;
                 position: relative;
             }
-
             .card:hover {
                 border-color: var(--red-electric);
                 transform: translateY(-5px);
@@ -90,41 +128,46 @@
             }
             .card-header-top {
                 background: var(--red-electric);
-                padding: 15px;
+                padding: 12px 15px;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                color: #000; /* Texto negro sobre fondo rojo para máximo contraste */
+                color: #000;
             }
-
             .product-code {
                 font-family: "Bebas Neue";
-                font-size: 2.2rem;
+                font-size: 1.8rem;
                 font-weight: 900;
                 line-height: 1;
+                max-width: 60%;
+                word-wrap: break-word;
             }
-
             .price-container {
                 text-align: right;
+                display: flex;
+                flex-direction: column;
             }
             .price-cash {
-                display: block;
                 font-family: "Roboto Mono";
-                font-size: 1.8rem;
+                font-size: 1.4rem;
                 background: #000;
                 color: var(--gold-bright);
                 padding: 2px 8px;
                 font-weight: 900;
             }
+            .price-fact {
+                font-size: 0.85rem;
+                font-weight: 900;
+                display: block;
+                margin-top: 2px;
+            }
 
-            /* Área de Imagen Cuadrada */
             .card-main-content {
                 display: grid;
                 grid-template-columns: 50px 1fr;
                 background: #fff;
                 height: 300px;
             }
-
             .brand-vertical-bar {
                 background: #000;
                 display: flex;
@@ -135,12 +178,11 @@
             .brand-text {
                 font-family: "Bebas Neue";
                 color: var(--red-electric);
-                font-size: 1.5rem;
+                font-size: 1.2rem;
                 writing-mode: vertical-rl;
                 transform: rotate(180deg);
                 letter-spacing: 2px;
             }
-
             .img-area {
                 display: flex;
                 justify-content: center;
@@ -154,7 +196,6 @@
                 object-fit: contain;
             }
 
-            /* Stock en Cuadros Pequeños */
             .stock-grid {
                 display: grid;
                 grid-template-columns: repeat(5, 1fr);
@@ -180,7 +221,6 @@
             .has-stock { color: #00ff00; font-weight: 900; }
             .no-stock { color: #444; }
 
-            /* Pie del Cuadro */
             .info-footer {
                 padding: 15px;
                 background: var(--black-deep);
@@ -191,25 +231,18 @@
                 color: var(--white-pure);
                 font-weight: 900;
                 text-transform: uppercase;
-                font-size: 1rem;
+                font-size: 0.9rem;
                 display: block;
                 margin-bottom: 10px;
                 border-left: 4px solid var(--red-electric);
                 padding-left: 10px;
             }
-            .label-mini {
-                color: #666;
-                font-size: 0.6rem;
-                font-weight: 900;
-                display: block;
-            }
             .cross-list {
+                font-size: 0.8rem;
                 color: #aaa;
                 font-family: "Roboto Mono";
-                font-size: 0.75rem;
             }
 
-            /* Modal */
             #imageModal {
                 background: rgba(0,0,0,0.95);
                 display: none;
@@ -219,12 +252,7 @@
                 justify-content: center;
                 align-items: center;
             }
-            #modalImg {
-                max-width: 90%;
-                max-height: 80vh;
-                border: 5px solid var(--white-pure);
-                background: white;
-            }
+            #modalImg { max-width: 90%; max-height: 80vh; border: 5px solid #fff; background: white; }
         </style>
     </head>
     <body>
@@ -234,10 +262,20 @@
             <div style="color:white; font-weight: 900; letter-spacing: 2px;">LISTA DE PRECIOS Y EXISTENCIAS</div>
         </header>
 
-        <div class="search-wrapper">
+        <div class="controls-wrapper">
             <div class="search-box">
                 <i class="fa-solid fa-bolt" style="color: var(--red-electric); margin-right: 15px;"></i>
                 <input type="text" id="searchInput" placeholder="BUSCAR POR CÓDIGO O MARCA..." oninput="filtrar()" />
+            </div>
+
+            <div class="filter-tags">
+                <button class="btn-filter" onclick="limpiarFiltro()">TODOS</button>
+                <button class="btn-filter btn-lion" onclick="filtrarMarca('LIONPOWER')">
+                    <i class="fa-solid fa-fire"></i> LIONPOWER
+                </button>
+                <button class="btn-filter btn-zhejiang" onclick="filtrarMarca('ZHEJIANG')">
+                    <i class="fa-solid fa-container-storage"></i> NUEVA CARGA (ZHEJIANG)
+                </button>
             </div>
         </div>
 
@@ -275,7 +313,7 @@
                     pUnitario: 1200.0,
                     img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/37881-c-komple.jpg"
                 },
-
+  
                 {
                     codCali: "B881-CPL",
                     otrosCod: "W01-M58-8602 / 4881NP02 / 1R14-757",
@@ -365,6 +403,558 @@
                     pUnitario: 1100.0,
                     img: "https://fabioairsprings.com/uploads/2025/09/untitled2735_op.webp"
                 },
+                                {
+    codCali: "T3030DD M16",
+    otrosCod: "LN27001A",
+    desc: "CÁMARA DE FRENO",
+    marca: "ZHEJIANG",
+    pUnitario: 0,
+    pMayor: 0,
+    img: "https://image.made-in-china.com/203f0j00MyuVYTItuERK/Axle-Parts-Trailer-and-Truck-Spare-Parts-Heavy-Duty-Vehicle-Brake-Chamber-T3030dd-for-Trailer.webp",
+    stock: { alm: 600, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "T2430DD M16",
+    otrosCod: "LN27001B",
+    desc: "CÁMARA DE FRENO",
+    marca: "ZHEJIANG",
+    pUnitario: 0,
+    pMayor: 0,
+    img: "https://image.made-in-china.com/201f0j00bOPhgiWcJrGY/T2430dd-Air-Spring-Brake-Chamber-Brake-Booster-for-Heavy-Trucks-Trailers.webp",
+    stock: { alm: 50, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "T2424DD M16",
+    otrosCod: "LN27001C",
+    desc: "CÁMARA DE FRENO",
+    marca: "ZHEJIANG",
+    pUnitario: 0,
+    pMayor: 0,
+    img: "https://image.made-in-china.com/201f0j00UNHbPCwIrqpZ/Spring-Brake-Chamber-Air-Brake-Chamber-T2024dd-T2424dd-T2430dd-T3030dd-Truck-Spare-Parts-Body-Spare-Parts.webp",
+    stock: { alm: 400, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "T2424DCP M16",
+    otrosCod: "LN27008C",
+    desc: "CÁMARA DE FRENO",
+    marca: "ZHEJIANG",
+    pUnitario: 0,
+    pMayor: 0,
+    img: "https://image.made-in-china.com/201f0j00TyBbLdcGEvro/Factory-Supply-High-Quality-Different-Type-Double-Air-Spring-Brake-Chamber-T3030dd-T2424DCP-for-Heavy-Duty-Truck-Trailer.webp",
+    stock: { alm: 400, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "T2424DCP DISC M16",
+    otrosCod: "LN27009C",
+    desc: "CÁMARA DE FRENO (DISCO)",
+    marca: "ZHEJIANG",
+    pUnitario: 0,
+    pMayor: 0,
+    img: "https://image.made-in-china.com/201f0j00svwbTAcJKZgN/Manufacturer-Recommend-High-Quality-Air-Brake-Chambers-T2424DCP-Disc-for-Trucks-Trailers.webp",
+    stock: { alm: 300, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+                {
+    codCali: "T3030DCP DISC M16",
+    otrosCod: "LN27009A",
+    desc: "CÁMARA DE FRENO (DISCO)",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/2f0j00alMzSprPvikY/T3030dp-T30-30dp-Ibv-Disc-Brake-Chamber-9254922030-9254920000.jpg",
+    stock: { alm: 50, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "T30 M16",
+    otrosCod: "LN27016B",
+    desc: "CÁMARA DE FRENO",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00WLgBwcDEgzbP/Brake-Booster-Truck-Brake-Chamber-Actuator-Long-Stroke-T30-for-Trailer-Bus-4231070500.webp",
+    stock: { alm: 30, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "T24 M16",
+    otrosCod: "LN27016C",
+    desc: "CÁMARA DE FRENO",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://www.byf-trailerpart.com/photo/pl30131030-64mm_stroke_single_diaphragm_4231061160_type_24_brake_chamber.jpg",
+    stock: { alm: 30, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "T20 M16",
+    otrosCod: "LN27016D",
+    desc: "CÁMARA DE FRENO",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00DFmibCOKfQRE/Truck-Spare-Parts-T20-Spring-Brake-Chamber-100-3519310-100-3519210-100-3519110.webp",
+    stock: { alm: 100, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "T30 2-M16",
+    otrosCod: "LN27017A",
+    desc: "CÁMARA DE FRENO",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://via.placeholder.com/400?text=BRAKE+CHAMBER+T30+2",
+    stock: { alm: 40, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "T24 2-M16",
+    otrosCod: "LN27017B",
+    desc: "CÁMARA DE FRENO",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://via.placeholder.com/400?text=BRAKE+CHAMBER+T24+2",
+    stock: { alm: 40, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "T2424DP DISC M16",
+    otrosCod: "LN27007C",
+    desc: "CÁMARA DE FRENO (DISCO)",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://via.placeholder.com/400?text=BRAKE+CHAMBER+T2424DP",
+    stock: { alm: 100, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "T20",
+    otrosCod: "LN T20-64",
+    desc: "CAUCHO / JEBE",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://http2.mlstatic.com/D_NQ_NP_945379-MLM48811665911_012022-O.webp",
+    stock: { alm: 100, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+                {
+    codCali: "T20 DEEP",
+    otrosCod: "LN T20-76",
+    desc: "CAUCHO / JEBE PROFUNDO",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://http2.mlstatic.com/D_NQ_NP_749508-MLM50134761095_052022-O.webp",
+    stock: { alm: 100, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "T24",
+    otrosCod: "LN T24-64",
+    desc: "CAUCHO / JEBE",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://motorline.com.mx/wp-content/uploads/2024/07/tr-121.png",
+    stock: { alm: 300, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "T24 DEEP",
+    otrosCod: "LN T24-76",
+    desc: "CAUCHO / JEBE PROFUNDO",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://http2.mlstatic.com/D_NQ_NP_977629-MLV50833387688_072022-O.webp",
+    stock: { alm: 150, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "T30",
+    otrosCod: "LN T30-64",
+    desc: "CAUCHO / JEBE",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://cdn.awsli.com.br/600x450/2654/2654555/produto/246388671/nf-1117-ufwhvw9a2p.jpg",
+    stock: { alm: 300, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "T30 DEEP",
+    otrosCod: "LN T30-76",
+    desc: "CAUCHO / JEBE PROFUNDO",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://http2.mlstatic.com/D_NQ_NP_642336-MLV78440895729_082024-O.webp",
+    stock: { alm: 150, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "281860",
+    otrosCod: "LN03039",
+    desc: "VÁLVULA RELAY",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00LvQMZqjUgzcT/Good-Quality-Relay-Emergency-Valve-281860-for-Truck-Use.webp",
+    stock: { alm: 40, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "279180",
+    otrosCod: "LN03037",
+    desc: "VÁLVULA RELAY",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00BMIVCHEFCiqU/279180-279952-280375-280651-283940-R-6-Trailer-Relay-Valve-American-Truck.webp",
+    stock: { alm: 20, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "229635(TW-3)",
+    otrosCod: "LN28117",
+    desc: "VÁLVULA CHECK",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00MFgWCYTRJUry/Truck-Parts-229635-Control-Valve-Cheaper-Price-High-Quality-Brake-System-Brake-Valve-Application-Valve.webp",
+    stock: { alm: 60, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+                {
+    codCali: "9730110040",
+    otrosCod: "LN03004",
+    desc: "VÁLVULA RELAY",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00lTEBKvQPbscZ/High-Quality-Heavy-Truck-Relay-Valve-9730110040-0044297844-1305026.webp",
+    stock: { alm: 10, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "9730010100",
+    otrosCod: "LN03010",
+    desc: "VÁLVULA RELAY",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00rnClbNdzMJgY/Relay-Valve-9730010100-European-Heavy-Duty-Truck-and-Bus-Accessories.webp",
+    stock: { alm: 10, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "3944717",
+    otrosCod: "LN04016",
+    desc: "VÁLVULA ECAS",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00AEPekYMqnOuH/Hot-Selling-and-Affordable-Solenoid-Valve-Ecas-Valve-Ecas-Solenoid-Valve-OEM-3944717-for-Truck.webp",
+    stock: { alm: 6, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "AE4158",
+    otrosCod: "LN05001",
+    desc: "VÁLVULA DE PROTECCIÓN",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00hYOqkVAGhHpg/Valve-Wabcd-Clutch-Master-Cylinders-OEM-Ae4158-Used-for-0024314006-1238512-42085657-81521516074-8152899-1431049-II38282.webp",
+    stock: { alm: 10, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "AE4604",
+    otrosCod: "LN05018",
+    desc: "VÁLVULA DE PROTECCIÓN",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00EpeogMrIYBbi/4-Circuit-Protection-Valve-Ae4604.webp",
+    stock: { alm: 10, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "9347023000",
+    otrosCod: "LN05024",
+    desc: "VÁLVULA DE PROTECCIÓN",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00dYOeukTGABoC/Truck-Four-Way-Protection-Valve-9347023000.webp",
+    stock: { alm: 10, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "9730025210",
+    otrosCod: "LN06007",
+    desc: "VÁLVULA CONTROL DE REMOLQUE",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00OCainUNclHbv/Trailer-Control-Valve-9730025200-9730025000-9730025210-9730025010.webp",
+    stock: { alm: 10, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "4324130010",
+    otrosCod: "LN09011",
+    desc: "SECADOR DE AIRE",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00mcBChgsIMQqJ/Air-Dryer-for-Auto-Parts-4324130010-4324130020-.webp",
+    stock: { alm: 20, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+                {
+    codCali: "4324070600",
+    otrosCod: "LN09025",
+    desc: "SILENCIADOR",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00eWKcowaIlqrF/Wabco-Silencer-4324070600-Truck-Bus.webp",
+    stock: { alm: 50, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "4324070700",
+    otrosCod: "LN09026",
+    desc: "SILENCIADOR",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00OlQcyNgFfzri/Wabco-Silencer-4324070700-Match-Air-Drier-Be-Uesd-for-Alexander-Dennis-Ashok-Leyland-Camc-Daf.webp",
+    stock: { alm: 20, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "065225",
+    otrosCod: "LN09024",
+    desc: "SECADOR DE AIRE",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00vqZBwjoFeQcy/Air-Dryer-for-Auto-Parts-065224-065225-.webp",
+    stock: { alm: 20, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "4640060000",
+    otrosCod: "LN11001",
+    desc: "VÁLVULA DE NIVELACIÓN",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00OdrVmIQzYPfa/High-Quality-Height-Control-Valve-for-MB-Trucks-Leveling-Valve-4640060000-4640060010-Leveling-Control-Air-.webp",
+    stock: { alm: 20, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "4640061000",
+    otrosCod: "LN11004",
+    desc: "VÁLVULA DE NIVELACIÓN",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00UdnlqvBzEgYC/4640061000-1325336-5808613-I98289-Sv1410-5021170188-Heavy-Duty-European-General-Truck-Air-Brake-Fluid-Level-Valve.webp",
+    stock: { alm: 20, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "4640060020",
+    otrosCod: "LN11002",
+    desc: "VÁLVULA DE NIVELACIÓN",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00eDgbmWKhryuz/3-Port-Air-Suspension-Height-Control-Valve-Levelling-Valve-for-Truck-Tractor-Trailer.webp",
+    stock: { alm: 10, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "4640070020",
+    otrosCod: "LN11022",
+    desc: "VÁLVULA DE NIVELACIÓN",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00CmzWvDURvPYt/OE-4640070020-High-Quality-Height-Valve-Suitable-for-Df-Truck-Parts-Factory-Price-Truck-Spare-Parts-Leveling-Valve.webp",
+    stock: { alm: 20, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "9735000140",
+    otrosCod: "LN16004",
+    desc: "VÁLVULA DE ESCAPE RÁPIDO",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00oREbSQctshrn/Quick-Release-Valve-9735000000-9735000030-9735000140-for-European-Heavy-Duty-Truck.webp",
+    stock: { alm: 20, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+                {
+    codCali: "229859",
+    otrosCod: "LN16007",
+    desc: "VÁLVULA DE ESCAPE RÁPIDO",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00JOrqnaEgCeoR/Truck-Brake-Parts-Quick-Release-Valve-289714-229859-for-American-Truck.webp",
+    stock: { alm: 20, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "20488052",
+    otrosCod: "LN18005",
+    desc: "PALANCA DE CAMBIOS",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00oZTkfVGCVLra/Gearshift-Knob-20488052-20448067-1521394-1526965-276825-Truck-Parts.webp",
+    stock: { alm: 15, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "4630490500",
+    otrosCod: "LN18012",
+    desc: "PALANCA DE CAMBIOS",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00hOQWsrtIhNfS/Gear-Shift-Knob-for-Mercedes-Volvo-Scania-Renault-Truck-Spare-Part.webp",
+    stock: { alm: 40, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "4630550500",
+    otrosCod: "LN18011",
+    desc: "PALANCA DE CAMBIOS",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00DaqCYQcrvWzy/Shift-Lever-for-Volvo-Trucks-OE1655854-4630550500.webp",
+    stock: { alm: 20, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "PE RED M16*1.5",
+    otrosCod: "LN20001",
+    desc: "MANGUERA DE AIRE (ROJA)",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://novatruck.cl/wp-content/uploads/2024/02/22-71100101-e1709079704772-555x475.jpg",
+    stock: { alm: 10, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "PE YELLOW M16*1.5",
+    otrosCod: "LN20001",
+    desc: "MANGUERA DE AIRE (AMARILLA)",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://cdn.manomano.com/pim-media/images/medium/40030a253c8813d8e387b935ed5f49f1f2786734.jpg",
+    stock: { alm: 10, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "PE BLUE M16*1.5",
+    otrosCod: "LN20001",
+    desc: "MANGUERA DE AIRE (AZUL)",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://www.belsaibelsa.com/8590-large_default/manguera-espiral-compresor-12-metros.jpg",
+    stock: { alm: 10, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "VA020005",
+    otrosCod: "LN VA020005",
+    desc: "VÁLVULA DE ESCAPE RÁPIDO",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://http2.mlstatic.com/D_NQ_NP_981626-MLB73456788598_122023-O.webp",
+    stock: { alm: 10, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+                
+                {
+    codCali: "286965(2H28T)",
+    otrosCod: "LN24003",
+    desc: "REGULADOR DE FRENO",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00enibDIkqrhrS/Trailer-Brake-Parts-Manual-Slack-Adjuster-kN44051-286965-with-2-Holes-28-Teeth-for-American-Trucks-and-Trailers.webp",
+    stock: { alm: 50, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "278323(3H10T)",
+    otrosCod: "LN24004",
+    desc: "REGULADOR DE FRENO",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00QlmgHjndMBuv/Truck-Trailer-Manual-Slack-Adjuster-with-OEM-Standard-278323-.webp",
+    stock: { alm: 50, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "0517465220(6H10T)",
+    otrosCod: "LN24009",
+    desc: "REGULADOR DE FRENO",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00SpBeyVqhQscC/0517465220-6-Holes-10-Teeth-Manual-Slack-Adjuster-for-Trailer-Spare-Parts.webp",
+    stock: { alm: 30, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "5320-3502136(1H10T LEFT)",
+    otrosCod: "LN24023",
+    desc: "REGULADOR DE FRENO (IZQUIERDO)",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00uRPeMjhrVTgG/5320-3502136-Air-Brake-Adjustment-Slack-Arm-Manual-Slack-Adjuster-Durable-Steel-Construction-for-European-Truck-Brake-Slack-Adjuster.webp",
+    stock: { alm: 40, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "5320-3502137(1H10T RIGHT)",
+    otrosCod: "LN24024",
+    desc: "REGULADOR DE FRENO (DERECHO)",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00YZohMABcydUq/High-Quality-Slack-Adjuster-5320-3502136-for-Kamaz-Parts-Russian-Truck-Parts.webp",
+    stock: { alm: 40, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "YORK(3H10T)",
+    otrosCod: "LN24043",
+    desc: "REGULADOR DE FRENO",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://via.placeholder.com/400?text=SLACK+ADJUSTER+YORK",
+    stock: { alm: 70, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "FUWA(3H37T)",
+    otrosCod: "LN24042",
+    desc: "REGULADOR DE FRENO",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://via.placeholder.com/400?text=SLACK+ADJUSTER+FUWA",
+    stock: { alm: 40, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "1448114(1H10T LEFT)",
+    otrosCod: "LN24029",
+    desc: "REGULADOR DE FRENO (IZQUIERDO)",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00itvCdrhAlJzL/1448114-Brake-Slack-Adjuster-Components-Suitable-for-Installation-in-Various-Truck-Brake-System-Configurations.webp",
+    stock: { alm: 20, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+                {
+    codCali: "1448115(1H10T RIGHT)",
+    otrosCod: "LN24030",
+    desc: "REGULADOR DE FRENO (DERECHO)",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://image.made-in-china.com/201f0j00oUsezJgPbtrO/1448115-Truck-Brake-System-Components-Including-Complete-Slack-Adjuster-Assembly-and-Related-Parts.webp",
+    stock: { alm: 20, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+},
+{
+    codCali: "TKL25022A/VÁLVULA MESTRE R4 COM 3 SAÍDAS ROSCA M16 X 1.5MM VALV04B",
+    otrosCod: "TKL25022A",
+    desc: "VÁLVULA RELAY MAESTRA R4 (3 SALIDAS)",
+    marca: "ZHEJIANG",
+    pUnitario: 0.0,
+    pMayor: 0.0,
+    img: "https://via.placeholder.com/400?text=RELAY+VALVE+TKL25022A",
+    stock: { alm: 50, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+}
+,
                 {
                     codCali: "MR20-2766",
                     otrosCod: "4324251050",
@@ -9363,7 +9953,7 @@
                 }
             ];
 
-            function render(data) {
+             function render(data) {
                 const container = document.getElementById("listaProductos");
                 container.innerHTML = data.map(p => {
                     const unitPrice = p.pUnitario || 0;
@@ -9372,12 +9962,12 @@
                     const fmtS = (val) => val > 0 ? `<span class="has-stock">${val}</span>` : `<span class="no-stock">0</span>`;
 
                     return `
-                    <div class="card" data-search="${p.codCali} ${p.desc} ${p.marca}".toLowerCase()>
+                    <div class="card" data-search="${p.codCali} ${p.desc} ${p.marca}" data-marca="${p.marca}">
                         <div class="card-header-top">
                             <div class="product-code">${p.codCali}</div>
                             <div class="price-container">
-                                <span class="price-cash">${unitPrice > 0 ? "Bs " + unitPrice : "CONSULTAR"}</span>
-                              <span style="font-size: 1rem; font-weight: 900; display: block; margin-top: 5px;">FACT: Bs ${pFact}</span>
+                                <span class="price-cash">Bs ${unitPrice}</span>
+                                <span class="price-fact">FACT: Bs ${pFact}</span>
                             </div>
                         </div>
                         <div class="card-main-content">
@@ -9395,7 +9985,6 @@
                         </div>
                         <div class="info-footer">
                             <span class="desc-highlight">${p.desc}</span>
-                            <span class="label-mini">OTROS CODIGOS</span>
                             <div class="cross-list">${p.otrosCod || "---"}</div>
                         </div>
                     </div>`;
@@ -9408,6 +9997,19 @@
                     const text = c.getAttribute("data-search").toLowerCase();
                     c.style.display = text.includes(q) ? "" : "none";
                 });
+            }
+
+            function filtrarMarca(marca) {
+                document.getElementById("searchInput").value = ""; 
+                document.querySelectorAll(".card").forEach(c => {
+                    const m = c.getAttribute("data-marca");
+                    c.style.display = (m === marca) ? "" : "none";
+                });
+            }
+
+            function limpiarFiltro() {
+                document.getElementById("searchInput").value = "";
+                document.querySelectorAll(".card").forEach(c => c.style.display = "");
             }
 
             function abrirImagen(url) {
