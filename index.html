@@ -9953,43 +9953,46 @@
                 }
             ];
 
-             function render(data) {
-                const container = document.getElementById("listaProductos");
-                container.innerHTML = data.map(p => {
-                    const unitPrice = p.pUnitario || 0;
-                    const pFact = (unitPrice * 1.09).toFixed(2);
-                    const s = p.stock || { alm: 0, lt1: 0, et2: 0, at3: 0, jtc: 0 };
-                    const fmtS = (val) => val > 0 ? `<span class="has-stock">${val}</span>` : `<span class="no-stock">0</span>`;
+            function render(data) {
+    const container = document.getElementById("listaProductos");
+    container.innerHTML = data.map(p => {
+        const unitPrice = p.pUnitario || 0;
+        const pFact = (unitPrice * 1.09).toFixed(2);
+        const s = p.stock || { alm: 0, lt1: 0, et2: 0, at3: 0, jtc: 0 };
+        const fmtS = (val) => val > 0 ? `<span class="has-stock">${val}</span>` : `<span class="no-stock">0</span>`;
 
-                    return `
-                    <div class="card" data-search="${p.codCali} ${p.desc} ${p.marca}" data-marca="${p.marca}">
-                        <div class="card-header-top">
-                            <div class="product-code">${p.codCali}</div>
-                            <div class="price-container">
-                                <span class="price-cash">Bs ${unitPrice}</span>
-                                <span class="price-fact">FACT: Bs ${pFact}</span>
-                            </div>
-                        </div>
-                        <div class="card-main-content">
-                            <div class="brand-vertical-bar"><span class="brand-text">${p.marca}</span></div>
-                            <div class="img-area" onclick="abrirImagen('${p.img}')">
-                                <img src="${p.img}" onerror="this.src='https://via.placeholder.com/400x300?text=Cali+Repuestos'">
-                            </div>
-                        </div>
-                        <div class="stock-grid">
-                            <div class="stock-item"><span class="stock-label">ALM</span><span class="stock-qty">${fmtS(s.alm)}</span></div>
-                            <div class="stock-item"><span class="stock-label">LT1</span><span class="stock-qty">${fmtS(s.lt1)}</span></div>
-                            <div class="stock-item"><span class="stock-label">ET2</span><span class="stock-qty">${fmtS(s.et2)}</span></div>
-                            <div class="stock-item"><span class="stock-label">AT3</span><span class="stock-qty">${fmtS(s.at3)}</span></div>
-                            <div class="stock-item"><span class="stock-label">JTC</span><span class="stock-qty">${fmtS(s.jtc)}</span></div>
-                        </div>
-                        <div class="info-footer">
-                            <span class="desc-highlight">${p.desc}</span>
-                            <div class="cross-list">${p.otrosCod || "---"}</div>
-                        </div>
-                    </div>`;
-                }).join("");
-            }
+        // CREAMOS EL STRING DE BÚSQUEDA INCLUYENDO "OTROS CÓDIGOS"
+        const searchString = `${p.codCali} ${p.desc} ${p.marca} ${p.otrosCod || ''}`.toLowerCase();
+
+        return `
+        <div class="card" data-search="${searchString}" data-marca="${p.marca}">
+            <div class="card-header-top">
+                <div class="product-code">${p.codCali}</div>
+                <div class="price-container">
+                    <span class="price-cash">Bs ${unitPrice}</span>
+                    <span class="price-fact">FACT: Bs ${pFact}</span>
+                </div>
+            </div>
+            <div class="card-main-content">
+                <div class="brand-vertical-bar"><span class="brand-text">${p.marca}</span></div>
+                <div class="img-area" onclick="abrirImagen('${p.img}')">
+                    <img src="${p.img}" onerror="this.src='https://via.placeholder.com/400x300?text=Cali+Repuestos'">
+                </div>
+            </div>
+            <div class="stock-grid">
+                <div class="stock-item"><span class="stock-label">ALM</span><span class="stock-qty">${fmtS(s.alm)}</span></div>
+                <div class="stock-item"><span class="stock-label">LT1</span><span class="stock-qty">${fmtS(s.lt1)}</span></div>
+                <div class="stock-item"><span class="stock-label">ET2</span><span class="stock-qty">${fmtS(s.et2)}</span></div>
+                <div class="stock-item"><span class="stock-label">AT3</span><span class="stock-qty">${fmtS(s.at3)}</span></div>
+                <div class="stock-item"><span class="stock-label">JTC</span><span class="stock-qty">${fmtS(s.jtc)}</span></div>
+            </div>
+            <div class="info-footer">
+                <span class="desc-highlight">${p.desc}</span>
+                <div class="cross-list">${p.otrosCod || "---"}</div>
+            </div>
+        </div>`;
+    }).join("");
+}
 
             function filtrar() {
                 const q = document.getElementById("searchInput").value.toLowerCase();
