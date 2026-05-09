@@ -14,7 +14,7 @@
                 --gold-bright: #ffcc00;
                 --gray-dark: #1a1a1a;
                 --lion-orange: #ff6a00;
-                --zhejiang-blue: #005eff; /* Color distintivo para Zhejiang */
+                --zhejiang-blue: #005eff;
             }
 
             body {
@@ -24,6 +24,7 @@
                 color: var(--white-pure);
                 background-image: radial-gradient(#222 1px, transparent 1px);
                 background-size: 20px 20px;
+                padding-bottom: 100px; /* Espacio para el botón flotante */
             }
             header {
                 padding: 40px 20px;
@@ -89,21 +90,8 @@
                 background: #333;
                 border-color: var(--white-pure);
             }
-            .btn-lion {
-                background: var(--lion-orange);
-                border-color: #fff;
-                color: #000;
-            }
-            .btn-zhejiang {
-                background: var(--zhejiang-blue);
-                border-color: #fff;
-                color: #fff;
-                box-shadow: 0 0 15px rgba(0, 94, 255, 0.4);
-            }
-            .btn-zhejiang:hover {
-                background: #0046c7;
-                transform: scale(1.05);
-            }
+            .btn-lion { background: var(--lion-orange); color: #000; }
+            .btn-zhejiang { background: var(--zhejiang-blue); color: #fff; }
 
             .grid-productos {
                 display: grid;
@@ -124,8 +112,26 @@
             .card:hover {
                 border-color: var(--red-electric);
                 transform: translateY(-5px);
-                box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
             }
+            
+            /* Estilos de Selección */
+            .card.selected {
+                border-color: var(--gold-bright) !important;
+                box-shadow: 0 0 20px rgba(255, 204, 0, 0.4);
+            }
+            .select-layer {
+                position: absolute;
+                top: 55px;
+                left: 10px;
+                z-index: 10;
+            }
+            .order-checkbox {
+                width: 25px;
+                height: 25px;
+                cursor: pointer;
+                accent-color: var(--red-electric);
+            }
+
             .card-header-top {
                 background: var(--red-electric);
                 padding: 12px 15px;
@@ -138,14 +144,7 @@
                 font-family: "Bebas Neue";
                 font-size: 1.8rem;
                 font-weight: 900;
-                line-height: 1;
                 max-width: 60%;
-                word-wrap: break-word;
-            }
-            .price-container {
-                text-align: right;
-                display: flex;
-                flex-direction: column;
             }
             .price-cash {
                 font-family: "Roboto Mono";
@@ -153,13 +152,6 @@
                 background: #000;
                 color: var(--gold-bright);
                 padding: 2px 8px;
-                font-weight: 900;
-            }
-            .price-fact {
-                font-size: 0.85rem;
-                font-weight: 900;
-                display: block;
-                margin-top: 2px;
             }
 
             .card-main-content {
@@ -181,43 +173,23 @@
                 font-size: 1.2rem;
                 writing-mode: vertical-rl;
                 transform: rotate(180deg);
-                letter-spacing: 2px;
             }
             .img-area {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 padding: 15px;
-                cursor: pointer;
             }
-            .img-area img {
-                max-width: 100%;
-                max-height: 100%;
-                object-fit: contain;
-            }
+            .img-area img { max-width: 100%; max-height: 100%; object-fit: contain; cursor: pointer;}
 
             .stock-grid {
                 display: grid;
                 grid-template-columns: repeat(5, 1fr);
-                border-top: 4px solid var(--black-deep);
                 background: var(--gray-dark);
+                border-top: 4px solid #000;
             }
-            .stock-item {
-                padding: 10px 0;
-                border-right: 1px solid #333;
-                text-align: center;
-            }
-            .stock-label {
-                display: block;
-                color: var(--red-electric);
-                font-size: 0.65rem;
-                font-weight: 900;
-                margin-bottom: 2px;
-            }
-            .stock-qty {
-                font-family: "Roboto Mono";
-                font-size: 1.1rem;
-            }
+            .stock-item { padding: 10px 0; text-align: center; border-right: 1px solid #333; }
+            .stock-label { display: block; color: var(--red-electric); font-size: 0.65rem; font-weight: 900; }
             .has-stock { color: #00ff00; font-weight: 900; }
             .no-stock { color: #444; }
 
@@ -225,34 +197,49 @@
                 padding: 15px;
                 background: var(--black-deep);
                 flex-grow: 1;
-                border-top: 1px solid #222;
             }
             .desc-highlight {
                 color: var(--white-pure);
                 font-weight: 900;
                 text-transform: uppercase;
-                font-size: 0.9rem;
-                display: block;
-                margin-bottom: 10px;
                 border-left: 4px solid var(--red-electric);
                 padding-left: 10px;
+                display: block;
+                margin-bottom: 5px;
             }
-            .cross-list {
-                font-size: 0.8rem;
-                color: #aaa;
-                font-family: "Roboto Mono";
+
+            /* Botón Flotante */
+            .export-btn {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: var(--gold-bright);
+                color: #000;
+                border: none;
+                padding: 15px 30px;
+                font-family: "Bebas Neue";
+                font-size: 1.5rem;
+                border-radius: 50px;
+                cursor: pointer;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                transition: 0.3s;
             }
+            .export-btn:hover { transform: scale(1.1); background: #fff; }
 
             #imageModal {
                 background: rgba(0,0,0,0.95);
                 display: none;
                 position: fixed;
                 inset: 0;
-                z-index: 1000;
+                z-index: 2000;
                 justify-content: center;
                 align-items: center;
             }
-            #modalImg { max-width: 90%; max-height: 80vh; border: 5px solid #fff; background: white; }
+            #modalImg { max-width: 90%; max-height: 80vh; border: 5px solid #fff; }
         </style>
     </head>
     <body>
@@ -270,20 +257,24 @@
 
             <div class="filter-tags">
                 <button class="btn-filter" onclick="limpiarFiltro()">TODOS</button>
-                <button class="btn-filter btn-lion" onclick="filtrarMarca('LIONPOWER')">
-                    <i class="fa-solid fa-fire"></i> LIONPOWER
-                </button>
-                <button class="btn-filter btn-zhejiang" onclick="filtrarMarca('ZHEJIANG')">
-                    <i class="fa-solid fa-container-storage"></i> NUEVA CARGA (ZHEJIANG)
-                </button>
+                <button class="btn-filter btn-lion" onclick="filtrarMarca('LIONPOWER')">NUEVACARGA.LIONPOWER</button>
+                <button class="btn-filter btn-zhejiang" onclick="filtrarMarca('ZHEJIANG')">NUEVACARGA.ZHEJIANG</button>
             </div>
         </div>
 
         <main class="grid-productos" id="listaProductos"></main>
 
+        <!-- Botón Exportar -->
+        <button class="export-btn" onclick="exportarExcel()">
+            <i class="fa-solid fa-file-excel"></i> GENERAR PEDIDO (<span id="countSelected">0</span>)
+        </button>
+
         <div id="imageModal" onclick="this.style.display='none'">
             <img id="modalImg" src="" />
         </div>
+
+        <!-- Librerías Externas -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
         <script>
             const productos = [
@@ -9952,47 +9943,86 @@
                     img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg"
                 }
             ];
+            let seleccionados = new Set();
 
             function render(data) {
-    const container = document.getElementById("listaProductos");
-    container.innerHTML = data.map(p => {
-        const unitPrice = p.pUnitario || 0;
-        const pFact = (unitPrice * 1.09).toFixed(2);
-        const s = p.stock || { alm: 0, lt1: 0, et2: 0, at3: 0, jtc: 0 };
-        const fmtS = (val) => val > 0 ? `<span class="has-stock">${val}</span>` : `<span class="no-stock">0</span>`;
+                const container = document.getElementById("listaProductos");
+                container.innerHTML = data.map(p => {
+                    const unitPrice = p.pUnitario || 0;
+                    const pFact = (unitPrice * 1.09).toFixed(2);
+                    const s = p.stock || { alm: 0, lt1: 0, et2: 0, at3: 0, jtc: 0 };
+                    const fmtS = (val) => val > 0 ? `<span class="has-stock">${val}</span>` : `<span class="no-stock">0</span>`;
+                    const isChecked = seleccionados.has(p.codCali) ? 'checked' : '';
+                    const isSelectedClass = seleccionados.has(p.codCali) ? 'selected' : '';
 
-        // CREAMOS EL STRING DE BÚSQUEDA INCLUYENDO "OTROS CÓDIGOS"
-        const searchString = `${p.codCali} ${p.desc} ${p.marca} ${p.otrosCod || ''}`.toLowerCase();
+                    const searchString = `${p.codCali} ${p.desc} ${p.marca} ${p.otrosCod || ''}`.toLowerCase();
 
-        return `
-        <div class="card" data-search="${searchString}" data-marca="${p.marca}">
-            <div class="card-header-top">
-                <div class="product-code">${p.codCali}</div>
-                <div class="price-container">
-                    <span class="price-cash">Bs ${unitPrice}</span>
-                    <span class="price-fact">FACT: Bs ${pFact}</span>
-                </div>
-            </div>
-            <div class="card-main-content">
-                <div class="brand-vertical-bar"><span class="brand-text">${p.marca}</span></div>
-                <div class="img-area" onclick="abrirImagen('${p.img}')">
-                    <img src="${p.img}" onerror="this.src='https://via.placeholder.com/400x300?text=Cali+Repuestos'">
-                </div>
-            </div>
-            <div class="stock-grid">
-                <div class="stock-item"><span class="stock-label">ALM</span><span class="stock-qty">${fmtS(s.alm)}</span></div>
-                <div class="stock-item"><span class="stock-label">LT1</span><span class="stock-qty">${fmtS(s.lt1)}</span></div>
-                <div class="stock-item"><span class="stock-label">ET2</span><span class="stock-qty">${fmtS(s.et2)}</span></div>
-                <div class="stock-item"><span class="stock-label">AT3</span><span class="stock-qty">${fmtS(s.at3)}</span></div>
-                <div class="stock-item"><span class="stock-label">JTC</span><span class="stock-qty">${fmtS(s.jtc)}</span></div>
-            </div>
-            <div class="info-footer">
-                <span class="desc-highlight">${p.desc}</span>
-                <div class="cross-list">${p.otrosCod || "---"}</div>
-            </div>
-        </div>`;
-    }).join("");
-}
+                    return `
+                    <div class="card ${isSelectedClass}" data-search="${searchString}" data-marca="${p.marca}" id="card-${p.codCali}">
+                        <div class="select-layer">
+                            <input type="checkbox" class="order-checkbox" onclick="toggleSeleccion('${p.codCali}')" ${isChecked}>
+                        </div>
+                        <div class="card-header-top">
+                            <div class="product-code">${p.codCali}</div>
+                            <div class="price-container" style="text-align:right">
+                                <span class="price-cash">Bs ${unitPrice}</span><br>
+                                <small style="font-weight:900; font-size:0.7rem">FACT: Bs ${pFact}</small>
+                            </div>
+                        </div>
+                        <div class="card-main-content">
+                            <div class="brand-vertical-bar"><span class="brand-text">${p.marca}</span></div>
+                            <div class="img-area" onclick="abrirImagen('${p.img}')">
+                                <img src="${p.img}" onerror="this.src='https://via.placeholder.com/400x300?text=Cali+Repuestos'">
+                            </div>
+                        </div>
+                        <div class="stock-grid">
+                            <div class="stock-item"><span class="stock-label">ALM</span><span class="stock-qty">${fmtS(s.alm)}</span></div>
+                            <div class="stock-item"><span class="stock-label">LT1</span><span class="stock-qty">${fmtS(s.lt1)}</span></div>
+                            <div class="stock-item"><span class="stock-label">ET2</span><span class="stock-qty">${fmtS(s.et2)}</span></div>
+                            <div class="stock-item"><span class="stock-label">AT3</span><span class="stock-qty">${fmtS(s.at3)}</span></div>
+                            <div class="stock-item"><span class="stock-label">JTC</span><span class="stock-qty">${fmtS(s.jtc)}</span></div>
+                        </div>
+                        <div class="info-footer">
+                            <span class="desc-highlight">${p.desc}</span>
+                            <div style="font-size:0.7rem; color:#888; font-family:'Roboto Mono'">${p.otrosCod || "---"}</div>
+                        </div>
+                    </div>`;
+                }).join("");
+            }
+
+            function toggleSeleccion(codigo) {
+                const card = document.getElementById(`card-${codigo}`);
+                if (seleccionados.has(codigo)) {
+                    seleccionados.delete(codigo);
+                    card.classList.remove('selected');
+                } else {
+                    seleccionados.add(codigo);
+                    card.classList.add('selected');
+                }
+                document.getElementById('countSelected').innerText = seleccionados.size;
+            }
+
+            function exportarExcel() {
+                if (seleccionados.size === 0) {
+                    alert("Selecciona al menos un producto primero.");
+                    return;
+                }
+
+                const dataFiltrada = productos
+                    .filter(p => seleccionados.has(p.codCali))
+                    .map(p => ({
+                        "CODIGO CALI": p.codCali,
+                        "DESCRIPCION": p.desc,
+                        "MARCA": p.marca,
+                        "OTROS CODIGOS": p.otrosCod,
+                        "CANTIDAD A PEDIR": "" 
+                    }));
+
+                const ws = XLSX.utils.json_to_sheet(dataFiltrada);
+                const wb = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(wb, ws, "Pedido");
+                XLSX.writeFile(wb, "Pedido_Importadora_Cali.xlsx");
+            }
 
             function filtrar() {
                 const q = document.getElementById("searchInput").value.toLowerCase();
@@ -10003,7 +10033,7 @@
             }
 
             function filtrarMarca(marca) {
-                document.getElementById("searchInput").value = ""; 
+                document.getElementById("searchInput").value = "";
                 document.querySelectorAll(".card").forEach(c => {
                     const m = c.getAttribute("data-marca");
                     c.style.display = (m === marca) ? "" : "none";
