@@ -3,282 +3,212 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Importadora Cali | PRECIARIO</title>
+        <title>Importadora Cali | Catálogo de Precios</title>
+        <meta name="theme-color" content="#0a0a0a">
+        
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&family=Montserrat:wght@800;900&family=Bebas+Neue&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;700&family=Montserrat:wght@400;600;700;900&family=Bebas+Neue&display=swap" rel="stylesheet" />
         <style>
             :root {
-                --red-electric: #ff0000;
-                --black-deep: #0a0a0a;
+                --red-electric: #ff1e1e;
+                --black-deep: #0a0c10;
+                --black-card: #12141c;
                 --white-pure: #ffffff;
                 --gold-bright: #ffcc00;
-                --gray-dark: #1a1a1a;
+                --neon-cyan: #00f3ff; /* Nuevo color para resaltar el código */
+                --gray-text: #94a3b8;
+                --gray-border: #222533;
                 --lion-orange: #ff6a00;
                 --zhejiang-blue: #005eff;
             }
 
+            * { box-sizing: border-box; margin: 0; padding: 0; }
+
             body {
                 font-family: "Montserrat", sans-serif;
-                background-color: #000;
-                margin: 0;
+                background-color: var(--black-deep);
                 color: var(--white-pure);
-                background-image: radial-gradient(#222 1px, transparent 1px);
-                background-size: 20px 20px;
-                padding-bottom: 100px; /* Espacio para el botón flotante */
+                padding-bottom: 60px;
+                -webkit-font-smoothing: antialiased;
             }
+
             header {
-                padding: 40px 20px;
+                padding: 40px 20px 30px;
                 text-align: center;
-                background: var(--black-deep);
-                border-bottom: 6px solid var(--red-electric);
-                box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
-            }
-            header h1 {
-                font-family: "Bebas Neue";
-                font-size: clamp(3rem, 10vw, 6rem);
-                margin: 0;
-                letter-spacing: 5px;
-                background: linear-gradient(to bottom, #fff 50%, var(--red-electric) 100%);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-            }
-
-            .controls-wrapper {
-                max-width: 900px;
-                margin: 30px auto;
-                padding: 0 20px;
-                display: flex;
-                flex-direction: column;
-                gap: 15px;
-            }
-            .search-box {
-                background: var(--gray-dark);
-                border: 3px solid var(--white-pure);
-                display: flex;
-                align-items: center;
-                padding: 10px 20px;
-                box-shadow: 8px 8px 0px var(--red-electric);
-            }
-            #searchInput {
-                flex: 1;
-                background: transparent;
-                border: none;
-                color: white;
-                font-size: 1.2rem;
-                font-family: "Roboto Mono";
-                outline: none;
-                text-transform: uppercase;
-            }
-
-            .filter-tags {
-                display: flex;
-                gap: 10px;
-                flex-wrap: wrap;
-            }
-            .btn-filter {
-                background: #222;
-                border: 2px solid #444;
-                color: white;
-                padding: 8px 15px;
-                font-family: "Bebas Neue";
-                font-size: 1.2rem;
-                cursor: pointer;
-                transition: 0.3s;
-                letter-spacing: 1px;
-            }
-            .btn-filter:hover {
-                background: #333;
-                border-color: var(--white-pure);
-            }
-            .btn-lion { background: var(--lion-orange); color: #000; }
-            .btn-zhejiang { background: var(--zhejiang-blue); color: #fff; }
-
-            .grid-productos {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-                gap: 35px;
-                max-width: 1400px;
-                margin: 0 auto;
-                padding: 20px;
-            }
-            .card {
-                background: var(--black-deep);
-                border: 4px solid var(--gray-dark);
-                display: flex;
-                flex-direction: column;
-                transition: 0.3s;
-                position: relative;
-            }
-            .card:hover {
-                border-color: var(--red-electric);
-                transform: translateY(-5px);
+                background: linear-gradient(180deg, #12141c 0%, var(--black-deep) 100%);
+                border-bottom: 4px solid var(--red-electric);
             }
             
-            /* Estilos de Selección */
-            .card.selected {
-                border-color: var(--gold-bright) !important;
-                box-shadow: 0 0 20px rgba(255, 204, 0, 0.4);
-            }
-            .select-layer {
-                position: absolute;
-                top: 55px;
-                left: 10px;
-                z-index: 10;
-            }
-            .order-checkbox {
-                width: 25px;
-                height: 25px;
-                cursor: pointer;
-                accent-color: var(--red-electric);
-            }
-
-            .card-header-top {
-                background: var(--red-electric);
-                padding: 12px 15px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                color: #000;
-            }
-            .product-code {
+            header h1 {
                 font-family: "Bebas Neue";
-                font-size: 1.8rem;
-                font-weight: 900;
-                max-width: 60%;
-            }
-            .price-cash {
-                font-family: "Roboto Mono";
-                font-size: 1.4rem;
-                background: #000;
-                color: var(--gold-bright);
-                padding: 2px 8px;
-            }
-
-            .card-main-content {
-                display: grid;
-                grid-template-columns: 50px 1fr;
-                background: #fff;
-                height: 300px;
-            }
-            .brand-vertical-bar {
-                background: #000;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-right: 2px solid var(--red-electric);
-            }
-            .brand-text {
-                font-family: "Bebas Neue";
-                color: var(--red-electric);
-                font-size: 1.2rem;
-                writing-mode: vertical-rl;
-                transform: rotate(180deg);
-            }
-            .img-area {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                padding: 15px;
-            }
-            .img-area img { max-width: 100%; max-height: 100%; object-fit: contain; cursor: pointer;}
-
-            .stock-grid {
-                display: grid;
-                grid-template-columns: repeat(5, 1fr);
-                background: var(--gray-dark);
-                border-top: 4px solid #000;
-            }
-            .stock-item { padding: 10px 0; text-align: center; border-right: 1px solid #333; }
-            .stock-label { display: block; color: var(--red-electric); font-size: 0.65rem; font-weight: 900; }
-            .has-stock { color: #00ff00; font-weight: 900; }
-            .no-stock { color: #444; }
-
-            .info-footer {
-                padding: 15px;
-                background: var(--black-deep);
-                flex-grow: 1;
-            }
-            .desc-highlight {
-                color: var(--white-pure);
-                font-weight: 900;
-                text-transform: uppercase;
-                border-left: 4px solid var(--red-electric);
-                padding-left: 10px;
-                display: block;
+                font-size: clamp(2.5rem, 7vw, 4.5rem);
+                letter-spacing: 4px;
+                background: linear-gradient(to bottom, #fff 40%, #888 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                line-height: 1;
                 margin-bottom: 5px;
             }
 
-            /* Botón Flotante */
-            .export-btn {
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                background: var(--gold-bright);
-                color: #000;
-                border: none;
-                padding: 15px 30px;
-                font-family: "Bebas Neue";
-                font-size: 1.5rem;
-                border-radius: 50px;
-                cursor: pointer;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-                z-index: 1000;
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                transition: 0.3s;
+            header .subtitle {
+                color: var(--red-electric); font-size: 0.9rem; font-weight: 700;
+                text-transform: uppercase; letter-spacing: 4px; font-family: "Roboto Mono", monospace;
             }
-            .export-btn:hover { transform: scale(1.1); background: #fff; }
 
-            #imageModal {
-                background: rgba(0,0,0,0.95);
-                display: none;
-                position: fixed;
-                inset: 0;
-                z-index: 2000;
-                justify-content: center;
-                align-items: center;
+            .controls-wrapper {
+                max-width: 1100px; margin: 30px auto 20px; padding: 0 20px;
+                display: flex; flex-direction: column; gap: 15px;
             }
-            #modalImg { max-width: 90%; max-height: 80vh; border: 5px solid #fff; }
+
+            .search-box {
+                background: var(--black-card); border: 1px solid var(--gray-border);
+                border-left: 4px solid var(--red-electric); display: flex; align-items: center;
+                padding: 14px 20px; border-radius: 4px; transition: border-color 0.3s;
+            }
+            .search-box:focus-within { border-color: var(--gray-text); }
+
+            #searchInput {
+                flex: 1; background: transparent; border: none; color: white;
+                font-size: 1.1rem; font-family: "Montserrat", sans-serif; font-weight: 600;
+                outline: none; text-transform: uppercase;
+            }
+            #searchInput::placeholder { color: #4b5563; font-weight: 400; }
+
+            .filter-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+            .btn-filter {
+                background: var(--black-card); border: 1px solid var(--gray-border); color: var(--gray-text);
+                padding: 8px 18px; font-family: "Montserrat", sans-serif; font-size: 0.85rem;
+                font-weight: 700; text-transform: uppercase; border-radius: 4px; cursor: pointer; transition: all 0.2s;
+            }
+            .btn-filter:hover, .btn-filter.active { background: var(--white-pure); color: var(--black-deep); border-color: var(--white-pure); }
+            .btn-filter.btn-lion:hover, .btn-filter.btn-lion.active { background: var(--lion-orange); color: #000; border-color: var(--lion-orange); }
+            .btn-filter.btn-zhejiang:hover, .btn-filter.btn-zhejiang.active { background: var(--zhejiang-blue); color: #fff; border-color: var(--zhejiang-blue); }
+
+            .list-wrapper { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+            .list-header {
+                display: grid; grid-template-columns: 160px 1fr 140px 180px; padding: 15px 20px;
+                background: #161925; border-radius: 6px 6px 0 0; border-bottom: 2px solid var(--gray-border);
+                font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gray-text);
+            }
+            @media (max-width: 768px) { .list-header { display: none; } }
+
+            .list-container {
+                display: flex; flex-direction: column; gap: 2px;
+                background: var(--gray-border); border-radius: 0 0 6px 6px; overflow: hidden;
+            }
+
+            .list-item {
+                display: grid; grid-template-columns: 160px 1fr 140px 180px; align-items: center;
+                padding: 18px 20px; background: var(--black-card); transition: background 0.2s;
+            }
+            .list-item:hover { background: #181b26; }
+
+            /* Código modificado para resaltar */
+            .col-code {
+                font-family: "Roboto Mono", monospace;
+                font-size: 1.2rem;
+                font-weight: 900;
+                color: var(--lion-orange);
+                text-shadow: 0 0 8px rgba(0, 243, 255, 0.4);
+            }
+
+            .col-desc { display: flex; flex-direction: column; gap: 4px; padding-right: 15px; }
+            
+            .title-row { display: flex; align-items: center; gap: 10px; }
+            .product-title { font-size: 0.95rem; font-weight: 700; color: var(--white-pure); text-transform: uppercase; }
+            
+            /* Botón de imagen */
+            .btn-img {
+                background: rgba(255, 255, 255, 0.05); border: 1px solid var(--gray-border);
+                color: var(--gray-text); padding: 5px 8px; border-radius: 4px;
+                cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center;
+            }
+            .btn-img:hover { color: var(--white-pure); border-color: var(--red-electric); background: var(--red-electric); }
+
+            .product-subcodes { font-family: "Roboto Mono", monospace; font-size: 0.75rem; color: var(--gray-text); }
+
+            .col-brand { display: flex; align-items: center; }
+            .brand-badge {
+                display: inline-block; padding: 4px 10px; font-size: 0.75rem; font-weight: 700;
+                border-radius: 4px; background: #222533; color: var(--white-pure); text-transform: uppercase; letter-spacing: 0.5px;
+            }
+            .brand-badge.lionpower { background: rgba(255, 106, 0, 0.15); color: var(--lion-orange); border: 1px solid rgba(255, 106, 0, 0.3); }
+            .brand-badge.zhejiang { background: rgba(0, 94, 255, 0.15); color: var(--zhejiang-blue); border: 1px solid rgba(0, 94, 255, 0.3); }
+            .brand-badge.breiter { background: rgba(255, 30, 30, 0.15); color: var(--red-electric); border: 1px solid rgba(255, 30, 30, 0.3); }
+            .brand-badge.brasil { background: rgba(34, 197, 94, 0.15); color: #22c55e; border: 1px solid rgba(34, 197, 94, 0.3); }
+
+            .col-price { text-align: right; display: flex; flex-direction: column; justify-content: center; }
+            .price-main { font-family: "Roboto Mono", monospace; font-size: 1.25rem; font-weight: 700; color: var(--gold-bright); }
+            .price-fact { font-size: 0.75rem; color: var(--gray-text); font-weight: 600; margin-top: 2px; }
+
+            /* Modal de Imagen */
+            #imageModal {
+                display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9);
+                z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(5px);
+            }
+            #imageModal img { max-width: 90%; max-height: 80vh; border: 4px solid var(--gray-border); border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); }
+            .close-btn { position: absolute; top: 20px; right: 30px; font-size: 2.5rem; color: white; cursor: pointer; transition: 0.2s; }
+            .close-btn:hover { color: var(--red-electric); }
+
+            @media (max-width: 768px) {
+                .list-item { grid-template-columns: 1fr; gap: 12px; padding: 16px; border-bottom: 1px solid var(--gray-border); }
+                .list-item-header { display: flex; justify-content: space-between; align-items: flex-start; }
+                .col-code { font-size: 1.2rem; }
+                .col-price { text-align: right; }
+                .price-main { font-size: 1.15rem; }
+                .col-brand { margin-top: 2px; }
+            }
+
+            .catalog-footer { max-width: 1100px; margin: 20px auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--gray-text); font-family: "Roboto Mono", monospace; }
+            .status-offline { display: flex; align-items: center; gap: 6px; color: #22c55e; font-weight: 700; }
         </style>
     </head>
     <body>
 
         <header>
             <h1>IMPORTADORA CALI</h1>
-            <div style="color:white; font-weight: 900; letter-spacing: 2px;">LISTA DE PRECIOS Y EXISTENCIAS</div>
+            <div class="subtitle">LISTA DE PRECIOS Y EXISTENCIAS</div>
         </header>
 
         <div class="controls-wrapper">
             <div class="search-box">
-                <i class="fa-solid fa-bolt" style="color: var(--red-electric); margin-right: 15px;"></i>
-                <input type="text" id="searchInput" placeholder="BUSCAR POR CÓDIGO O MARCA..." oninput="filtrar()" />
+                <i class="fa-solid fa-magnifying-glass" style="color: var(--gray-text); margin-right: 15px; font-size: 1.1rem;"></i>
+                <input type="text" id="searchInput" placeholder="Buscar por código, marca o descripción..." oninput="filtrar()" />
             </div>
 
-            <div class="filter-tags">
-                <button class="btn-filter" onclick="limpiarFiltro()">TODOS</button>
-                <button class="btn-filter btn-lion" onclick="filtrarMarca('LIONPOWER')">NUEVACARGA.LIONPOWER</button>
-                <button class="btn-filter btn-zhejiang" onclick="filtrarMarca('ZHEJIANG')">NUEVACARGA.ZHEJIANG</button>
+            <div class="filter-tags" id="filterTags">
+                <button class="btn-filter active" onclick="cambiarFiltro(this, '')">Todos</button>
+                <button class="btn-filter btn-lion" onclick="cambiarFiltro(this, 'LIONPOWER')">Lionpower(nuevo)</button>
+                <button class="btn-filter btn-zhejiang" onclick="cambiarFiltro(this, 'ZHEJIANG')">Zhejiang(nuevo)</button>
+
             </div>
         </div>
 
-        <main class="grid-productos" id="listaProductos"></main>
-
-        <!-- Botón Exportar -->
-        <button class="export-btn" onclick="exportarExcel()">
-            <i class="fa-solid fa-file-excel"></i> GENERAR PEDIDO (<span id="countSelected">0</span>)
-        </button>
-
-        <div id="imageModal" onclick="this.style.display='none'">
-            <img id="modalImg" src="" />
+        <div class="list-wrapper">
+            <div class="list-header">
+                <div>Código</div>
+                <div>Descripción</div>
+                <div>Marca</div>
+                <div style="text-align: right;">Precio</div>
+            </div>
+            <div class="list-container" id="listaProductos"></div>
         </div>
 
-        <!-- Librerías Externas -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+        <div class="catalog-footer">
+            <div id="productCount">Mostrando 0 productos</div>
+            <div class="status-offline"><i class="fa-solid fa-circle-check"></i> Listo para usar sin internet</div>
+        </div>
+
+        <div id="imageModal" onclick="cerrarImagen(event)">
+            <span class="close-btn" onclick="cerrarImagen(event)">&times;</span>
+            <img id="modalImg" src="" onclick="event.stopPropagation()" />
+        </div>
 
         <script>
+            
+            // Base de datos limpia y simplificada
             const productos = [
-                {
+           {
                     codCali: "B4913-C",
                     otrosCod: "W01-M58-8098 / 4913N P02 / 1R14-753",
                     desc: "GLOBO TRACTOR SCANIA",
@@ -367,7 +297,6 @@
                     pUnitario: 930.0,
                     img: "https://www.airspringsbook.com/storage/metal-pistonlu-korukler/377804-c-komple.jpg"
                 },
-
                 {
                     codCali: "B5612-CPL",
                     otrosCod: "20722409 / 4927NP01",
@@ -442,7 +371,7 @@
     pUnitario: 0,
     pMayor: 0,
     img: "https://image.made-in-china.com/201f0j00svwbTAcJKZgN/Manufacturer-Recommend-High-Quality-Air-Brake-Chambers-T2424DCP-Disc-for-Trucks-Trailers.webp",
-    stock: { alm: 300, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+  
 },
                 {
     codCali: "T3030DCP DISC M16",
@@ -452,7 +381,7 @@
     pUnitario: 0.0,
     pMayor: 0.0,
     img: "https://image.made-in-china.com/2f0j00alMzSprPvikY/T3030dp-T30-30dp-Ibv-Disc-Brake-Chamber-9254922030-9254920000.jpg",
-    stock: { alm: 50, lt1: 0, et2: 0, at3: 0, jtc: 0 }
+  
 },
 {
     codCali: "T30 M16",
@@ -2202,8 +2131,7 @@
                     pUnitario: 1000.0,
                     img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg"
                 },
-
-                {
+                  {
                     codCali: "34942-C",
                     otrosCod: "4942NP02 / 2725-C",
                     desc: "GLOBO CHATA 12 PERNOS +GRANDE QUE LA 881 OLLA METAL",
@@ -3502,7 +3430,6 @@
                     pUnitario: 600.0,
                     img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg"
                 },
-
                 {
                     codCali: "2B6948",
                     otrosCod: "2B6948",
@@ -5100,8 +5027,7 @@
                     pUnitario: 1000.0,
                     img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg"
                 },
-
-                {
+                   {
                     codCali: "A-2074(518)",
                     otrosCod: "A2074(518)",
                     desc: "GLOBO FUSHER RECTO FH CON PLATO - A518",
@@ -7399,8 +7325,7 @@
                     pUnitario: 350.0,
                     img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg"
                 },
-
-                {
+                 {
                     codCali: "SKF",
                     otrosCod: "",
                     desc: "RODAMIENTO PEQUEÑO",
@@ -9197,8 +9122,7 @@
                     img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg",
                     iva: 1.13
                 },
-
-                {
+                  {
                     codCali: "18967",
                     otrosCod: "18967",
                     desc: "BUJE",
@@ -9942,107 +9866,15 @@
                     stock: { alm: 10.0, lt1: 0, et2: 0, at3: 0, jtc: 0 },
                     img: "https://i.ibb.co/nMbnCbS9/unnamed-1.jpg"
                 }
+
+
             ];
-            let seleccionados = new Set();
 
-            function render(data) {
-                const container = document.getElementById("listaProductos");
-                container.innerHTML = data.map(p => {
-                    const unitPrice = p.pUnitario || 0;
-                    const pFact = (unitPrice * 1.09).toFixed(2);
-                    const s = p.stock || { alm: 0, lt1: 0, et2: 0, at3: 0, jtc: 0 };
-                    const fmtS = (val) => val > 0 ? `<span class="has-stock">${val}</span>` : `<span class="no-stock">0</span>`;
-                    const isChecked = seleccionados.has(p.codCali) ? 'checked' : '';
-                    const isSelectedClass = seleccionados.has(p.codCali) ? 'selected' : '';
+           let filtroMarcaActual = "";
 
-                    const searchString = `${p.codCali} ${p.desc} ${p.marca} ${p.otrosCod || ''}`.toLowerCase();
-
-                    return `
-                    <div class="card ${isSelectedClass}" data-search="${searchString}" data-marca="${p.marca}" id="card-${p.codCali}">
-                        <div class="select-layer">
-                            <input type="checkbox" class="order-checkbox" onclick="toggleSeleccion('${p.codCali}')" ${isChecked}>
-                        </div>
-                        <div class="card-header-top">
-                            <div class="product-code">${p.codCali}</div>
-                            <div class="price-container" style="text-align:right">
-                                <span class="price-cash">Bs ${unitPrice}</span><br>
-                                <small style="font-weight:900; font-size:0.7rem">FACT: Bs ${pFact}</small>
-                            </div>
-                        </div>
-                        <div class="card-main-content">
-                            <div class="brand-vertical-bar"><span class="brand-text">${p.marca}</span></div>
-                            <div class="img-area" onclick="abrirImagen('${p.img}')">
-                                <img src="${p.img}" onerror="this.src='https://via.placeholder.com/400x300?text=Cali+Repuestos'">
-                            </div>
-                        </div>
-                        <div class="stock-grid">
-                            <div class="stock-item"><span class="stock-label">ALM</span><span class="stock-qty">${fmtS(s.alm)}</span></div>
-                            <div class="stock-item"><span class="stock-label">LT1</span><span class="stock-qty">${fmtS(s.lt1)}</span></div>
-                            <div class="stock-item"><span class="stock-label">ET2</span><span class="stock-qty">${fmtS(s.et2)}</span></div>
-                            <div class="stock-item"><span class="stock-label">AT3</span><span class="stock-qty">${fmtS(s.at3)}</span></div>
-                            <div class="stock-item"><span class="stock-label">JTC</span><span class="stock-qty">${fmtS(s.jtc)}</span></div>
-                        </div>
-                        <div class="info-footer">
-                            <span class="desc-highlight">${p.desc}</span>
-                            <div style="font-size:0.7rem; color:#888; font-family:'Roboto Mono'">${p.otrosCod || "---"}</div>
-                        </div>
-                    </div>`;
-                }).join("");
-            }
-
-            function toggleSeleccion(codigo) {
-                const card = document.getElementById(`card-${codigo}`);
-                if (seleccionados.has(codigo)) {
-                    seleccionados.delete(codigo);
-                    card.classList.remove('selected');
-                } else {
-                    seleccionados.add(codigo);
-                    card.classList.add('selected');
-                }
-                document.getElementById('countSelected').innerText = seleccionados.size;
-            }
-
-            function exportarExcel() {
-                if (seleccionados.size === 0) {
-                    alert("Selecciona al menos un producto primero.");
-                    return;
-                }
-
-                const dataFiltrada = productos
-                    .filter(p => seleccionados.has(p.codCali))
-                    .map(p => ({
-                        "CODIGO CALI": p.codCali,
-                        "DESCRIPCION": p.desc,
-                        "MARCA": p.marca,
-                        "OTROS CODIGOS": p.otrosCod,
-                        "CANTIDAD A PEDIR": "" 
-                    }));
-
-                const ws = XLSX.utils.json_to_sheet(dataFiltrada);
-                const wb = XLSX.utils.book_new();
-                XLSX.utils.book_append_sheet(wb, ws, "Pedido");
-                XLSX.writeFile(wb, "Pedido_Importadora_Cali.xlsx");
-            }
-
-            function filtrar() {
-                const q = document.getElementById("searchInput").value.toLowerCase();
-                document.querySelectorAll(".card").forEach(c => {
-                    const text = c.getAttribute("data-search").toLowerCase();
-                    c.style.display = text.includes(q) ? "" : "none";
-                });
-            }
-
-            function filtrarMarca(marca) {
-                document.getElementById("searchInput").value = "";
-                document.querySelectorAll(".card").forEach(c => {
-                    const m = c.getAttribute("data-marca");
-                    c.style.display = (m === marca) ? "" : "none";
-                });
-            }
-
-            function limpiarFiltro() {
-                document.getElementById("searchInput").value = "";
-                document.querySelectorAll(".card").forEach(c => c.style.display = "");
+            function obtenerClaseMarca(marca) {
+                if (!marca) return "";
+                return marca.toLowerCase();
             }
 
             function abrirImagen(url) {
@@ -10050,7 +9882,107 @@
                 document.getElementById("imageModal").style.display = "flex";
             }
 
+            function cerrarImagen(e) {
+                document.getElementById("imageModal").style.display = "none";
+            }
+
+            function render(data) {
+                const container = document.getElementById("listaProductos");
+                if (data.length === 0) {
+                    container.innerHTML = `<div style="padding: 40px; text-align: center; color: var(--gray-text); background: var(--black-card);">No se encontraron productos coincidentes.</div>`;
+                    document.getElementById("productCount").innerText = "Mostrando 0 productos";
+                    return;
+                }
+
+                const esMovil = window.innerWidth <= 768;
+
+                container.innerHTML = data.map(p => {
+                    const unitPrice = p.pUnitario || 0;
+                    const pFact = (unitPrice * 1.09).toFixed(2);
+                    const marcaLabel = p.marca || "SIN MARCA";
+                    const marcaClase = obtenerClaseMarca(p.marca);
+                    const searchString = `${p.codCali} ${p.desc} ${p.marca} ${p.otrosCod || ''}`.toLowerCase();
+                    const imgPlaceholder = p.img || "https://via.placeholder.com/400x300?text=Sin+Imagen";
+
+                    if (esMovil) {
+                        return `
+                        <div class="list-item" data-search="${searchString}" data-marca="${p.marca}">
+                            <div class="list-item-header">
+                                <div class="col-code">${p.codCali}</div>
+                                <div class="col-price">
+                                    <span class="price-main">Bs ${unitPrice}</span>
+                                    <span class="price-fact">FACT: Bs ${pFact}</span>
+                                </div>
+                            </div>
+                            <div class="col-desc">
+                                <div class="title-row">
+                                    <span class="product-title">${p.desc}</span>
+                                    <button class="btn-img" onclick="abrirImagen('${imgPlaceholder}')" title="Ver Foto"><i class="fa-solid fa-image"></i></button>
+                                </div>
+                                <span class="product-subcodes">${p.otrosCod || "---"}</span>
+                            </div>
+                            <div class="col-brand">
+                                <span class="brand-badge ${marcaClase}">${marcaLabel}</span>
+                            </div>
+                        </div>`;
+                    } else {
+                        return `
+                        <div class="list-item" data-search="${searchString}" data-marca="${p.marca}">
+                            <div class="col-code">${p.codCali}</div>
+                            <div class="col-desc">
+                                <div class="title-row">
+                                    <span class="product-title">${p.desc}</span>
+                                    <button class="btn-img" onclick="abrirImagen('${imgPlaceholder}')" title="Ver Foto"><i class="fa-solid fa-image"></i></button>
+                                </div>
+                                <span class="product-subcodes">${p.otrosCod || "---"}</span>
+                            </div>
+                            <div class="col-brand">
+                                <span class="brand-badge ${marcaClase}">${marcaLabel}</span>
+                            </div>
+                            <div class="col-price">
+                                <span class="price-main">Bs ${unitPrice}</span>
+                                <span class="price-fact">FACT: Bs ${pFact}</span>
+                            </div>
+                        </div>`;
+                    }
+                }).join("");
+
+                document.getElementById("productCount").innerText = `Mostrando ${data.length} de ${productos.length} productos`;
+            }
+
+            function filtrar() {
+                const q = document.getElementById("searchInput").value.toLowerCase();
+                const productosFiltrados = productos.filter(p => {
+                    const searchString = `${p.codCali} ${p.desc} ${p.marca} ${p.otrosCod || ''}`.toLowerCase();
+                    const coincideTexto = searchString.includes(q);
+                    const coincideMarca = filtroMarcaActual === "" || p.marca === filtroMarcaActual;
+                    return coincideTexto && coincideMarca;
+                });
+                render(productosFiltrados);
+            }
+
+            function cambiarFiltro(btn, marca) {
+                document.querySelectorAll(".btn-filter").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                filtroMarcaActual = marca;
+                filtrar();
+            }
+
+            let lastWidth = window.innerWidth;
+            window.addEventListener('resize', () => {
+                if ((window.innerWidth <= 768 && lastWidth > 768) || (window.innerWidth > 768 && lastWidth <= 768)) {
+                    lastWidth = window.innerWidth;
+                    filtrar();
+                }
+            });
+
             window.onload = () => render(productos);
+
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('./sw.js').catch(err => console.error('Error de SW:', err));
+                });
+            }
         </script>
     </body>
 </html>
