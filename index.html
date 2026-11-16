@@ -347,23 +347,32 @@
                 }
             }
 
-            function procesarYMostrar(datosJson) {
-                if (!datosJson || datosJson.length === 0) {
-                    document.getElementById("listaProductos").innerHTML = `<div style="padding: 80px; text-align: center; color: var(--text-muted); font-size: 1.2rem; font-weight: 600;">La base de datos se encuentra vacía.</div>`;
-                    return;
-                }
-                productos = datosJson.map(p => {
-                    return {
-                        codCali: p.codCali ? String(p.codCali).trim() : '---',
-                        otrosCod: p.otrosCod ? String(p.otrosCod).trim() : '',
-                        desc: p.desc ? String(p.desc).trim() : 'SIN DESCRIPCIÓN',
-                        marca: p.marca ? String(p.marca).toUpperCase().trim() : 'SIN MARCA',
-                        pUnitario: Number(p.pUnitario) || 0,
-                        img: p.img ? String(p.img).trim() : ''
-                    };
-                });
-                filtrar();
-            }
+          function procesarYMostrar(datosJson) {
+    // Extraer el catálogo sin importar si viene como array viejo o como objeto { catalogo, tiendas }
+    const listaCat = Array.isArray(datosJson) ? datosJson : (datosJson.catalogo || []);
+    
+    if (datosJson && datosJson.tiendas) {
+        basesTiendas = datosJson.tiendas;
+    }
+
+    if (!listaCat || listaCat.length === 0) {
+        document.getElementById("listaProductos").innerHTML = `<div style="padding: 80px; text-align: center; color: var(--text-muted); font-size: 1.2rem; font-weight: 600;">La base de datos se encuentra vacía o el formato no coincide.</div>`;
+        return;
+    }
+
+    productos = listaCat.map(p => {
+        return {
+            codCali: p.codCali ? String(p.codCali).trim() : '---',
+            otrosCod: p.otrosCod ? String(p.otrosCod).trim() : '',
+            desc: p.desc ? String(p.desc).trim() : 'SIN DESCRIPCIÓN',
+            marca: p.marca ? String(p.marca).toUpperCase().trim() : 'SIN MARCA',
+            pUnitario: Number(p.pUnitario) || 0,
+            img: p.img ? String(p.img).trim() : '',
+            stockTiendas: p.stockTiendas || {}
+        };
+    });
+    filtrar();
+}
 
             function abrirImagen(url) {
                 if(!url || url.includes('placeholder') || !url.startsWith('http')) return;
