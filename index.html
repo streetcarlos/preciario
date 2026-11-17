@@ -3,520 +3,1297 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Importadora Cali | Catálogo de Precios</title>
+        <title>Importadora Cali | precios y Stock</title>
         <link rel="icon" type="image/svg+xml" href="logo.svg" />
-        <meta name="theme-color" content="#111827">
+        <meta name="theme-color" content="#0f172a">
         
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;700;900&family=Montserrat:wght@400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet" />
+        
         <style>
             :root {
-                --brand-red: #da291c; /* Rojo más vibrante e industrial */
-                --brand-red-hover: #b92015;
-                --brand-red-glow: rgba(218, 41, 28, 0.2);
-                --brand-white: #ffffff;
-                --bg-light: #f3f4f6; /* Gris muy suave */
-                --text-main: #111827; /* Casi negro, más elegante */
-                --text-muted: #6b7280;
-                --border-color: #e5e7eb;
-                --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-                --shadow-md: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-                --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(218, 41, 28, 0.04);
+                --brand-red: #e11d48;
+                --brand-red-dark: #be123c;
+                --brand-red-soft: rgba(225, 29, 72, 0.12);
+                --bg-body: #f1f5f9;
+                --bg-card: #ffffff;
+                --dark-slate: #0f172a;
+                --dark-panel: #1e293b;
+                --steel-grey: #334155;
+                --text-main: #0f172a;
+                --text-secondary: #475569;
+                --text-muted: #94a3b8;
+                --border-light: #e2e8f0;
+                --emerald: #10b981;
+                --amber: #f59e0b;
+                --radius-lg: 16px;
+                --radius-md: 12px;
+                --shadow-card: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+                --shadow-hover: 0 12px 28px -4px rgba(15, 23, 42, 0.12);
             }
 
             * { box-sizing: border-box; margin: 0; padding: 0; }
 
             body {
-                font-family: "Montserrat", sans-serif;
-                background-color: var(--bg-light);
+                font-family: "Plus Jakarta Sans", sans-serif;
+                background-color: var(--bg-body);
                 color: var(--text-main);
-                padding-bottom: 80px;
+                padding-bottom: 70px;
                 -webkit-font-smoothing: antialiased;
             }
 
-            /* --- HEADER CORPORATIVO DARK PREMIUM --- */
+            /* --- HEADER INDUSTRIAL COMPACTO --- */
             header {
-                background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
-                padding: 50px 20px 40px;
-                text-align: center;
-                border-bottom: 4px solid var(--brand-red);
-                box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+                background: radial-gradient(circle at top right, #1e293b 0%, #0f172a 70%);
+                padding: 28px 24px;
+                border-bottom: 3px solid var(--brand-red);
                 position: relative;
                 overflow: hidden;
             }
-            
-            /* Decoración sutil de fondo en el header */
-            header::before {
-                content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-                background: radial-gradient(circle, rgba(218,41,28,0.05) 0%, transparent 60%);
-                pointer-events: none;
+
+            .header-inner {
+                max-width: 1380px;
+                margin: 0 auto;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .brand-block {
+                display: flex;
+                align-items: baseline;
+                gap: 14px;
+                flex-wrap: wrap;
             }
 
             header h1 {
                 font-family: "Bebas Neue", sans-serif;
-                font-size: clamp(3.5rem, 8vw, 5.5rem);
-                letter-spacing: 5px;
-                color: var(--brand-white);
+                font-size: clamp(2.4rem, 5vw, 3.4rem);
+                letter-spacing: 3px;
+                color: #ffffff;
                 line-height: 1;
-                margin-bottom: 8px;
-                text-shadow: 0 4px 20px rgba(0,0,0,0.5);
-                position: relative;
             }
-            
             header h1 span { color: var(--brand-red); }
 
             header .subtitle {
-                color: #9ca3af;
-                font-size: 1rem;
-                font-weight: 600;
+                color: var(--text-muted);
+                font-size: 0.8rem;
+                font-weight: 700;
                 text-transform: uppercase;
-                letter-spacing: 8px;
-                position: relative;
+                letter-spacing: 3px;
+                padding-left: 14px;
+                border-left: 2px solid #334155;
             }
 
-            /* --- BUSCADOR GLASSMORPHISM --- */
-            .sticky-nav {
+            .sync-pill {
+                background: rgba(255, 255, 255, 0.06);
+                border: 1px solid rgba(255, 255, 255, 0.12);
+                color: #e2e8f0;
+                padding: 8px 14px;
+                border-radius: 999px;
+                font-size: 0.78rem;
+                font-weight: 700;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                cursor: pointer;
+                transition: 0.2s;
+            }
+            .sync-pill:hover {
+                background: rgba(225, 29, 72, 0.2);
+                border-color: var(--brand-red);
+            }
+            .pulse-dot {
+                width: 8px; height: 8px; border-radius: 50%;
+                background: var(--emerald);
+                box-shadow: 0 0 8px var(--emerald);
+            }
+
+            /* --- BARRA DE BÚSQUEDA STICKY --- */
+            .command-bar {
                 position: sticky;
                 top: 0;
-                z-index: 1000;
-                background-color: rgba(255, 255, 255, 0.85);
-                backdrop-filter: blur(16px);
-                -webkit-backdrop-filter: blur(16px);
-                padding: 20px;
-                border-bottom: 1px solid rgba(229, 231, 235, 0.5);
-                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+                z-index: 900;
+                background: rgba(241, 245, 249, 0.92);
+                backdrop-filter: blur(14px);
+                -webkit-backdrop-filter: blur(14px);
+                border-bottom: 1px solid var(--border-light);
+                padding: 14px 20px;
+                box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
             }
 
-            .controls-wrapper {
-                max-width: 1200px;
+            .command-inner {
+                max-width: 1380px;
                 margin: 0 auto;
                 display: flex;
                 flex-direction: column;
-                gap: 18px;
+                gap: 12px;
             }
 
-            .search-box {
-                background: var(--brand-white);
-                border: 2px solid var(--border-color);
+            .search-controls-row {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+            }
+
+            .search-input-wrap {
+                flex: 1;
+                background: #ffffff;
+                border: 2px solid #cbd5e1;
+                border-radius: 12px;
                 display: flex;
                 align-items: center;
-                padding: 16px 30px;
-                border-radius: 16px; /* Bordes menos redondos, más modernos */
-                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                box-shadow: var(--shadow-sm);
+                padding: 11px 18px;
+                transition: all 0.2s ease;
+                box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
             }
-            .search-box:focus-within { 
-                border-color: var(--brand-red); 
-                box-shadow: 0 0 0 4px var(--brand-red-glow), var(--shadow-md);
-                transform: translateY(-2px);
+            .search-input-wrap:focus-within {
+                border-color: var(--brand-red);
+                box-shadow: 0 0 0 4px var(--brand-red-soft);
+            }
+
+            .search-icon {
+                color: var(--text-secondary);
+                font-size: 1.15rem;
+                margin-right: 14px;
             }
 
             #searchInput {
-                flex: 1; background: transparent; border: none; color: var(--text-main);
-                font-size: 1.1rem; font-family: "Montserrat", sans-serif; font-weight: 600;
-                outline: none; text-transform: uppercase;
+                flex: 1;
+                border: none;
+                background: transparent;
+                font-family: "Plus Jakarta Sans", sans-serif;
+                font-size: 1.02rem;
+                font-weight: 700;
+                color: var(--text-main);
+                outline: none;
+                text-transform: uppercase;
             }
-            #searchInput::placeholder { color: #9ca3af; font-weight: 500; text-transform: none; }
-
-            .filter-tags { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
-            
-            .btn-filter {
-                background: transparent; border: 2px solid var(--border-color); color: var(--text-muted);
-                padding: 8px 20px; font-family: "Montserrat", sans-serif; font-size: 0.85rem; font-weight: 700;
-                text-transform: uppercase; border-radius: 10px; cursor: pointer; transition: all 0.25s ease;
+            #searchInput::placeholder {
+                color: var(--text-muted);
+                font-weight: 500;
+                text-transform: none;
             }
-            .btn-filter:hover { border-color: var(--text-main); color: var(--text-main); }
-            .btn-filter.active { background: var(--text-main); color: var(--brand-white); border-color: var(--text-main); box-shadow: 0 4px 12px rgba(17, 24, 39, 0.2); }
 
-            /* --- LISTA DE PRODUCTOS --- */
-            .list-wrapper { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-            
-            .list-header {
-                display: grid; 
-                grid-template-columns: 140px 1fr 130px 160px 140px; 
-                padding: 0 25px 15px; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; 
-                letter-spacing: 2px; color: var(--text-muted); border-bottom: 2px solid var(--border-color); margin-bottom: 25px;
+            .kbd-hint {
+                font-family: "Roboto Mono", monospace;
+                font-size: 0.7rem;
+                background: #f1f5f9;
+                color: #64748b;
+                border: 1px solid #cbd5e1;
+                padding: 3px 7px;
+                border-radius: 6px;
+                margin-left: 8px;
             }
-            @media (max-width: 992px) { .list-header { display: none; } }
+            @media (max-width: 768px) { .kbd-hint { display: none; } }
 
-            .list-container { display: flex; flex-direction: column; gap: 18px; }
+            .clear-btn {
+                background: #f1f5f9;
+                border: none;
+                color: #64748b;
+                width: 28px;
+                height: 28px;
+                border-radius: 50%;
+                cursor: pointer;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.85rem;
+                margin-left: 8px;
+                transition: 0.15s;
+            }
+            .clear-btn:hover { background: #fee2e2; color: var(--brand-red); }
 
-            /* Animación de aparición */
-            @keyframes slideUpFade {
-                from { opacity: 0; transform: translateY(15px); }
-                to { opacity: 1; transform: translateY(0); }
+            /* Botón sdfde control del Radar */
+            .radar-switch {
+                background: var(--dark-slate);
+                color: #ffffff;
+                border: 2px solid var(--dark-slate);
+                padding: 12px 18px;
+                border-radius: 12px;
+                font-family: "Plus Jakarta Sans", sans-serif;
+                font-size: 0.82rem;
+                font-weight: 800;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 9px;
+                transition: 0.2s;
+                white-space: nowrap;
+            }
+            .radar-switch.active {
+                background: var(--brand-red);
+                border-color: var(--brand-red);
+                box-shadow: 0 4px 12px rgba(225, 29, 72, 0.25);
+            }
+
+            /* Barra inferior de filtros y estadísticas rápidas */
+            .sub-bar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .filter-group {
+                display: flex;
+                gap: 8px;
+                flex-wrap: wrap;
+            }
+
+            .chip-btn {
+                background: #ffffff;
+                border: 1px solid #cbd5e1;
+                color: var(--text-secondary);
+                padding: 6px 14px;
+                border-radius: 8px;
+                font-size: 0.76rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                cursor: pointer;
+                transition: 0.15s;
+            }
+            .chip-btn:hover { border-color: var(--dark-slate); color: var(--dark-slate); }
+            .chip-btn.active {
+                background: var(--dark-slate);
+                color: #ffffff;
+                border-color: var(--dark-slate);
+            }
+
+            .counter-label {
+                font-size: 0.8rem;
+                font-weight: 700;
+                color: var(--text-secondary);
+            }
+
+            .radar-dock {
+                max-width: 1380px;
+                margin: 0 auto;
+                padding: 0 20px;
+                overflow: hidden;
+                max-height: 0;
+                opacity: 0;
+                transition: max-height 0.32s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease, margin 0.25s ease;
+            }
+            .radar-dock.open {
+                max-height: 550px;
+                opacity: 1;
+                margin-top: 16px;
+                margin-bottom: 8px;
+            }
+
+            .radar-shell {
+                background: var(--dark-slate);
+                border-radius: var(--radius-lg);
+                border: 1px solid #334155;
+                box-shadow: 0 12px 30px -6px rgba(15, 23, 42, 0.25);
+                overflow: hidden;
+            }
+
+            .radar-bar {
+                background: #090e1a;
+                padding: 10px 18px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid #1e293b;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .radar-title {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                color: #f8fafc;
+                font-size: 0.8rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+            .radar-title i { color: var(--brand-red); }
+            .radar-query-pill {
+                background: rgba(225, 29, 72, 0.2);
+                color: #fda4af;
+                border: 1px solid rgba(225, 29, 72, 0.4);
+                padding: 2px 9px;
+                border-radius: 6px;
+                font-family: "Roboto Mono", monospace;
+                font-size: 0.78rem;
+            }
+
+            .radar-actions {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+            .radar-summary {
+                font-size: 0.75rem;
+                color: #94a3b8;
+                font-weight: 600;
+            }
+            .radar-minimize-btn {
+                background: #1e293b;
+                color: #cbd5e1;
+                border: 1px solid #334155;
+                padding: 4px 10px;
+                border-radius: 6px;
+                font-size: 0.72rem;
+                font-weight: 700;
+                cursor: pointer;
+                transition: 0.15s;
+            }
+            .radar-minimize-btn:hover { background: var(--brand-red); color: #fff; border-color: var(--brand-red); }
+
+            /* Las 5 Columnas Simultáneas */
+            .radar-columns {
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 10px;
+                padding: 12px;
+            }
+
+            @media (max-width: 1150px) {
+                .radar-columns {
+                    display: flex;
+                    overflow-x: auto;
+                    scroll-snap-type: x mandatory;
+                    padding-bottom: 14px;
+                }
+                .store-column {
+                    min-width: 245px;
+                    scroll-snap-align: start;
+                }
+            }
+
+            .store-column {
+                background: var(--dark-panel);
+                border: 1px solid #334155;
+                border-radius: 10px;
+                display: flex;
+                flex-direction: column;
+                height: 250px;
+                overflow: hidden;
+            }
+            .store-column.has-available {
+                border-color: rgba(16, 185, 129, 0.45);
+            }
+
+            .store-col-head {
+                background: rgba(15, 23, 42, 0.75);
+                padding: 8px 12px;
+                border-bottom: 1px solid #334155;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .store-name {
+                font-size: 0.76rem;
+                font-weight: 800;
+                color: #f1f5f9;
+                text-transform: uppercase;
+                letter-spacing: 0.8px;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+            .store-status-dot {
+                width: 7px; height: 7px; border-radius: 50%;
+                background: #475569;
+            }
+            .store-status-dot.green {
+                background: var(--emerald);
+                box-shadow: 0 0 6px var(--emerald);
+            }
+
+            .store-hit-counter {
+                font-family: "Roboto Mono", monospace;
+                font-size: 0.68rem;
+                font-weight: 700;
+                padding: 2px 7px;
+                border-radius: 5px;
+                background: #0f172a;
+                color: #94a3b8;
+            }
+
+            .store-col-list {
+                padding: 7px;
+                overflow-y: auto;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                flex: 1;
+            }
+            .store-col-list::-webkit-scrollbar { width: 4px; }
+            .store-col-list::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+
+            .store-item {
+                background: rgba(15, 23, 42, 0.65);
+                border: 1px solid rgba(51, 65, 85, 0.8);
+                border-radius: 7px;
+                padding: 6px 9px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 8px;
+                cursor: pointer;
+                transition: 0.15s;
+            }
+            .store-item:hover {
+                background: #0f172a;
+                border-color: var(--brand-red);
+                transform: translateX(2px);
+            }
+
+            .store-item-left {
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+                min-width: 0;
+                flex: 1;
+            }
+            .store-item-code {
+                font-family: "Roboto Mono", monospace;
+                font-size: 0.78rem;
+                font-weight: 800;
+                color: #ffffff;
+            }
+            .store-item-desc {
+                font-size: 0.69rem;
+                font-weight: 600;
+                color: #94a3b8;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .store-item-qty {
+                font-family: "Roboto Mono", monospace;
+                font-size: 0.8rem;
+                font-weight: 800;
+                padding: 3px 7px;
+                border-radius: 6px;
+                min-width: 34px;
+                text-align: center;
+                flex-shrink: 0;
+            }
+            .qty-pos {
+                background: rgba(16, 185, 129, 0.18);
+                color: #34d399;
+                border: 1px solid rgba(16, 185, 129, 0.35);
+            }
+            .qty-zero {
+                background: rgba(244, 63, 94, 0.12);
+                color: #fb7185;
+                border: 1px solid rgba(244, 63, 94, 0.25);
+            }
+
+            .store-empty-msg {
+                margin: auto;
+                text-align: center;
+                color: #64748b;
+                font-size: 0.73rem;
+                font-weight: 600;
+                padding: 15px 8px;
+            }
+
+            mark.hl {
+                background: rgba(250, 204, 21, 0.28);
+                color: #fde047;
+                padding: 0 2px;
+                border-radius: 3px;
+            }
+            .list-item mark.hl {
+                background: #fef08a;
+                color: #0f172a;
+            }
+
+            .catalog-section {
+                max-width: 1380px;
+                margin: 18px auto 0;
+                padding: 0 20px;
+            }
+
+            .catalog-table-head {
+                display: grid;
+                grid-template-columns: 150px 1fr 130px 310px;
+                padding: 0 22px 10px;
+                font-size: 0.74rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                color: var(--text-secondary);
+            }
+            @media (max-width: 920px) { .catalog-table-head { display: none; } }
+
+            .product-list {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
             }
 
             .list-item {
-                display: grid; grid-template-columns: 140px 1fr 130px 160px 140px; align-items: center;
-                padding: 20px 25px; background: var(--brand-white); border-radius: 16px;
-                border: 1px solid rgba(255,255,255,0.8); border-left: 6px solid var(--border-color); 
-                box-shadow: var(--shadow-sm); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                animation: slideUpFade 0.4s ease forwards;
+                display: grid;
+                grid-template-columns: 150px 1fr 130px 310px;
+                align-items: center;
+                background: var(--bg-card);
+                border-radius: var(--radius-md);
+                padding: 14px 22px;
+                border: 1px solid var(--border-light);
+                border-left: 5px solid var(--dark-slate);
+                box-shadow: var(--shadow-card);
+                transition: transform 0.2s ease, box-shadow 0.2s ease, border-left-color 0.2s ease;
             }
-            .list-item:hover { 
-                transform: translateY(-4px) scale(1.005); box-shadow: var(--shadow-hover); 
-                border-left-color: var(--brand-red); z-index: 10;
+            .list-item:hover {
+                transform: translateY(-2px);
+                box-shadow: var(--shadow-hover);
+                border-left-color: var(--brand-red);
             }
 
-            .col-code { font-family: "Roboto Mono", monospace; font-size: 1.25rem; font-weight: 900; color: var(--text-main); }
-
-            /* --- MINIATURAS (THUMBNAILS) --- */
-            .col-desc { display: flex; align-items: center; gap: 20px; padding-right: 15px; }
-            .thumb-img { width: 65px; height: 65px; object-fit: cover; border-radius: 10px; border: 1px solid var(--border-color); cursor: pointer; transition: all 0.3s ease; flex-shrink: 0; background: var(--bg-light); }
-            .thumb-img:hover { transform: scale(1.2) rotate(-2deg); box-shadow: 0 8px 20px var(--brand-red-glow); border-color: var(--brand-red); }
-            .thumb-placeholder { width: 65px; height: 65px; display: flex; align-items: center; justify-content: center; background: var(--bg-light); border: 2px dashed #d1d5db; border-radius: 10px; color: #9ca3af; font-size: 1.4rem; flex-shrink: 0; }
-
-            .title-text-group { display: flex; flex-direction: column; gap: 4px; }
-            .product-title { font-size: 1.05rem; font-weight: 800; color: var(--text-main); text-transform: uppercase; line-height: 1.3; }
-            .product-subcodes { font-family: "Roboto Mono", monospace; font-size: 0.85rem; color: var(--text-muted); font-weight: 600;}
-
-            .col-brand { display: flex; align-items: center; }
-            .brand-badge { display: inline-block; padding: 6px 14px; font-size: 0.75rem; font-weight: 800; border-radius: 6px; background: #f3f4f6; color: var(--text-main); border: 1px solid var(--border-color); text-transform: uppercase; letter-spacing: 1.5px; }
-
-            /* --- COLUMNAS DE PRECIO --- */
-            .col-price { padding-right: 15px; display: flex; align-items: center; justify-content: flex-end; }
-            .col-price-fact { padding-left: 15px; display: flex; align-items: center; justify-content: flex-end; }
-            
-            .price-box {
-                display: flex; flex-direction: column; align-items: center; justify-content: center;
-                padding: 12px 15px; border-radius: 12px; text-align: center; min-width: 140px;
-                transition: all 0.3s ease;
+            /* Columna Código */
+            .code-cell {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+                padding-right: 10px;
             }
-            .price-box.normal {
-                background: linear-gradient(145deg, #1f2937, #111827);
-                color: var(--brand-white);
-                box-shadow: 0 6px 15px rgba(17,24,39,0.2);
+            .code-badge {
+                font-family: "Roboto Mono", monospace;
+                font-size: 1.12rem;
+                font-weight: 800;
+                color: var(--text-main);
+                cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                transition: 0.15s;
             }
-            .price-box.normal .lbl { font-size: 0.65rem; text-transform: uppercase; font-weight: 800; color: #9ca3af; letter-spacing: 1.5px; margin-bottom: 4px;}
-            .price-box.normal .val { font-size: 1.35rem; font-weight: 900; font-family: "Montserrat", sans-serif; letter-spacing: -0.5px;}
+            .code-badge:hover { color: var(--brand-red); }
+            .code-badge i { font-size: 0.75rem; opacity: 0.45; }
 
-            .price-box.facturado {
-                background: #fef2f2;
-                border: 2px solid #fecaca;
+            /* Columna Producto */
+            .desc-cell {
+                display: flex;
+                align-items: center;
+                gap: 25px;
+                padding-right: 16px;
+                min-width: 0;
+            }
+            .thumb-img {
+                width: 58px;
+                height: 58px;
+                object-fit: cover;
+                border-radius: 10px;
+                border: 1px solid var(--border-light);
+                cursor: pointer;
+                flex-shrink: 0;
+                background: #f8fafc;
+                transition: 0.25s ease;
+            }
+            .thumb-img:hover {
+                transform: scale(1.15);
+                border-color: var(--brand-red);
+            }
+            .thumb-placeholder {
+                width: 58px;
+                height: 58px;
+                border-radius: 10px;
+                background: #f8fafc;
+                border: 1px dashed #cbd5e1;
+                color: #94a3b8;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.15rem;
+                flex-shrink: 0;
+            }
+
+            .desc-texts {
+                display: flex;
+                flex-direction: column;
+                gap: 3px;
+                min-width: 0;
+            }
+            .prod-name {
+                font-size: 0.98rem;
+                font-weight: 800;
+                color: var(--text-main);
+                text-transform: uppercase;
+                line-height: 1.25;
+            }
+            .prod-equivalents {
+                font-family: "Roboto Mono", monospace;
+                font-size: 0.78rem;
+                color: var(--text-secondary);
+                font-weight: 600;
+            }
+
+            /* Columna Marca */
+            .brand-cell {
+                display: flex;
+                align-items: center;
+            }
+            .brand-tag {
+                background: #f1f5f9;
+                color: var(--steel-grey);
+                border: 1px solid #cbd5e1;
+                padding: 5px 12px;
+                border-radius: 7px;
+                font-size: 0.72rem;
+                font-weight: 800;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+            }
+
+            /* Columna Precios Lsdo a Ladaso (Negro y Plomo/Rojo) */
+            .prices-side-by-side {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                align-items: stretch;
+            }
+
+            .p-card {
+                padding: 9px 12px;
+                border-radius: 10px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+            }
+            .p-card.neto {
+                background: var(--dark-slate);
+                color: #ffffff;
+            }
+            .p-card.neto .p-lbl {
+                font-size: 0.6rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                color: #94a3b8;
+                margin-bottom: 2px;
+            }
+            .p-card.neto .p-val {
+                font-size: 1.15rem;
+                font-weight: 800;
+                letter-spacing: -0.3px;
+            }
+
+            .p-card.factura {
+                background: #e2e8f0;
+                border: 1px solid #cbd5e1;
+                color: var(--text-main);
+            }
+            .p-card.factura .p-lbl {
+                font-size: 0.6rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 1px;
                 color: var(--brand-red);
+                margin-bottom: 2px;
             }
-            .price-box.facturado .lbl { font-size: 0.65rem; text-transform: uppercase; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 4px; color: #ef4444;}
-            .price-box.facturado .val { font-size: 1.2rem; font-weight: 800; font-family: "Montserrat", sans-serif; letter-spacing: -0.5px;}
-
-            /* --- MODAL IMAGEN GRANDE --- */
-            #imageModal { display: none; position: fixed; inset: 0; background: rgba(17, 24, 39, 0.9); z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(10px); }
-            #imageModal img { max-width: 90%; max-height: 80vh; border: 4px solid var(--brand-white); border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
-            .close-btn { position: absolute; top: 30px; right: 40px; font-size: 3.5rem; color: var(--brand-white); font-weight: 300; cursor: pointer; transition: 0.2s; opacity: 0.7; }
-            .close-btn:hover { color: var(--brand-red); opacity: 1; transform: scale(1.1); }
+            .p-card.factura .p-val {
+                font-size: 1.1rem;
+                font-weight: 800;
+                color: var(--text-main);
+            }
 
             /* --- RESPONSIVE MÓVIL --- */
-            @media (max-width: 992px) {
-                header { padding: 40px 20px 30px; }
-                .list-item { grid-template-columns: 1fr; gap: 15px; padding: 22px; border-left-width: 4px; }
-                .list-item-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; margin-bottom: 5px;}
-                .col-code { font-size: 1.3rem; }
-                .col-brand { margin-top: 0; }
-                .brand-badge { padding: 5px 10px; font-size: 0.7rem; }
-                .col-price, .col-price-fact { display: none; } 
-                
-                .mobile-prices { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border-color); }
-                .mobile-price-box { padding: 12px 8px; border-radius: 10px; text-align: center; display: flex; flex-direction: column; justify-content: center; }
-                
-                .mobile-price-box.normal { background: linear-gradient(145deg, #1f2937, #111827); color: var(--brand-white); box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
-                .mobile-price-box.normal .lbl { font-size: 0.65rem; text-transform: uppercase; font-weight: 800; color: #9ca3af; margin-bottom: 4px; letter-spacing: 1px;}
-                .mobile-price-box.normal .val { font-size: 1.25rem; font-weight: 900; }
-
-                .mobile-price-box.facturado { background: #fef2f2; border: 2px solid #fecaca; color: var(--brand-red); }
-                .mobile-price-box.facturado .lbl { font-size: 0.65rem; text-transform: uppercase; font-weight: 800; color: #ef4444; margin-bottom: 4px; letter-spacing: 1px;}
-                .mobile-price-box.facturado .val { font-size: 1.15rem; font-weight: 800; }
+            @media (max-width: 920px) {
+                .list-item {
+                    grid-template-columns: 1fr;
+                    gap: 12px;
+                    padding: 16px;
+                }
+                .mobile-top-row {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    border-bottom: 1px solid var(--border-light);
+                    padding-bottom: 8px;
+                }
+                .search-controls-row {
+                    flex-direction: column;
+                    align-items: stretch;
+                }
+                .radar-switch {
+                    justify-content: center;
+                }
             }
 
-            .catalog-footer { max-width: 1200px; margin: 30px auto; padding: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; font-weight: 700; color: var(--text-muted); background: var(--brand-white); border-radius: 12px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);}
-            @media (max-width: 600px) { .catalog-footer { flex-direction: column; gap: 15px; text-align: center; } }
-            .status-online { display: flex; align-items: center; gap: 8px; color: var(--brand-red); font-weight: 800; }
+            /* --- TOAST DE COPIADO --- */
+            #copyToast {
+                position: fixed;
+                bottom: 24px;
+                right: 24px;
+                background: var(--dark-slate);
+                color: #fff;
+                padding: 10px 18px;
+                border-radius: 10px;
+                font-size: 0.82rem;
+                font-weight: 700;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+                border-left: 4px solid var(--emerald);
+                transform: translateY(80px);
+                opacity: 0;
+                transition: 0.25s ease;
+                z-index: 3000;
+            }
+            #copyToast.show {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            /* --- MODAL IMAGEN --- */
+            #imageModal {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(15, 23, 42, 0.9);
+                z-index: 2500;
+                justify-content: center;
+                align-items: center;
+                backdrop-filter: blur(8px);
+            }
+            #imageModal img {
+                max-width: 90%;
+                max-height: 82vh;
+                border: 3px solid #fff;
+                border-radius: 14px;
+            }
+            .close-btn {
+                position: absolute;
+                top: 24px;
+                right: 34px;
+                font-size: 3rem;
+                color: #fff;
+                cursor: pointer;
+            }
         </style>
     </head>
     <body>
 
         <header>
-            <h1>IMPORTADORA <span>CALI</span></h1>
-            <div class="subtitle">Buscador Digital de Precios</div>
+            <div class="header-inner">
+                <div class="brand-block">
+                    <h1>IMPORTADORA <span>CALI</span></h1>
+                    <div class="subtitle">Preciario & y stock Multi-Sucursal</div>
+                </div>
+                <div class="sync-pill" id="syncStatusBtn" onclick="cargarDatosDesdeSheets(true)" title="Clic para sincronizar ahora con Google Sheets">
+                    <span class="pulse-dot" id="syncDot"></span>
+                    <span id="syncText">Conectando...</span>
+                    <i class="fa-solid fa-rotate" style="margin-left: 4px;"></i>
+                </div>
+            </div>
         </header>
 
-        <div class="sticky-nav">
-            <div class="controls-wrapper">
-                <div class="search-box">
-                    <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted); margin-right: 18px; font-size: 1.4rem;"></i>
-                    <input type="text" id="searchInput" placeholder="Buscar código, descripción o marca..." oninput="filtrar()" />
+        <!-- BARRA DE COMANDO STICKY -->
+        <div class="command-bar">
+            <div class="command-inner">
+                <div class="search-controls-row">
+                    <div class="search-input-wrap">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input type="text" id="searchInput" placeholder="Escribe código o nombre del repuesto (ej: 0389, reten, amort fh12)..." oninput="filtrar()" autocomplete="off" />
+                        <span class="kbd-hint">ESC limpia</span>
+                        <button class="clear-btn" id="clearBtn" onclick="limpiarBusqueda()" title="Borrar búsqueda">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <button class="radar-switch active" id="btnRadarToggle" onclick="alternarRadar()">
+                        <i class="fa-solid fa-tower-broadcast"></i>
+                        <span id="radarBtnText">ver stock</span>
+                    </button>
                 </div>
 
-                <div class="filter-tags" id="filterTags">
-                    <button class="btn-filter active" onclick="cambiarFiltro(this, '')">Todos</button>
-                    <button class="btn-filter" onclick="cambiarFiltro(this, 'VKNTECH')">NUEVA CARGA VKNTECH</button>
-                    <button class="btn-filter" onclick="cambiarFiltro(this, 'EAA.')">NUEVA CARGA EAA</button>
-
+                <div class="sub-bar">
+                    <div class="filter-group" id="filterTags">
+                        <button class="chip-btn active" onclick="cambiarFiltro(this, '')">Todos los ítems</button>
+                        <button class="chip-btn" onclick="cambiarFiltro(this, 'VKNTECH')">Nueva Carga VKNTECH</button>
+                        <button class="chip-btn" onclick="cambiarFiltro(this, 'EAA.')">Nueva Carga EAA</button>
+                    </div>
+                    <div class="counter-label" id="productCount">Cargando catálogo...</div>
                 </div>
             </div>
         </div>
 
-        <div class="list-wrapper">
-            <div class="list-header">
+        <section class="radar-dock" id="radarDock">
+            <div class="radar-shell">
+                <div class="radar-bar">
+                    <div class="radar-title">
+                        <i class="fa-solid fa-satellite-dish"></i>
+                        <span>ver stock de las tiendas</span>
+                        <span class="radar-query-pill" id="radarQueryLabel">---</span>
+                    </div>
+                    <div class="radar-actions">
+                        <span class="radar-summary" id="radarGlobalSummary"></span>
+                        <button class="radar-minimize-btn" onclick="plegarRadarTemporal()">
+                            Plegar radar <i class="fa-solid fa-chevron-up"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="radar-columns" id="radarGrid5">
+
+                </div>
+            </div>
+        </section>
+
+        <!-- LISTA PRINCIPAL DE PRçkECIOS -->
+        <main class="catalog-section">
+            <div class="catalog-table-head">
                 <div>Código</div>
-                <div>Descripción del Repuesto</div>
+                <div>Descripcion</div>
                 <div>Marca</div>
-                <div style="text-align: center;">Precio Neto</div>
-                <div style="text-align: center;">Con Factura</div>
+                <div style="text-align: center;">Precios (S/F y Facturado)</div>
             </div>
-            <div class="list-container" id="listaProductos">
-                <div style="padding: 80px; text-align: center; color: var(--text-muted); font-weight: 600;">
-                    <i class="fa-solid fa-gear fa-spin" style="font-size: 3rem; color: var(--text-main); margin-bottom: 20px; display: block;"></i>
-                    Sincronizando inventario...
+            <div class="product-list" id="listaProductos">
+                <div style="padding: 70px 20px; text-align: center; color: var(--text-secondary); font-weight: 600;">
+                    <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2.4rem; color: var(--brand-red); margin-bottom: 14px; display: block;"></i>
+                    Sincronizando catálogo y bases de datos de las 5 tiendas...
                 </div>
             </div>
-        </div>
+        </main>
 
-        <div class="catalog-footer">
-            <div id="productCount">Iniciando sistema...</div>
-            <div class="status-online"><i class="fa-solid fa-cloud-check"></i> Catálogo Actualizado</div>
-        </div>
+        <!-- NOTIFICACIÓN DE COPIADO -->
+        <div id="copyToast"><i class="fa-solid fa-check-circle" style="color: var(--emerald); margin-right: 6px;"></i> Código copiado: <span id="copiedCodeTxt"></span></div>
 
-        <div id="imageModal" onclick="cerrarImagen(event)">
-            <span class="close-btn" onclick="cerrarImagen(event)">&times;</span>
+        <!-- MODAL DE IMAGEN -->
+        <div id="imageModal" onclick="cerrarImagen()">
+            <span class="close-btn">&times;</span>
             <img id="modalImg" src="" onclick="event.stopPropagation()" />
         </div>
 
-    <script>
+        <script>
             const API_WEB_URL = 'https://script.google.com/macros/s/AKfycbw5OsxI6xw-46zQ6BasPDLHItxTDi1-AF_RWR2N3rGhkyMIcqTLlymYMgC-DBXi_foM/exec';
             
-            let productos = [];
-            let filtroMarcaActual = "";
+            // Configuración de tus 5 Tiendas
+            const CONFIG_TIENDAS = [
+                { id: 'tienda1', nombre: 'Tienda 1' },
+                { id: 'tienda2', nombre: 'Tienda 2' },
+                { id: 'tienda3', nombre: 'Tienda 3' },
+                { id: 'tienda4', nombre: 'Tienda 4' },
+                { id: 'tienda5', nombre: 'Tienda 5' }
+            ];
 
-            async function cargarDatosDesdeSheets() {
+            const STORAGE_KEY = 'cali_inventario_v3';
+            const STORAGE_TIME_KEY = 'cali_fecha_v3';
+
+            let productos = [];
+            let basesTiendas = { tienda1: [], tienda2: [], tienda3: [], tienda4: [], tienda5: [] };
+            let filtroMarcaActual = "";
+            let radarHabilitado = true;
+
+            // asdNormalizadores para búsqueda inteligente
+            function limpiarSimbolosCodigo(val) {
+                return String(val || "").toLowerCase().replace(/[\s\-_.\/(),]/g, "");
+            }
+
+            function normalizarTexto(val) {
+                return String(val || "")
+                    .toLowerCase()
+                    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                    .replace(/[\-_.\/(),]/g, " ")
+                    .replace(/\s+/g, " ")
+                    .trim();
+            }
+
+            // Resaltsador visual de palabras buscadas
+            function resaltarCoincidencia(textoOriginal, queryRaw) {
+                const texto = String(textoOriginal || "");
+                const q = queryRaw.trim();
+                if (!q || q.length < 2) return texto;
+
+                const palabras = q.split(/\s+/).filter(w => w.length >= 2).map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+                if (palabras.length === 0) return texto;
+
+                try {
+                    const regex = new RegExp(`(${palabras.join('|')})`, 'gi');
+                    return texto.replace(regex, '<mark class="hl">$1</mark>');
+                } catch (e) {
+                    return texto;
+                }
+            }
+
+            function coincideBusquedaInteligente(nombreYMarca, codigos, queryRaw) {
+                const qTrim = queryRaw.trim();
+                if (!qTrim) return true;
+
+                const qCod = limpiarSimbolosCodigo(qTrim);
+                const cCod = limpiarSimbolosCodigo(codigos);
+
+                if (qCod.length >= 2 && cCod.includes(qCod)) return true;
+
+                const palabrasBuscadas = normalizarTexto(qTrim).split(" ").filter(Boolean);
+                const bolsaDePalabras = normalizarTexto(nombreYMarca + " " + codigos);
+
+                return palabrasBuscadas.every(p => bolsaDePalabras.includes(p));
+            }
+
+            async function cargarDatosDesdeSheets(forzar = false) {
+                const syncText = document.getElementById('syncText');
+                const syncDot = document.getElementById('syncDot');
+                if (syncText) syncText.innerText = "Sincronizando...";
+
                 if (!navigator.onLine) {
                     cargarRespaldoLocal();
                     return;
                 }
+
+                const url = `${API_WEB_URL}?nocache=${Date.now()}${forzar ? '&force=1' : ''}`;
+
                 try {
-                    const respuesta = await fetch(API_WEB_URL, { method: 'GET', mode: 'cors', redirect: 'follow' });
-                    if (respuesta.ok) {
-                        const datosJson = await respuesta.json();
-                        if (datosJson && datosJson.length > 0) {
-                            guardarRespaldoLocal(datosJson);
-                            procesarYMostrar(datosJson);
+                    const res = await fetch(url, { method: 'GET', mode: 'cors', redirect: 'follow', cache: 'no-store' });
+                    if (res.ok) {
+                        const data = await res.json();
+                        if (data && !data.error) {
+                            guardarRespaldoLocal(data);
+                            procesarYMostrar(data);
                             return;
                         }
                     }
-                    throw new Error("Forzando Plan B");
-                } catch (error) {
-                    ejecutarPlanB_JSONP();
+                    throw new Error("Fallback JSONP");
+                } catch (err) {
+                    ejecutarPlanB_JSONP(forzar);
                 }
             }
 
-            function ejecutarPlanB_JSONP() {
-                const viejoScript = document.getElementById('jsonp-engine');
-                if (viejoScript) viejoScript.remove();
+            function ejecutarPlanB_JSONP(forzar = false) {
+                const previo = document.getElementById('jsonp-engine');
+                if (previo) previo.remove();
                 const script = document.createElement('script');
                 script.id = 'jsonp-engine';
-                script.src = API_WEB_URL + '?callback=recibirDatos&nocache=' + new Date().getTime();
-                script.onerror = function() { cargarRespaldoLocal(); };
+                script.src = `${API_WEB_URL}?callback=recibirDatos&nocache=${Date.now()}${forzar ? '&force=1' : ''}`;
+                script.onerror = () => cargarRespaldoLocal();
                 document.body.appendChild(script);
             }
 
-            function recibirDatos(datosJson) {
-                guardarRespaldoLocal(datosJson);
-                procesarYMostrar(datosJson);
+            function recibirDatos(data) {
+                if (data && !data.error) {
+                    guardarRespaldoLocal(data);
+                    procesarYMostrar(data);
+                }
             }
 
-            function guardarRespaldoLocal(datosJson) {
-                localStorage.setItem('respaldoInventarioCali', JSON.stringify(datosJson));
-                const fecha = new Date();
-                const horaFormat = fecha.toLocaleDateString() + ' a las ' + fecha.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-                localStorage.setItem('fechaRespaldoCali', horaFormat);
-                const statusDiv = document.querySelector('.status-online');
-                statusDiv.innerHTML = `<i class="fa-solid fa-cloud-check"></i> En línea - Datos al día`;
-                statusDiv.style.color = "var(--brand-red)";
+            function guardarRespaldoLocal(data) {
+                try {
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+                    const hora = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                    localStorage.setItem(STORAGE_TIME_KEY, hora);
+
+                    let totalTiendas = 0;
+                    if (data.tiendas) {
+                        Object.values(data.tiendas).forEach(arr => { totalTiendas += (arr ? arr.length : 0); });
+                    }
+
+                    document.getElementById('syncDot').style.background = "#10b981";
+                    document.getElementById('syncText').innerText = `En línea (${hora}) • ${totalTiendas} reg. tiendas`;
+                } catch (e) {}
             }
 
             function cargarRespaldoLocal() {
-                const datosGuardados = localStorage.getItem('respaldoInventarioCali');
-                const fechaGuardada = localStorage.getItem('fechaRespaldoCali');
-                if (datosGuardados) {
-                    const statusDiv = document.querySelector('.status-online');
-                    statusDiv.innerHTML = `<i class="fa-solid fa-wifi-slash"></i> Sin conexión - Respaldo del ${fechaGuardada}`;
-                    statusDiv.style.color = "#d97706"; 
-                    procesarYMostrar(JSON.parse(datosGuardados));
-                } else {
-                    document.getElementById("listaProductos").innerHTML = `<div style="padding: 80px; text-align: center; color: var(--text-muted);"><i class="fa-solid fa-wifi-slash" style="font-size: 3rem; color: #d97706; margin-bottom: 20px; display: block;"></i><b style="font-size: 1.2rem;">Sin conexión a internet.</b><br><br>No se encontró un caché previo para mostrar.</div>`;
-                    document.getElementById("productCount").innerText = "0 productos cargados";
+                const guardado = localStorage.getItem(STORAGE_KEY);
+                const hora = localStorage.getItem(STORAGE_TIME_KEY) || '';
+                if (guardado) {
+                    document.getElementById('syncDot').style.background = "#f59e0b";
+                    document.getElementById('syncText').innerText = `Modo Offline (${hora})`;
+                    procesarYMostrar(JSON.parse(guardado));
                 }
             }
 
-          function procesarYMostrar(datosJson) {
-    // Extraer el catálogo sin importar si viene como array viejo o como objeto { catalogo, tiendas }
-    const listaCat = Array.isArray(datosJson) ? datosJson : (datosJson.catalogo || []);
-    
-    if (datosJson && datosJson.tiendas) {
-        basesTiendas = datosJson.tiendas;
-    }
+            function procesarYMostrar(data) {
+                const listaCat = Array.isArray(data) ? data : (data.catalogo || []);
+                if (data && data.tiendas) {
+                    basesTiendas = data.tiendas;
+                }
 
-    if (!listaCat || listaCat.length === 0) {
-        document.getElementById("listaProductos").innerHTML = `<div style="padding: 80px; text-align: center; color: var(--text-muted); font-size: 1.2rem; font-weight: 600;">La base de datos se encuentra vacía o el formato no coincide.</div>`;
-        return;
-    }
+                productos = listaCat.map(p => ({
+                    codCali: p.codCali ? String(p.codCali).trim() : '---',
+                    otrosCod: p.otrosCod ? String(p.otrosCod).trim() : '',
+                    desc: p.desc ? String(p.desc).trim() : 'SIN DESCRIPCIÓN',
+                    marca: p.marca ? String(p.marca).toUpperCase().trim() : 'SIN MARCA',
+                    pUnitario: Number(p.pUnitario) || 0,
+                    img: p.img ? String(p.img).trim() : ''
+                }));
 
-    productos = listaCat.map(p => {
-        return {
-            codCali: p.codCali ? String(p.codCali).trim() : '---',
-            otrosCod: p.otrosCod ? String(p.otrosCod).trim() : '',
-            desc: p.desc ? String(p.desc).trim() : 'SIN DESCRIPCIÓN',
-            marca: p.marca ? String(p.marca).toUpperCase().trim() : 'SIN MARCA',
-            pUnitario: Number(p.pUnitario) || 0,
-            img: p.img ? String(p.img).trim() : '',
-            stockTiendas: p.stockTiendas || {}
-        };
-    });
-    filtrar();
-}
-
-            function abrirImagen(url) {
-                if(!url || url.includes('placeholder') || !url.startsWith('http')) return;
-                document.getElementById("modalImg").src = url;
-                document.getElementById("imageModal").style.display = "flex";
+                filtrar();
             }
-            function cerrarImagen(e) { document.getElementById("imageModal").style.display = "none"; }
 
-            function render(data) {
-                const container = document.getElementById("listaProductos");
-                if (data.length === 0) {
-                    container.innerHTML = `<div style="padding: 80px; text-align: center; color: var(--text-muted); font-size: 1.2rem; font-weight: 600;">No se encontraron repuestos con esa búsqueda.</div>`;
-                    document.getElementById("productCount").innerText = "Mostrando 0 productos";
+            function alternarRadar() {
+                radarHabilitado = !radarHabilitado;
+                const btn = document.getElementById('btnRadarToggle');
+                const txt = document.getElementById('radarBtnText');
+
+                if (radarHabilitado) {
+                    btn.classList.add('active');
+                    txt.innerText = "ver stock: ACTIVO";
+                    filtrar();
+                } else {
+                    btn.classList.remove('active');
+                    txt.innerText = "ver stock: OCULTO";
+                    document.getElementById('radarDock').classList.remove('open');
+                }
+            }
+
+            function plegarRadarTemporal() {
+                document.getElementById('radarDock').classList.remove('open');
+            }
+
+            function limpiarBusqueda() {
+                const input = document.getElementById('searchInput');
+                input.value = "";
+                filtrar();
+                input.focus();
+            }
+
+            function copiarCodigo(codigo) {
+                navigator.clipboard.writeText(codigo).catch(() => {});
+                const toast = document.getElementById('copyToast');
+                document.getElementById('copiedCodeTxt').innerText = codigo;
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 1800);
+            }
+
+            function filtrarPorCodigoTienda(codigo) {
+                const input = document.getElementById('searchInput');
+                input.value = codigo;
+                filtrar();
+            }
+
+            // Motor de los 5 buscadores simultáneos integrados
+            function actualizarRadar5Tiendas(queryRaw) {
+                const dock = document.getElementById('radarDock');
+                const q = queryRaw.trim();
+
+                if (!radarHabilitado || q.length < 2) {
+                    dock.classList.remove('open');
                     return;
                 }
 
-                const esMovil = window.innerWidth <= 992;
-                
-                // MEJORA DE RENDIMIENTO: Renderizar máximo 50 ítems a la vez para evitar que se congele
-                const limiteMostrado = 50;
-                const datosCortados = data.slice(0, limiteMostrado);
+                document.getElementById('radarQueryLabel').innerText = q.toUpperCase();
+                dock.classList.add('open');
 
-                container.innerHTML = datosCortados.map((p, index) => {
+                let sucursalesConStock = 0;
+                let sumaUnidadesEncontradas = 0;
+
+                const grid = document.getElementById('radarGrid5');
+                grid.innerHTML = CONFIG_TIENDAS.map(t => {
+                    const inv = basesTiendas[t.id] || [];
+
+                    const hits = inv.filter(item =>
+                        coincideBusquedaInteligente(item.n || "", item.c || "", q)
+                    );
+
+                    // Ordenar poniendo arriba los productos con mayor stock disponible
+                    hits.sort((a, b) => (Number(b.s) || 0) - (Number(a.s) || 0));
+
+                    const stockPositivoEnTienda = hits.some(h => (Number(h.s) || 0) > 0);
+                    if (stockPositivoEnTienda) sucursalesConStock++;
+
+                    hits.forEach(h => {
+                        const s = Number(h.s) || 0;
+                        if (s > 0) sumaUnidadesEncontradas += Math.round(s);
+                    });
+
+                    const topHits = hits.slice(0, 20);
+
+                    const itemsHtml = topHits.length > 0
+                        ? topHits.map(item => {
+                            const stk = Math.round(Number(item.s) || 0);
+                            const clsQty = stk > 0 ? 'qty-pos' : 'qty-zero';
+                            const codClean = String(item.c || "").replace(/'/g, "");
+                            return `
+                            <div class="store-item" onclick="filtrarPorCodigoTienda('${codClean}')" title="Clic para filtrar ${item.c} | ${item.n}">
+                                <div class="store-item-left">
+                                    <span class="store-item-code">${resaltarCoincidencia(item.c || 'S/C', q)}</span>
+                                    <span class="store-item-desc">${resaltarCoincidencia(item.n || 'SIN NOMBRE', q)}</span>
+                                </div>
+                                <span class="store-item-qty ${clsQty}">${stk}</span>
+                            </div>`;
+                        }).join("")
+                        : `<div class="store-empty-msg">${inv.length === 0 ? 'Sin datos sincronizados' : '0 coincidencias'}</div>`;
+
+                    return `
+                    <div class="store-column ${stockPositivoEnTienda ? 'has-available' : ''}">
+                        <div class="store-col-head">
+                            <span class="store-name">
+                                <span class="store-status-dot ${stockPositivoEnTienda ? 'green' : ''}"></span>
+                                ${t.nombre}
+                            </span>
+                            <span class="store-hit-counter">${hits.length} ítems</span>
+                        </div>
+                        <div class="store-col-list">
+                            ${itemsHtml}
+                        </div>
+                    </div>`;
+                }).join("");
+
+                document.getElementById('radarGlobalSummary').innerText =
+                    `${sucursalesConStock} de 5 tiendas con stock disponible`;
+            }
+
+            function renderCatalogo(data, queryRaw) {
+                const container = document.getElementById("listaProductos");
+                if (data.length === 0) {
+                    container.innerHTML = `
+                    <div style="padding: 60px 20px; text-align: center; background: #fff; border-radius: 14px; border: 1px solid var(--border-light); color: var(--text-secondary);">
+                        <i class="fa-solid fa-box-open" style="font-size: 2.2rem; color: var(--text-muted); margin-bottom: 10px; display: block;"></i>
+                        <b>No hay coincidencias en la Hoja 1 de precios.</b><br>
+                        <span style="font-size: 0.85rem;">Revisa arriba el Radar de las 5 Sucursales para ver si existe con otro código en las tiendas.</span>
+                    </div>`;
+                    document.getElementById("productCount").innerText = "0 resultados en preciario";
+                    return;
+                }
+
+                const esMovil = window.innerWidth <= 920;
+                const limite = 50;
+                const cortados = data.slice(0, limite);
+
+                container.innerHTML = cortados.map(p => {
                     const unitPrice = p.pUnitario || 0;
                     const pFact = (unitPrice * 1.09).toFixed(2);
-                    const marcaLabel = p.marca || "SIN MARCA";
-                    const searchString = `${p.codCali} ${p.desc} ${p.marca} ${p.otrosCod || ''}`.toLowerCase();
-                    const tieneImagen = p.img && p.img.startsWith('http');
-                    const thumbHtml = tieneImagen 
-                        ? `<img src="${p.img}" class="thumb-img" onclick="abrirImagen('${p.img}')" title="Ver foto completa" loading="lazy">`
-                        : `<div class="thumb-placeholder" title="Sin foto disponible"><i class="fa-solid fa-camera-slash"></i></div>`;
-                    
-                    // Retraso escalonado para la animación de entrada
-                    const delay = index < 15 ? `style="animation-delay: ${index * 0.03}s"` : '';
+                    const tieneImg = p.img && p.img.startsWith('http');
+                    const thumbHtml = tieneImg
+                        ? `<img src="${p.img}" class="thumb-img" onclick="abrirImagen('${p.img}')" loading="lazy" title="Ampliar imagen">`
+                        : `<div class="thumb-placeholder"><i class="fa-solid fa-cube"></i></div>`;
+
+                    const codSafe = p.codCali.replace(/'/g, "");
+                    const codHtml = resaltarCoincidencia(p.codCali, queryRaw);
+                    const descHtml = resaltarCoincidencia(p.desc, queryRaw);
+                    const otrosHtml = p.otrosCod ? resaltarCoincidencia(p.otrosCod, queryRaw) : "---";
 
                     if (esMovil) {
                         return `
-                        <div class="list-item" data-search="${searchString}" ${delay}>
-                            <div class="list-item-header">
-                                <div class="col-code">${p.codCali}</div>
-                                <div class="col-brand"><span class="brand-badge">${marcaLabel}</span></div>
+                        <div class="list-item">
+                            <div class="mobile-top-row">
+                                <span class="code-badge" onclick="copiarCodigo('${codSafe}')">${codHtml} <i class="fa-regular fa-copy"></i></span>
+                                <span class="brand-tag">${p.marca}</span>
                             </div>
-                            <div class="col-desc">
+                            <div class="desc-cell">
                                 ${thumbHtml}
-                                <div class="title-text-group">
-                                    <span class="product-title">${p.desc}</span>
-                                    <span class="product-subcodes">${p.otrosCod || "---"}</span>
+                                <div class="desc-texts">
+                                    <span class="prod-name">${descHtml}</span>
+                                    <span class="prod-equivalents">Equiv: ${otrosHtml}</span>
                                 </div>
                             </div>
-                            <div class="mobile-prices">
-                                <div class="mobile-price-box normal">
-                                    <span class="lbl">NORMAL (S/F)</span>
-                                    <span class="val">Bs ${unitPrice.toFixed(2)}</span>
+                            <div class="prices-side-by-side">
+                                <div class="p-card neto">
+                                    <span class="p-lbl">Precio Normal (S/F)</span>
+                                    <span class="p-val">Bs ${unitPrice.toFixed(2)}</span>
                                 </div>
-                                <div class="mobile-price-box facturado">
-                                    <span class="lbl">C / FACTURA</span>
-                                    <span class="val">Bs ${pFact}</span>
+                                <div class="p-card factura">
+                                    <span class="p-lbl">Con Factura (+9%)</span>
+                                    <span class="p-val">Bs ${pFact}</span>
                                 </div>
                             </div>
                         </div>`;
                     } else {
                         return `
-                        <div class="list-item" data-search="${searchString}" ${delay}>
-                            <div class="col-code">${p.codCali}</div>
-                            <div class="col-desc">
+                        <div class="list-item">
+                            <div class="code-cell">
+                                <span class="code-badge" onclick="copiarCodigo('${codSafe}')" title="Clic para copiar código">
+                                    ${codHtml} <i class="fa-regular fa-copy"></i>
+                                </span>
+                            </div>
+                            <div class="desc-cell">
                                 ${thumbHtml}
-                                <div class="title-text-group">
-                                    <span class="product-title">${p.desc}</span>
-                                    <span class="product-subcodes">${p.otrosCod || "---"}</span>
+                                <div class="desc-texts">
+                                    <span class="prod-name">${descHtml}</span>
+                                    <span class="prod-equivalents">${otrosHtml}</span>
                                 </div>
                             </div>
-                            <div class="col-brand">
-                                <span class="brand-badge">${marcaLabel}</span>
+                            <div class="brand-cell">
+                                <span class="brand-tag">${p.marca}</span>
                             </div>
-                            <div class="col-price">
-                                <div class="price-box normal">
-                                    <span class="lbl">Normal (S/F)</span>
-                                    <span class="val">Bs ${unitPrice.toFixed(2)}</span>
+                            <div class="prices-side-by-side">
+                                <div class="p-card neto">
+                                    <span class="p-lbl">Normal (S/F)</span>
+                                    <span class="p-val">Bs ${unitPrice.toFixed(2)}</span>
                                 </div>
-                            </div>
-                            <div class="col-price-fact">
-                                <div class="price-box facturado">
-                                    <span class="lbl">C / Factura</span>
-                                    <span class="val">Bs ${pFact}</span>
+                                <div class="p-card factura">
+                                    <span class="p-lbl">C / Factura</span>
+                                    <span class="p-val">Bs ${pFact}</span>
                                 </div>
                             </div>
                         </div>`;
                     }
                 }).join("");
 
-                let textoResultados = `Visualizando ${datosCortados.length} repuestos`;
-                if (data.length > limiteMostrado) {
-                    textoResultados = `Visualizando ${datosCortados.length} de ${data.length} coincidencias. Refina tu búsqueda.`;
-                }
-                document.getElementById("productCount").innerText = textoResultados;
+                document.getElementById("productCount").innerText =
+                    data.length > limite
+                        ? `Mostrando ${cortados.length} de ${data.length} repuestos`
+                        : `Mostrando ${cortados.length} repuestos`;
             }
 
             function filtrar() {
-                const q = document.getElementById("searchInput").value.toLowerCase();
-                const productosFiltrados = productos.filter(p => {
-                    const searchString = `${p.codCali} ${p.desc} ${p.marca} ${p.otrosCod || ''}`.toLowerCase();
-                    const coincideTexto = searchString.includes(q);
-                    const coincideMarca = filtroMarcaActual === "" || p.marca === filtroMarcaActual;
-                    return coincideTexto && coincideMarca;
+                const rawQ = document.getElementById("searchInput").value;
+                document.getElementById("clearBtn").style.display = rawQ.length > 0 ? "inline-flex" : "none";
+
+                // 1. Actualizar el asadar de las 5 Tiendas
+                actualizarRadar5Tiendas(rawQ);
+
+                // 2. Filtrar el Preciario Principal
+                const filtrados = productos.filter(p => {
+                    const okTexto = coincideBusquedaInteligente(
+                        `${p.desc} ${p.marca}`,
+                        `${p.codCali} ${p.otrosCod || ''}`,
+                        rawQ
+                    );
+                    const okMarca = filtroMarcaActual === "" || p.marca === filtroMarcaActual;
+                    return okTexto && okMarca;
                 });
-                render(productosFiltrados);
+
+                renderCatalogo(filtrados, rawQ);
             }
 
             function cambiarFiltro(btn, marca) {
-                document.querySelectorAll(".btn-filter").forEach(b => b.classList.remove("active"));
+                document.querySelectorAll(".chip-btn").forEach(b => b.classList.remove("active"));
                 btn.classList.add("active");
                 filtroMarcaActual = marca;
                 filtrar();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
 
-            let lastWidth = window.innerWidth;
+            function abrirImagen(url) {
+                if (!url || !url.startsWith('http')) return;
+                document.getElementById("modalImg").src = url;
+                document.getElementById("imageModal").style.display = "flex";
+            }
+            function cerrarImagen() {
+                document.getElementById("imageModal").style.display = "none";
+            }
+
+            // Atajo de teclado: ESC limpia la búsqueda o cierra imagen
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    if (document.getElementById("imageModal").style.display === "flex") {
+                        cerrarImagen();
+                    } else if (document.getElementById("searchInput").value !== "") {
+                        limpiarBusqueda();
+                    }
+                }
+            });
+
+            let prevWidth = window.innerWidth;
             window.addEventListener('resize', () => {
-                if ((window.innerWidth <= 992 && lastWidth > 992) || (window.innerWidth > 992 && lastWidth <= 992)) {
-                    lastWidth = window.innerWidth;
+                if ((window.innerWidth <= 920 && prevWidth > 920) || (window.innerWidth > 920 && prevWidth <= 920)) {
+                    prevWidth = window.innerWidth;
                     filtrar();
                 }
             });
 
-            window.addEventListener('online', cargarDatosDesdeSheets);
-            window.addEventListener('offline', cargarRespaldoLocal);
-            
-            // Lógica de carga optimizada
             window.onload = () => {
-                const datosGuardados = localStorage.getItem('respaldoInventarioCali');
-                if (datosGuardados) {
-                    procesarYMostrar(JSON.parse(datosGuardados));
-                    document.querySelector('.status-online').innerHTML = `<i class="fa-solid fa-rotate fa-spin"></i> Actualizando en segundo plano...`;
+                localStorage.removeItem('respaldoInventarioCali');
+                const cache = localStorage.getItem(STORAGE_KEY);
+                if (cache) {
+                    procesarYMostrar(JSON.parse(cache));
                 }
-                cargarDatosDesdeSheets();
+                cargarDatosDesdeSheets(false);
             };
-
-            if ('serviceWorker' in navigator) {
-                window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('./sw.js')
-                        .then(reg => console.log('SW registrado.'))
-                        .catch(err => console.error('Error SW:', err));
-                });
-            }
         </script>
     </body>
 </html>
